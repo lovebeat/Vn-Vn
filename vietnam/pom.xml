@@ -8,10 +8,19 @@
 	<name>vietnam Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<javaee.version>8.0</javaee.version>
 		<spring.version>4.3.6.RELEASE</spring.version>
 	</properties>
 	<dependencies>
+	
+		<!-- Link backend project -->
+		<dependency>
+			<groupId>com.vn</groupId>
+			<artifactId>vietnambackend</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+	
 		<!-- JAVA EE API -->
 		<!-- https://mvnrepository.com/artifact/javax/javaee-api -->
 		<dependency>
