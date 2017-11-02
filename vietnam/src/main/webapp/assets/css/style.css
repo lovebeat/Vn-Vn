@@ -1,134 +1,528 @@
-.container {
-	padding: 80px 120px;
+body{
+	margin:0;
+	
+}
+* {box-sizing:border-box}
+.mySlides {display:none}
+
+/* Slideshow container */
+.slideshow-container {
+	overflow: hidden;
+  	max-width: 100%;
+  	position: relative;
+  	margin: auto;
+  	/*min-height: 700px;*/
 }
 
-.person {
-	/*border: 10px solid transparent;*/
-	margin-bottom: 25px;
-	width: 50%;
-	height: 50%;
-	opacity: 0.7;
-}
-
-.person:hover {
-	opacity: 1;
-}
-/*.carousel-inner img {
-		    -webkit-filter: grayscale(90%);
-		    filter: grayscale(90%); 
-		    width: 100%; 
-		    margin: auto;
-		}*/
-.carousel-caption h3 {
-	color: #fff !important;
-}
-/*font for slideshow */
-.vnHead {
+/* Caption text */
+.title {
 	font-family: 'Abril Fatface', cursive;
-	font-size: 72px;
+	font-size: 100px;
+  	color: #f2f2f2;
+  	/*padding: 8px 12px;*/
+  	position: absolute;
+  	bottom: 230px;
+  	width: 100%;
+  	text-align: center;
 }
-
-.vnTitle {
+.subTitle {
 	font-family: 'Handlee', cursive;
 	font-size: 20px;
+	color: #f2f2f2;
+  	/*padding: 8px 12px;*/
+  	position: absolute;
+  	bottom: 220px;
+  	width: 100%;
+  	text-align: center;
+}
+.foot{
+	font-family: 'Handlee', cursive;
+	font-size: 20px;
+	color: #f2f2f2;
+  	/*padding: 8px 12px;*/
+  	position: absolute;
+  	bottom: 8px;
+  	right: 10px;
+  	font-style: italic;
 }
 
-.footerOfSilde {
-	font-family: 'Handlee', cursive;
-	font-style: italic;
+
+/* The dots/bullets/indicators */
+.dot {
+  	height: 15px;
+  	width: 15px;
+  	margin: 0 2px;
+  	background-color: #bbb;
+  	border-radius: 50%;
+  	display: inline-block;
+  	transition: background-color 0.6s ease;
+}
+
+.active {
+  	background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  	-webkit-animation-name: fade;
+  	-webkit-animation-duration: 2.5s;
+  	/*use the animation fade*/
+  	animation-name: fade;
+  	/**/
+  	animation-duration: 2.5s;
+}
+
+@-webkit-keyframes fade {
+  	from {opacity: .4} 
+  	to {opacity: 1}
+}
+/*this code for create animation*/
+@keyframes fade {
+  	from {opacity: .4} 
+  	to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .text {font-size: 11px}
+}
+
+/*this is for search bar*/
+.top{
+	
+	position: absolute;
+  	left: 0px;
+  	right: 0px;
+	z-index: 1;
+}
+input[type=text] {
+	width: 50%;
+	color: white;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 10px;
+    font-size: 36px;
+    background-color: rgba(0,0,0,0);
+    background-position: 0px 50%; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+    
+}
+
+/* When the input field gets focus, change its width to 100% */
+input[type=text]:focus {
+	border: 2px solid #fff;
+    width: 100%;
+}
+input[type=text]:hover {
+	opacity: 1;
+}
+/*end search bar*/
+/* THIS IS START TO STYLE NAVIGATION BAR*/
+.nav{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.topnav {
+
+  	overflow: hidden;
+  	background-color: white;
+   
+  	z-index: 1;
+}
+
+.topnav a {
+  	color: black;
+  	text-align: center;
+  	padding: 10px 16px;
+  	text-decoration: none;
+  	font-size: 17px;
+}
+
+.topnav a:hover {
+  	background-color: white;
+  	color: #B5E618;
+}
+
+.topnav .icon {
+  	display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child) {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+
+}
+
+/* The sticky class is added to the navbar with JS when it reaches its scroll position */
+.sticky {
+  	position: fixed;
+  	top: 0;
+  	width: 100%
+}
+
+/* THIS IS START TO STYLE NAVIGATION BAR*/
+/*This is style for paragrap of the content*/
+.contentInHome{
+	width: 75%;
+	margin: auto;
+	
+}
+.titleParagraphInHome, .subscriptionInHome, .detailInHome{
+	/*font-family: 'Nixie One', cursive;*/
+	line-height: 200%;
+}
+
+.subscriptionInHome, .detailInHome{
+	
+	font-size: 20px;
+	text-align: left;
+}
+#showMoreOrLessInHome{
+	text-decoration: none;
+	cursor: pointer;
+	font-weight: normal;
+	
+	
+}
+#lessOrMoreInHome{
+	font-size: 10px;
+	font-weight: normal;
+}
+#showMoreOrLessInHome:hover #lessOrMoreInHome{
+	animation-name: animation;
+	animation-duration: 1s;	
+	/* animation-interation-count: infinite;*/
+}
+@keyframes animation{
+	from{right:3px; top:0px;};
+	to{right: 0px; top:0px;};
+}
+/*this is style for cities modal*/
+/*modal background*/
+.citiesModal {
+	display: none;
+	position: fixed;
+	z-index: 1;
+	padding-top: 100px;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	
+	background-color: rgb(0,0,0);
+	background-color: rgba(0,0,0,0.4);
+	animation-name: fadeIn;
+	animation-duration: 1s;
+}
+
+/*modal content*/
+.citiesModal-content{
+	position: fixed;
+	
+	top: 10%;
+	left:50%;
+	transform: translate(-50%,0);
+	background-color: #fefefe;
+	margin: auto;
+	/* padding: 20px; */
+	width: 40%;
+	animation-name: slideIn ;
+	animation-duration: 1s;
+}
+.modal-footer {
+	
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+/*this is for search form in modal*/
+#searchCityInModal{
+	background-position: 0px 12px;
+	background-repeat: no-repeat;
+	width: 100%;
+	padding: 12px 20px 12px 40px;
+	margin-bottom: 12px; 
+}
+/*close button*/
+.closeModal{
+	color: white;
+	float: right;
 	font-weight: bold;
+	font-size: 28px;
+	
+}
+.closeModal:hover, .closeModal:focus {
+	color:#000;
+	text-decoration: none;
+	cursor: pointer;
+}
+#citiesBtn {
 	position: absolute;
 	bottom: 0px;
-	right: 0px;
-	letter-spacing: 6px;
+	border-radius: 40px;
+	border: none;
+	background-color: rgba(230, 115, 0,0.5);
+	color: rgba(255,255,255,0.5);
+	text-align: center;
+	font-size: 20px;
+	padding: 10px 5px;
+	width: 10%;
+	left:45%;
+	bottom: 150px;
+}
+#citiesBtn span{
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	transition: 0.5s;
+}
+#citiesBtn span:after {
+  	content: '\00bb';
+  	position: absolute;
+ 	opacity: 0;
+  	top: 0;
+  	right: -20px;
+  	transition: 0.5s;
 }
 
-.btnCity {
-	border-radius: 20px;
-	opacity: 0.7 /*background-color: #E59519FF*/
+#citiesBtn:hover span {
+  	padding-right: 25px;
 }
 
-/*@media (max-width: 600px) {
-		    .carousel-caption {
-		        display: none; 
-		}*/
-.navbar {
-	margin-bottom: 0;
-	background-color: #2d2d30;
-	border: 0;
-	font-size: 11px !important;
-	letter-spacing: 4px;
-	opacity: 0.7;
+#citiesBtn:hover span:after {
+  	opacity: 1;
+  	right: 0;
+}
+.citiesModalHeader{
+	padding: 2px 16px;
+	background-color: #5cb85c;
+	color: white;
+}
+.citiesModalBody{
+	/*padding: 2px 16px;*/
+	width: 100%;
+	height: 250px;
+	background-color: lightgrey;
+	overflow: auto;
+	display: flex; 
+	flex-direction: column; 
+	align-items: center;
+	
+	
+}
+.CityModalItem {
+    background-color: cornflowerblue;
+    width: 50%;
+    height: 100px;
+    margin: 10px;
+    display: flex; 
+    flex-direction: row;
+    cursor: pointer;
+}
+.cityModalImg{
+	width: 100px; 
+	height: 100px;
+	position: relative;
+}
+.cityModalImg img{
+	object-fit: cover;
+	width: 100px; 
+	height: 100px;
+}
+.cityModalImg div{
+	border-radius: 5px; 
+	width: 30px; 
+	height: 30px; 
+	background-color: white; 
+	position: absolute; 
+	top: 50%; 
+	right: 0; 
+	transform: translate(50%, -50%) rotate(45deg);
+}
+.cityModalImg p{
+	position: absolute; 
+	top: 50%; 
+	left: 50%; 
+	transform: translate(-50%, -50%) rotate(-45deg);
+}
+.infoOfCityInModal{
+	display: flex; 
+	flex-direction: column; 
+	justify-content: center; 
+	margin-left: 30px;
+}
+.citiesModalFooter {
+	padding: 2px 16px;
+	background-color: #5cb85c;
+	color: white;
+	
+}
+@keyframes fadeIn{
+	from {opacity: 0};
+	to {opacity: 1};
+}
+@keyframes slideIn{
+	from{top: 0px; opacity: 0};
+	to {top:10%; opacity: 1 }
 }
 
-/* Add a gray color to all navbar links */
-.navbar li a, .navbar .navbar-brand {
-	color: #d5d5d5 !important;
+/* THIS IS START OF STYLE FOR TOP EXPERIENCES SLIDE IMAGE IN FILE HOME.JSP*/
+* {
+  	box-sizing: border-box;
 }
 
-/* On hover, the links will turn white */
-.navbar-nav li a:hover {
-	color: #fff !important;
+.mySlides {
+  	display: none;
+  	opacity: 0.5;
 }
 
-/* The active link */
-.navbar-nav li.active a {
-	color: #fff !important;
-	background-color: #29292c !important;
+.cursor {
+  	cursor: pointer;
 }
 
-/* Remove border color from the collapsible button */
-.navbar-default .navbar-toggle {
-	border-color: transparent;
+/* Next & previous buttons */
+.prev,
+.next {
+  	cursor: pointer;
+  	position: absolute;
+  	width: auto;
+  	padding: 16px;
+ 	/* margin-top: -50px;*/
+ 	font-weight: bold;
+  	font-size: 20px;
+  	transition: 0.6s ease;
+  	border-radius: 0 3px 3px 0;
+  	user-select: none;
+  	-webkit-user-select: none;
+  
+}
+/* Position the "next button" to the right */
+.next {
+  	right: 0;
+  	top:50%;
+  
+}
+/* Position the "prev button" to the left */
+.prev{
+  	left: 0;
+  	top: 50%;
+  
+}
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  	background-color: rgba(0, 0, 0, 0.8);
 }
 
-/* Dropdown */
-.open .dropdown-toggle {
-	color: #fff;
-	background-color: #555 !important;
+.top-experiences img {
+  	margin-bottom: -4px;
+  	border-radius: 10px;
 }
 
-/* Dropdown links */
-.dropdown-menu li a {
-	color: #000 !important;
+.active,
+.demo:hover {
+  	opacity: 1;
+}
+.top-experiences-img img {
+  	box-shadow: 0 4px 18px 0 rgba(0, 0, 0, 0.2), 0 16px 20px 0 rgba(0, 0, 0, 0.19);
+}
+img.hover-shadow {
+  /*transition: box-shadow 0.3s;*/
+	transition: transform 0.3s linear;
 }
 
-/* On hover, the dropdown links will turn red */
-.dropdown-menu li a:hover {
-	background-color: red !important;
+.hover-shadow:hover {
+  
+  	transform: translate(0px, -5px);
 }
-/*		.body{
-			float: right;
-		}*/
-/*.left, .right {
-		    display:inline;
-		    float:left;
-		}
-		.wrapper {
-   			 overflow: hidden;
-		}*/
-/*.size {
+/* .images{
+  
+} */
+.top-experiences-img{
+	position: relative;
+}
+.top-experiences-shape-counter {
+    /*display: none;*/
+    height: 45px;
+    width:45px;
+    position: absolute;
+    /*transform: ;*/
+    border-radius: 10px;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%,-60%) rotate(45deg);
+    color: black;
+    font-weight: bold;
+    background-color: white;
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2), 0 16px 20px 0 rgba(0, 0, 0, 0.19);
 
-			width: 5000px;
-			height: 500px;
-		}*/
-/*.img{
-			width: 100px;
-			height: 100px;
-		}*/
-/*.img, .title{
-			float: left;
-		}*/
-li {
-	display: inline;
 }
 
-div.containers {
-	width: 250px;
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px 0
-		rgba(0, 0, 0, 0.19) text-align: center;
+.top-experiences-shape-counter p {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) rotate(-45deg);
 }
+.textInsideImg{
+  	position: absolute;
+  	top: 70%;
+  	left: 50%;
+ 	margin-top: 10px;
+  	text-align: center;
+  	color: white;
+  	font-style: italic;
+  	transform: translate(-50%,-50%);
+}
+.frontSlide{/*opacity for image*/
+  	opacity: 1;
+}
+.top-experiences{
+  	position: relative;
+}
+/* THIS IS END OF STYLE FOR TOP EXPERIENCES SLIDE IMAGE IN FILE HOME.JSP*/
 
-div.titles {
-	padding: 10px;
-}
+/*THIS IS FOR FOOTER*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
