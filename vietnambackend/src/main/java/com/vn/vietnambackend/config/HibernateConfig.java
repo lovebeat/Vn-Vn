@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class HibernateConfig {
 	
+
 	private final static String DATABASE_URL="jdbc:jtds:sqlserver://localhost:1433/VietNam";
 	private final static String DATABASE_DRIVER="net.sourceforge.jtds.jdbc.Driver";
 	private final static String DATABASE_DIALECT="org.hibernate.dialect.SQLServerDialect";
@@ -74,6 +75,7 @@ public class HibernateConfig {
 	
 
 }
+
 
 
 

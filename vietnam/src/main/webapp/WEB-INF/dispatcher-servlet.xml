@@ -10,7 +10,6 @@
    	http://www.springframework.org/schema/context/spring-context.xsd
    	http://www.springframework.org/schema/mvc
    	http://www.springframework.org/schema/mvc/spring-mvc.xsd">
-
 	<context:component-scan base-package="vn.vn" />
 	<context:component-scan base-package="com.vn" />
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -21,4 +20,7 @@
 	<!-- Loading static resource -->
 	<mvc:annotation-driven/>
 	<mvc:resources location="/assets/" mapping="/resources/**"/>
+	
+	<bean id="multipartResolver"
+			class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
 </beans>

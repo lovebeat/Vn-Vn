@@ -7,76 +7,77 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.vn.vietnambackend.dao.cityDAO;
-import com.vn.vietnambackend.dto.city;
+import com.vn.vietnambackend.dao.CityDAO;
+import com.vn.vietnambackend.dto.City;
+
 
 public class cityTest {
 
-	private static cityDAO cityDAO;
+	private static CityDAO cityDAO;
 	private static AnnotationConfigApplicationContext context;
-	private city c;
+	private City c;
 	
 	@BeforeClass
 	public static void init() {
 		context = new AnnotationConfigApplicationContext();
 		context.scan("com.vn.vietnambackend");
 		context.refresh();
-		cityDAO = (cityDAO)context.getBean("cityDAO");
+		cityDAO = (CityDAO)context.getBean("CityDAO");
 	}
 	
 //	
 	@Test
 	public void addCityTest() {
 		
-		c = new city();
+		c = new City();
 		c.setName("Mai Chau");
 		c.setDescription("Thanh pho dong duc");
 		c.setContent("Sai gon lac nhau ");
 		assertEquals("Add new city test", true, cityDAO.add(c));
 		
-		c = new city();
+		c = new City();
 		c.setName("Con Dao");
 		c.setDescription("Thanh pho dong duc");
 		c.setContent("Sai gon lac nhau ");
 		assertEquals("Add new city test", true, cityDAO.add(c));
 		
-		c = new city();
+		c = new City();
 		c.setName("Ha Long");
 		c.setDescription("Thanh pho dong duc");
 		c.setContent("Sai gon lac nhau ");
 		assertEquals("Add new city test", true, cityDAO.add(c));
 		
-		c = new city();
+		c = new City();
 		c.setName("Ha Noi");
 		c.setDescription("Thanh pho dong duc");
 		c.setContent("Sai gon lac nhau ");
 		assertEquals("Add new city test", true, cityDAO.add(c));
 		
-		c = new city();
+		c = new City();
 		c.setName("Hoi An");
 		c.setDescription("Thanh pho dong duc");
 		c.setContent("Sai gon lac nhau ");
 		assertEquals("Add new city test", true, cityDAO.add(c));
 		
-		c = new city();
+		c = new City();
 		c.setName("Hue");
 		c.setDescription("Thanh pho dong duc");
 		c.setContent("Sai gon lac nhau ");
 		assertEquals("Add new city test", true, cityDAO.add(c));
 		
-		c = new city();
+		c = new City();
 		c.setName("Mui Ne");
 		c.setDescription("Thanh pho dong duc");
 		c.setContent("Sai gon lac nhau ");
 		assertEquals("Add new city test", true, cityDAO.add(c));
 		
-		c = new city();
+		c = new City();
 		c.setName("Sapa");
 		c.setDescription("Thanh pho dong duc");
 		c.setContent("Sai gon lac nhau ");
 		assertEquals("Add new city test", true, cityDAO.add(c));
 		
-		c = new city();
+		c = new City();
 		c.setName("Vung Tau");
 		c.setDescription("Thanh pho bien");
 		c.setContent("Sai gon lac nhau ");
