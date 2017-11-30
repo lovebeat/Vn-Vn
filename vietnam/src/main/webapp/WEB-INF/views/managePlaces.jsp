@@ -27,8 +27,15 @@
 			</div>
 			<div class="form-group">
 				<label for="cityId">City</label>
-					<sf:select path="cityId" items="${cities }" itemLabel="name" itemValue="id" class="form-control"/>
-					
+					<sf:select path="ct" items="${cities }" itemLabel="name" itemValue= "id" class="form-control"/>
+			</div>
+			<div class="form-group">
+				
+					<div class="text-right">
+						
+						<button type="button" data-toggle="modal" data-target="#myCityModal" class="btn btn-warning btn-xs">Add City</button>
+					</div>
+				
 			</div>
 			<div class="form-group">
 				<label for="file">Select an image</label> <sf:input type="file"
@@ -47,8 +54,9 @@
 					class="form-control" id="content" path="content" 
 					rows="30" ></sf:textarea>
 					<p class="help-block">Content of article...</p>
-					<sf:errors path="content" cssClass="help-block" element="em" />
+					<%-- <sf:errors path="content" cssClass="help-block" element="em" /> --%>
 			</div>
+			
 		</div>
 		<!-- /.box-body -->
 
@@ -57,7 +65,6 @@
 			<sf:hidden path="id" />
 			<sf:hidden path="code" />
 			<sf:hidden path="active" />
-			<sf:hidden path="cityId" />
 		</div>
 	</sf:form>
 </div>
@@ -89,3 +96,55 @@
             </div>
             <!-- /.box-body -->
           </div>
+    <!-- dialog add new city in place pages if it don't exist -->      
+<div class="modal fade" id="myCityModal" role="dialog" tabindex="-1">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<!-- Modal header -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span>&times;</span>
+				</button>
+				<h4 class="modal-title">Add new City</h4>
+			</div>
+			<div class="modal-body">
+				<!-- Modal form -->
+				<sf:form role="form" modelAttribute="city" action="${contextRoot }/manage/city" method="POST" enctype="multipart/form-data">
+						<div class="form-group">
+							<label for="name">Name</label> 
+							<sf:input type="text" class="form-control" id="name" path="name" placeholder="Enter name"/>
+							<sf:errors path="name" cssClass="help-block" element="em" />
+						</div>
+						
+						<div class="form-group">
+							<label for="file">Select an image</label> <sf:input type="file"
+								id="file" path="file"/>
+								<sf:errors path="file" cssClass="help-block" element="em" />
+						</div>
+						<div class="form-group">
+							<label for="description">Description</label> <sf:textarea
+								class="form-control" id="description" path="description" 
+								rows="1" ></sf:textarea>
+								<p class="help-block">Enter some description...</p>
+								<sf:errors path="description" cssClass="help-block" element="em" />
+						</div>
+						<div class="form-group">
+							<label for="content">Content</label> <sf:textarea
+								class="form-control" id="content" path="content" 
+								rows="9" ></sf:textarea>
+								<p class="help-block">Content of article...</p>
+								<%-- <sf:errors path="content" cssClass="help-block" element="em" /> --%>
+						</div>	
+
+					<div class="form-group">
+						<input type="submit" name="submit" id="submit" value="Submit" class="btn btn-primary"/>
+						<sf:hidden path="id" />
+						<sf:hidden path="code" />
+						<sf:hidden path="active" />
+					</div>
+				</sf:form>
+			</div>
+		</div>
+	</div>
+	
+</div>          

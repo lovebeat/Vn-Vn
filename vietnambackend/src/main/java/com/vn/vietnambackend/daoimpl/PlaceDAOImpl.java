@@ -75,4 +75,40 @@ public class PlaceDAOImpl implements PlaceDAO {
 		return query.getResultList();
 	}
 
+	public List<Place> listPlaceById(int id) {
+
+		/*try {
+			return sessionFactory.getCurrentSession().get(Place.class, Integer.parseInt(id));
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return null;*/
+		String selectListPlaceById = "FROM Place WHERE active =:active AND city.id =:id ";
+		Query query = sessionFactory.getCurrentSession().createQuery(selectListPlaceById)/*.setFirstResult(0).setMaxResults(12)*/;
+		query.setParameter("active", true);
+		query.setParameter("id", id);
+		return query.getResultList();
+	}
+	
+	public List<Place> listPlaceByIds(int id) {
+
+		String selectListPlaceById = "FROM Place WHERE active =:active AND city.id =:id ";
+		Query query = sessionFactory.getCurrentSession().createQuery(selectListPlaceById);
+		query.setParameter("active", true);
+		query.setParameter("id", id);
+		return query.getResultList();
+	}
+
+	public List<Place> listLimit() {
+		String selectListLimitPlace = "FROM Place WHERE active =:active ";
+		Query query = sessionFactory.getCurrentSession().createQuery(selectListLimitPlace)/*.setFirstResult(0).setMaxResults(12)*/;
+		query.setParameter("active", true);
+		
+		return query.getResultList()/*.subList(0, 9)*/;
+	}
+
+	
+	
+
 }

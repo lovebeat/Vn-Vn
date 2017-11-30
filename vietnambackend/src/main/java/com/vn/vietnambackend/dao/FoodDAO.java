@@ -11,4 +11,5 @@ public interface FoodDAO {
 	boolean update(Food food);
 	boolean delete(Food food);
 	List<Food> listActiveFood();
+	List<Food> listFoodById(int id);
 }

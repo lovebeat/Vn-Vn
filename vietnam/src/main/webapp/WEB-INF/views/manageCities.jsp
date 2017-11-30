@@ -20,7 +20,7 @@
 	<sf:form role="form" modelAttribute="city" action="${contextRoot }/manage/cities" method="POST" enctype="multipart/form-data" >
 		<div class="box-body">
 			<div class="form-group">
-				<label for="name">Name</label> <sf:input
+				<label for="name">Name </label> <sf:input
 					type="text" class="form-control" id="name" path="name"
 					placeholder="Enter name"/>
 					<sf:errors path="name" cssClass="help-block" element="em" />
@@ -42,7 +42,7 @@
 					class="form-control" id="content" path="content" 
 					rows="20" ></sf:textarea>
 					<p class="help-block">Content of article...</p>
-					<sf:errors path="content" cssClass="help-block" element="em" />
+					<%-- <sf:errors path="content" cssClass="help-block" element="em" /> --%>
 			</div>
 		</div>
 		<!-- /.box-body -->

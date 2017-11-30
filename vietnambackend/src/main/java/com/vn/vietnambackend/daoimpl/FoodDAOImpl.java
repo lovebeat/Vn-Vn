@@ -75,4 +75,12 @@ public class FoodDAOImpl implements FoodDAO {
 		return query.getResultList();
 	}
 
+	public List<Food> listFoodById(int id) {
+		String selectListFoodById = "FROM Food WHERE active =:active AND city.id =:id ";
+		Query query = sessionFactory.getCurrentSession().createQuery(selectListFoodById)/*.setFirstResult(0).setMaxResults(12)*/;
+		query.setParameter("active", true);
+		query.setParameter("id", id);
+		return query.getResultList();
+	}
+
 }

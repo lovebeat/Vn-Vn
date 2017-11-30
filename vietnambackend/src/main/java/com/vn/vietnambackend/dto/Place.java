@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -28,14 +30,22 @@ public class Place {
 	private String description;
 	
 	@JsonIgnore
-	@NotBlank(message="Please enter the content for Place !")
+	/*@NotBlank(message="Please enter the content for Place !")*/
 	private String content;
 	
 	@Column(name = "is_active")
 	private boolean active=true;
 	
-	@Column(name = "city_id")
-	private int cityId;
+	
+	/*@Column(name = "city_id")
+	private int cityId;*/
+	
+	@ManyToOne
+	@JoinColumn(name="city_id")
+	private City city;
+	
+	@Transient
+	private String ct;
 	
 	@Transient
 	private MultipartFile file;
@@ -55,6 +65,10 @@ public class Place {
 	public Place() {
 		this.code ="VN_PLACE_" + UUID.randomUUID().toString().substring(26).toUpperCase();
 	}
+	public Place(int id) {
+		this.id = id;
+	}
+	
 	
 	public int getId() {
 		return id;
@@ -94,13 +108,35 @@ public class Place {
 		this.active = active;
 	}
 
-	public int getCityId() {
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
+	}
+
+	public String getCt() {
+		return ct;
+	}
+
+	public void setCt(String ct) {
+		this.ct = ct;
+	}
+
+	/*public int getCityId() {
 		return cityId;
 	}
 
 	public void setCityId(int cityId) {
 		this.cityId = cityId;
-	}
+	}*/
+
+	
+
+	
+
+	
 	
 
 }

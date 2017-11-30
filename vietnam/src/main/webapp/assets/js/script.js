@@ -204,3 +204,16 @@ function showFrontSlideLeft() {
 // THIS IS END OF SESSION FOR SCRIPT TOP EXPERIENCES IMAGE SLIDE IM HOME.JSP
 
 
+//this is script for alert submit in home page
+/*$(function(){
+	
+	//dismissing the alert after 2 seconds
+	var $alert = $('.alert');
+	if($alert.length){
+		setTimeout(function(){
+			$alert.fadeOut('fast');
+		},2000)
+	}
+});
+*/
+

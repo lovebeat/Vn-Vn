@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -31,7 +33,7 @@ public class Food {
 	private String description;
 	
 	@JsonIgnore
-	@NotBlank(message="Please enter the content of food !")
+	/*@NotBlank(message="Please enter the content of food !")*/
 	private String content;
 	
 	@NotBlank(message="Please enter the address of food !")
@@ -59,11 +61,12 @@ public class Food {
 	@Column(name = "is_active")
 	private boolean active=true;
 	
-	@Column(name = "city_id")
-	private int cityId;
+	@ManyToOne
+	@JoinColumn(name = "city_id")
+	private City city;
 	
-	@Column(name = "place_id")
-	private int placeId;
+	@Transient
+	private String ct;
 	
 	@Transient
 	private MultipartFile file;
@@ -155,19 +158,24 @@ public class Food {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	public int getCityId() {
-		return cityId;
+
+	public City getCity() {
+		return city;
 	}
-	public void setCityId(int cityId) {
-		this.cityId = cityId;
+
+	public void setCity(City city) {
+		this.city = city;
 	}
-	public int getPlaceId() {
-		return placeId;
+
+
+	public String getCt() {
+		return ct;
 	}
-	public void setPlaceId(int placeId) {
-		this.placeId = placeId;
+
+	public void setCt(String ct) {
+		this.ct = ct;
 	}
-	
-	
+
+
 
 }

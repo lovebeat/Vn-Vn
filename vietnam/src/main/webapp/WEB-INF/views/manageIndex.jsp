@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <spring:url var="css" value="/resources/css" />
@@ -159,6 +159,11 @@
             <i class="fa fa-calendar"></i> <span>Food</span>
           </a>
         </li>
+        <li>
+          <a href="${contextRoot}/manage/listHotelApprove">
+            <i class="fa fa-calendar"></i> <span>approve</span>
+          </a>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -198,6 +203,14 @@
 					<%@include file="manageFoods.jsp"%>
 				</c:if>
      
+     			<c:if test="${userClickListHotelApprove==true }">
+					<%@include file="ListHotelApprove.jsp"%>
+				</c:if>
+     			
+     			<c:if test="${userClickDetailHotel==true }">
+					<%@include file="detailHotel.jsp"%>
+				</c:if>
+     			
     </section>
     <!-- /.content -->
   </div>

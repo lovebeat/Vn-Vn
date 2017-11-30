@@ -18,32 +18,28 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class HibernateConfig {
 	
+	private final static String DATABASE_URL = "jdbc:jtds:sqlserver://localhost:1433/VietNam";
+	private final static String DATABASE_DRIVER = "net.sourceforge.jtds.jdbc.Driver";
+	private final static String DATABASE_DIALECT = "org.hibernate.dialect.SQLServerDialect";
+	private final static String DATABASE_USERNAME = "sa";
+	private final static String DATABASE_PASSWORD = "gnob";
 
-	private final static String DATABASE_URL="jdbc:jtds:sqlserver://localhost:1433/VietNam";
-	private final static String DATABASE_DRIVER="net.sourceforge.jtds.jdbc.Driver";
-	private final static String DATABASE_DIALECT="org.hibernate.dialect.SQLServerDialect";
-	private final static String DATABASE_USERNAME="sa";
-	private final static String DATABASE_PASSWORD="123456";
-	
-	//datasource bean will be available
-	@Bean
+	//dataSource Bean will be available
+	@Bean("dataSource")
 	public DataSource getDataSource() {
+		
 		BasicDataSource dataSource = new BasicDataSource();
-		//providing the database connection information
+		
+		//Providing the database connection information
 		dataSource.setDriverClassName(DATABASE_DRIVER);
 		dataSource.setUrl(DATABASE_URL);
 		dataSource.setUsername(DATABASE_USERNAME);
 		dataSource.setPassword(DATABASE_PASSWORD);
 		dataSource.setValidationQuery("select 1");
-		
-		
 		return dataSource;
 	}
 	
-	
-	
 	//sessionFactory bean will be available
-	
 	@Bean
 	public SessionFactory getSessionFactory(DataSource dataSource) {
 		LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource);
@@ -63,31 +59,13 @@ public class HibernateConfig {
 		properties.put("hibernate.format_sql", "true");
 		return properties;
 	}
-
-
 	
-	//transactionmanager bean
+	//transactionManager bean
 	@Bean
 	public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
 		HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
 		return transactionManager;
+		
 	}
 	
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,11 +1,13 @@
 package com.vn.vietnambackend.dto;
 
+import java.util.Set;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -15,6 +17,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class City {
+	
+	
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -28,7 +33,7 @@ public class City {
 	private String description;
 	
 	@JsonIgnore
-	@NotBlank(message="Please enter the content for City !")
+	/*@NotBlank(message="Please enter the content for City !")*/
 	private String content;
 	
 	@Column(name = "is_active")
@@ -50,6 +55,12 @@ public class City {
 	public City() {
 		this.code ="VN_CITY_" + UUID.randomUUID().toString().substring(26).toUpperCase();
 	}
+	
+	public City(int id) {
+		this.id = id;
+	}
+	
+	
 	
 	public int getId() {
 		return id;

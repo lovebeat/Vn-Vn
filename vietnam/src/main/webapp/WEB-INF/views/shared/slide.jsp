@@ -51,7 +51,7 @@
 				<c:forEach items="${ listCity}" var="city">
 					<div class="CityModalItem">
 						<div class="cityModalImg">
-							<img alt="pic3" src="${img }/${city.name }/${city.code }.jpg">
+							<img alt="" src="${img }/${city.name }/${city.code }.jpg">
 							<div>
 								<p>${city.id }</p>
 							</div>

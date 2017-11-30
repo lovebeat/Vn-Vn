@@ -83,19 +83,21 @@
 		<br>
 	</div>
 	<div class="row top-experiences">
+	<c:forEach items="${ listPlace}" var="place">
 		<div class="col-sm-3 top-experiences-img">
-			<img src="${img }/pic1.jpg"
+			<img src="${img }/${place.city.name }/${place.name }/${place.code }.jpg"
 				style="width: 100%; height: 400px; object-fit: cover;" onclick=""
 				class="hover-shadow cursor frontSlide">
 			<div class="top-experiences-shape-counter">
 				<p>1</p>
 			</div>
 			<div class="textInsideImg">
-				<div class="frontSlideTitle">Ho chi minh</div>
-				<div class="frontSlideSubTitle">Viet Nam</div>
+				<div class="frontSlideTitle"><p>${place.name}</p></div>
+				<div class="frontSlideSubTitle">${place.city.name }</div>
 			</div>
 		</div>
-		<div class="col-sm-3 top-experiences-img">
+	</c:forEach>
+		<%-- <div class="col-sm-3 top-experiences-img">
 			<img src="${img}/pic2.jpg"
 				style="width: 100%; height: 400px; object-fit: cover;" onclick=""
 				class="hover-shadow cursor frontSlide">
@@ -234,9 +236,68 @@
 				<div class="frontSlideTitle">Ho chi minh</div>
 				<div class="frontSlideSubTitle">Viet Nam</div>
 			</div>
-		</div>
+		</div> --%>
 		<a class="prev" onclick="showFrontSlideLeft()">&#10094;</a> 
 		<a class="next" onclick="showFrontSlideRight()">&#10095;</a>
 	</div>
 
 </div>
+
+<div class="container split">
+	<div class="row">
+		<div>
+
+			<hr style="margin: 40px 0px">
+		</div>
+	</div>
+</div>
+<!-- this is food -->
+<div class="container" id="food">
+	<div class="row">
+		<div class="col-md-4">
+				<img src="${img }/foodanddrink.jpg"
+				style="width: 100%; height: 450px; object-fit: cover ;"
+				class="img img-responsive">
+		</div>
+		<div class="col-md-8">
+			<div class="row">
+				<h1 style="text-align: center;">Food and Drink</h1>
+				<br>
+				<br>
+			</div>
+			<div class="row">
+				<div class="food-class">
+					<ul style="list-style-type: none">
+						<c:forEach items="${listFoods }" var="food">
+							<a href="${contextRoot}/food/${food.getId()}"><li class=" food-class-items">${food.getName() }</li></a>
+						</c:forEach>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container split">
+	<div class="row">
+		<div>
+
+			<hr style="margin: 40px 0px">
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

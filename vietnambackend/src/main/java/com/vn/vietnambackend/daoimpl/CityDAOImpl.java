@@ -89,6 +89,17 @@ public class CityDAOImpl implements CityDAO {
 		
 		return query.getResultList();
 	}
+
+	public City getCityById(String id) {
+		
+		try {
+			return sessionFactory.getCurrentSession().get(City.class, Integer.parseInt(id));
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return null;
+	}
 	
 
 }

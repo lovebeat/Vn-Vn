@@ -12,5 +12,9 @@ public interface PlaceDAO {
 	boolean update(Place place);
 	boolean delete(Place place);
 	List<Place> listActivePlace();
-
+	/*List<Place> listPlaceJoinCity();*/
+	List<Place> listPlaceById(int id);
+	List<Place> listPlaceByIds(int id);
+	List<Place> listLimit();
+	
 }
