@@ -7,6 +7,14 @@
 	  			<a href="#food">Food</a>
 	  			<a href="#contact">Contact</a>
 	  			<a href="#about">About</a>
+	  			<div class="nav-dropdown">
+	  				<div class="nav-dropbtn">Dopdown <span class="glyphicon glyphicon-chevron-down" style="font-size: 10px;"></span></div>
+	  				<div class="nav-dropdown-content">
+	  					<a href="#">Link1</a>
+	  					<a href="#">Link2</a>
+	  					<a href="#">Link3</a>
+	  				</div>
+	  			</div>
   			<security:authorize access="hasAuthority('admin')">
   				<%-- <a href="${contextRoot }/manage">Go to manage</a> --%>
   				<script type="text/javascript">
