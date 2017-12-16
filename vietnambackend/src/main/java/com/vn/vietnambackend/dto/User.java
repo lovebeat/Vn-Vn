@@ -31,6 +31,12 @@ public class User {
 	@Column(name="is_active")
 	private boolean active=true;
 
+	public User() {}
+	
+	public User(int id) {
+		this.id = id;
+	}
+	
 	public int getId() {
 		return id;
 	}

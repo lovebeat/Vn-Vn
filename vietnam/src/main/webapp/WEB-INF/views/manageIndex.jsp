@@ -27,8 +27,7 @@
   <link rel="stylesheet" href="${css }/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="${css }/ionicons.min.css">
-  <!-- jvectormap -->
-  <link rel="stylesheet" href="${css }/jquery-jvectormap.css">
+  
   <!-- Theme style -->
   <link rel="stylesheet" href="${css }/AdminLTE.min.css">
   <!-- AdminLTE Skins.-->
@@ -71,7 +70,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="${images }/vn.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Alexander Pierce</span>
+              <span class="hidden-xs">${userModel.fullName}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -79,32 +78,18 @@
                 <img src="${images }/vn.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
+                  ${userModel.fullName}
+                  
                 </p>
               </li>
-              <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row -->
-              </li>
+              
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="#" class="btn btn-default btn-flat">Hồ sơ</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="${contextRoot }/perform-logout" class="btn btn-default btn-flat">Đăng xuất</a>
                 </div>
               </li>
             </ul>
@@ -125,7 +110,7 @@
           <img src="${images }/vn.jpg" class="img-circle" alt="User Image" style="height: 50px;">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p>${userModel.fullName}</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -143,25 +128,30 @@
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MAIN NAVIGATION</li>
+        <li class="header">DANH MỤC QUẢN LÍ</li>
         <li>
           <a href="${contextRoot}/manage/cities">
-            <i class="fa fa-calendar"></i> <span>City</span>
+            <i class="fa fa-building-o"></i> <span>Tỉnh/T.Phố</span>
           </a>
         </li>
         <li>
           <a href="${contextRoot}/manage/places">
-            <i class="fa fa-envelope"></i> <span>Place</span>
+            <i class="fa fa-map-signs"></i> <span>Địa Điểm</span>
           </a>
         </li>
         <li>
           <a href="${contextRoot}/manage/foods">
-            <i class="fa fa-calendar"></i> <span>Food</span>
+            <i class="fa fa-heart-o"></i> <span>Ẩm thực</span>
           </a>
         </li>
         <li>
           <a href="${contextRoot}/manage/listHotelApprove">
-            <i class="fa fa-calendar"></i> <span>approve</span>
+            <i class="fa fa-check-square-o"></i> <span>Home Stay</span>
+          </a>
+        </li>
+        <li>
+          <a href="${contextRoot}/manage/banner">
+            <i class="fa fa-file-image-o"></i> <span>Banner</span>
           </a>
         </li>
       </ul>
@@ -174,11 +164,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Management
+        Quản lí
         <small>${title }</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="${contextRoot}/manage/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="${contextRoot}/manage/"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
         <li class="active">${title }</li>
       </ol>
     </section>
@@ -207,8 +197,11 @@
 					<%@include file="ListHotelApprove.jsp"%>
 				</c:if>
      			
-     			<c:if test="${userClickDetailHotel==true }">
-					<%@include file="detailHotel.jsp"%>
+     			<c:if test="${userClickViewAndApprove==true }">
+					<%@include file="viewHotel.jsp"%>
+				</c:if>
+				<c:if test="${userClickManageBanner==true }">
+					<%@include file="manageBanner.jsp"%>
 				</c:if>
      			
     </section>
@@ -220,7 +213,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.4.0
     </div>
-    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+    <strong>Copyright &copy; 2014-2017 <a href="#">Viet Nam</a>.</strong> All rights
     reserved.
   </footer>
 
@@ -235,17 +228,8 @@
 <!-- DataTables -->
 <script src="${js }/jquery.dataTables.min.js"></script>
 <script src="${js }/dataTables.bootstrap.min.js"></script>
-<!-- FastClick -->
-<script src="${js }/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="${js }/adminlte.min.js"></script>
-<!-- Sparkline -->
-<script src="${js }/jquery.sparkline.min.js"></script>
-<!-- jvectormap  -->
-<script src="${js }/jquery-jvectormap-1.2.2.min.js"></script>
-<script src="${js }/jquery-jvectormap-world-mill-en.js"></script>
-<!-- SlimScroll -->
-<script src="${js }/jquery.slimscroll.min.js"></script>
 <script src="${js }/myapp.js"></script>
 <!-- Bootbox -->
 <script src="${js }/bootbox.min.js"></script>
@@ -259,18 +243,5 @@
 	   
 	  })
 </script>
-<!-- <script>
-  $(function () {
-    $('#example1').DataTable()
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : false
-    })
-  })
-</script> -->
 </body>
 </html>

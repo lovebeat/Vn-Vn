@@ -41,10 +41,11 @@ public class GlobalController {
 				if(user!=null) {
 					// create a new model
 					userModel = new UserModel();
-					// set the name and the id
+					userModel.setEmail(user.getEmail());
 					userModel.setId(user.getId());
-					userModel.setFullName(user.getLastName());
+					userModel.setFullName(user.getFirstName() + " " + user.getLastName());
 					userModel.setRole(user.getRole());
+					
 					
 					session.setAttribute("userModel", userModel);
 					return userModel;

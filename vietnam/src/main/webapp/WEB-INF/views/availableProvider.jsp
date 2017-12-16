@@ -1,6 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <div class="box">
 	<div class="box-header">
-		<h3 class="box-title">List of available</h3>
+		<h3 class="box-title">Danh sách Home Stay hiện có</h3>
 	</div>
 	<!-- /.box-header -->
 	<div class="box-body">
@@ -8,17 +10,18 @@
 			<thead>
 				<tr>
 					<th>Id</th>
-					<th>Name</th>
-					<th>Image</th>
-					<th>Where</th>
-					<th>Star rate</th>
-					<th>Contact</th>
-					<th>Active</th>
-					<th>Go to manage Room</th>
+					<th>Tên</th>
+					<th>Hình ảnh</th>
+					<th>Địa chỉ</th>
+					<th>Loại</th>
+					<th>Liên hệ</th>
+					<th>Trạng thái</th>
+					<th>Đi đến quản lí phòng</th>
 				</tr>
 			</thead>
 
 		</table>
+		
 	</div>
 	<!-- /.box-body -->
 </div>

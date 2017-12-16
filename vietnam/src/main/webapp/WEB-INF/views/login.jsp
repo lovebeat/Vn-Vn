@@ -61,7 +61,14 @@
    	<c:if test="${not empty message}">
 		<div class="row">
 			<div class="col-xs-12 col-md-offset-2 col-md-8">
-				<div class="alert alert-danger fade in">${message}</div>
+				<div class="alert alert-danger">${message}</div>
+			</div>
+		</div>
+	</c:if>
+	<c:if test="${not empty logout}">
+		<div class="row">
+			<div class="col-xs-12 col-md-offset-2 col-md-8">
+				<div class="alert alert-success">${logout}</div>
 			</div>
 		</div>
 	</c:if>

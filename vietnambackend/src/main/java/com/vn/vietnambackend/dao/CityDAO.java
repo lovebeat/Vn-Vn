@@ -12,4 +12,5 @@ public interface CityDAO {
 	boolean update(City city);
 	boolean delete(City city);
 	List<City> listActiveCity();
+	
 }

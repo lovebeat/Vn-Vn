@@ -1,5 +1,6 @@
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
-
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <div class="row">
 	<c:if test="${not empty message }">
 		<div class="col-xs-12">
@@ -11,7 +12,7 @@
 	</c:if>
 </div>
 
-<div class="container">
+
 
 	<!-- general form elements -->
 	<div class="box box-primary">
@@ -23,38 +24,38 @@
 				<div class="col-lg-5">
 					<div class="box-body">
 						<div class="box-header with-border">
-							<h3 class="box-title">Basic Inf</h3>
+							<h3 class="box-title">Thông tin chung</h3>
 						</div>
 						<br>
 						<div class="form-group">
-							<label for="name">Name</label> <sf:input type="text"
+							<label for="name">Tên</label> <sf:input type="text"
 								class="form-control" id="name" path="name"
-								placeholder="Enter name" />
+								placeholder="Nhập tên" />
 							<sf:errors path="name" cssClass="help-block" element="em" />
 
 						</div>
 						<div class="form-group">
-							<label for="file">Select an image</label>
+							<label for="file">Chọn ảnh</label>
 							<sf:input type="file" id="file" path="file" />
 							<sf:errors path="file" cssClass="help-block" element="em" />
 						</div>
 						<div class="form-group">
+							<label for="cityId">Tỉnh/Thành Phố</label>
+								<sf:select path="ct" items="${cities }" itemLabel="name" itemValue= "id" class="form-control"/>
+						</div>
+						<div class="form-group">
 
-							<label>Where is it?</label>
-							<select class="form-control" id="where" name="where">
-								<option value="Binh Dinh">Binh Dinh</option>
-								<option value="Ho Chi Minh">Ho Chi Minh</option>
-								<option value="Ha Noi">Ha Noi</option>
-								<option value="Nghe An">Nghe An</option>
-								<option value=" EveryOne">Everyone</option>
-							</select>
+							
+							<label for="address">Địa chỉ</label> <sf:input type="text"
+								class="form-control" id="where" path="where"
+								placeholder="Nhập địa chỉ" />
 
 
 						</div>
 						<div class="row">
 							<div class="col-lg-5">
 								<div class="form-group">
-									<label>Star rating</label> <select class="form-control" id="star" name="star">
+									<label>Loại</label> <select class="form-control" id="star" name="star">
 										<option value="N/A">N/A</option>
 										<option value="1 *">1 *</option>
 										<option value="2 *">2 **</option>
@@ -66,21 +67,22 @@
 							</div>
 							<div class="col-lg-5">
 								<div class="form-group">
-									<label>Time Operate</label> <select class="form-control" id="timeOperate" name= "timeOperate">
+									<label>Thời gian hoạt động</label> <select class="form-control" id="timeOperate" name= "timeOperate">
 										<option value="24/7">24/7</option>
-										<option value="time in works">Time in works</option>
+										<option value="time in works">Giờ hành chính</option>
+										
 									</select>
 								</div>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="website">Hotel's Website</label> <sf:input type="text"
-								class="form-control" id="website" path="website" placeholder="Enter website"/>
+							<label for="website">Website (nếu có)</label> <sf:input type="text"
+								class="form-control" id="website" path="website" placeholder="nhập địa chỉ website"/>
 								<sf:errors path="website" cssClass="help-block" element="em" />
 						</div>
 						<div class="form-group">
-							<label for="phone">Hotel's Phone</label> <sf:input type="text"
-								class="form-control" id="phone"  path="phone" placeholder="Enter phone"/>
+							<label for="phone">SĐT liên hệ</label> <sf:input type="text"
+								class="form-control" id="phone"  path="phone" placeholder="Nhập SĐT"/>
 								<sf:errors path="phone" cssClass="help-block" element="em" />
 						</div>
 					</div>
@@ -89,34 +91,31 @@
 				<div class="col-lg-5">
 					<div class="box-body">
 						<div class="box-header with-border">
-							<h3 class="box-title">Payment and policies</h3>
+							<h3 class="box-title">Chính sách và thanh toán</h3>
 						</div>
 						<br>
 						<div class="form-group">
 
-							<label>Payment option</label>
-							<p class="help-block">Can you charge credit cards at the
-								property?</p>
+							<label>Phương thức thanh toán</label>
+							<p class="help-block">Tôi có thể thanh toán bằng thẻ tín dụng?</p>
 							<select class="form-control" id="payment" name="payment">
-								<option value="yes">Yes</option>
-								<option value="no">No</option>
+								<option value="yes">Có thể</option>
+								<option value="no">Không, thanh toán trực tiếp</option>
 
 							</select>
 
 						</div>
 						<div class="form-group">
 
-							<label>Cancellation policy</label>
-							<p class="help-block">How many days in advance can guests
-								cancel free of charge or guests will pay 100%?</p>
+							<label>Chính sách hủy/trả phòng</label>
+							<p class="help-block">Tôi có thể hủy đặt phòng trong thời gian bao lâu và chi phí như thế nào?</p>
 							<select class="form-control" id="cancel" name="cancel">
-								<option value="free in day of arrival (18:00)">Day of arrival (18:00)</option>
-								<option value="free in 1 day">1 day</option>
-								<option value="free in 2 day">2 day</option>
-								<option value="free in 3 day">3 day</option>
-								<option value=" free in 7 day">7 day</option>
-								<option value=" pay 100% of the first night">of the first night</option>
-								<option value="pay 100% of the full stay">of the full stay</option>
+								<option value="Miễn phí, 24h sau khi đặt">Miễn phí, 24h sau khi đặt</option>
+								<option value="Trả 10% phí của hóa đơn">Trả 10% phí của hóa đơn</option>
+								<option value="Miễn phí, 24h trước ngày nhận phòng">Miễn phí, 24h trước ngày nhận phòng</option>
+								<option value="Miễn phí, 48 giờ trước khi nhận phòng">Miễn phí, 48 giờ trước khi nhận phòng</option>
+								<option value=" Trả 100% phí của ngày đầu tiên">Trả 100% phí của ngày đầu tiên</option>
+								<option value="Trả 50% phí của hóa đơn">Trả 50% phí của hóa đơn</option>
 							</select>
 							
 
@@ -128,40 +127,40 @@
 				<div class="col-lg-11">
 					<div class="box-body">
 						<div class="box-header with-border">
-							<h3 class="box-title">Hotel's information</h3>
+							<h3 class="box-title">Thông tin Home Stay</h3>
 						</div>
 						<br>
 						<div class="row">
 							<div class="col-lg-3">
 								<div class="form-group">
 									<label>Internet</label>
-									<p class="help-block">Is Internet available to guests?</p>
+									<p class="help-block">Có Internet hay không?</p>
 									<select class="form-control" id="internet" name="internet">
-										<option value="yes, free">Yes, free</option>
-										<option value="yes, paid">Yes, paid</option>
-										<option value="no">No</option>
+										<option value="có, miễn phí">có, miễn phí</option>
+										<option value="có, trả phí">có, trả phí</option>
+										<option value="Không">Không</option>
 									</select>
 								</div>
 							</div>
 							<div class="col-lg-3">
 								<div class="form-group">
-									<label>Parking</label>
-									<p class="help-block">Is Parking available to guests?</p>
+									<label>Khu vực đậu xe</label>
+									<p class="help-block">Có bãi đậu xe không?</p>
 									<select class="form-control" id="parking" name="parking">
-										<option value="yes, free">Yes, free</option>
-										<option value="yes, paid">Yes, paid</option>
-										<option value="no">No</option>
+										<option value="Có, miễn phí">Có, miễn phí</option>
+										<option value="Có, trả phí">Có, trả phí</option>
+										<option value="Không">Không</option>
 									</select>
 								</div>
 							</div>
 							<div class="col-lg-3">
 								<div class="form-group">
-									<label>Breakfast</label>
-									<p class="help-block">Is breakfast available to guests?</p>
+									<label>Bữa ăn</label>
+									<p class="help-block">Có bao gồm phục vụ bữa ăn không?</p>
 									<select class="form-control" id="breakfast" name="breakfast">
-										<option value="no">No</option>
-										<option value="yes, it's included in the price">Yes, it's included in the price</option>
-										<option value="yes, it's optional">Yes, it's optional</option>
+										<option value="no">Không</option>
+										<option value="Có, đã bao gồm trong giá phòng">Có, đã bao gồm trong giá phòng</option>
+										<option value="Có, tự chọn và trả theo nhu cầul">Có, tự chọn và trả theo nhu cầu</option>
 									</select>
 								</div>
 							</div>
@@ -169,22 +168,22 @@
 						<div class="row">
 							<div class="col-lg-5">
 								<div class="form-group">
-									<label>Children</label>
-									<p class="help-block">Specific price for children ?</p>
+									<label>Trẻ nhỏ</label>
+									<p class="help-block">Có chính sách khác dành cho trẻ nhỏ không?</p>
 									<select class="form-control" id="children" name="children">
-										<option value="no">No</option>
-										<option value="yes, children under 8 ages will be free of charge">Yes, Children under 8 ages will be fee of charge</option>
+										<option value="no">Không</option>
+										<option value="Có, trẻ em dưới 8 tuổi sẽ được miễn phí">Có, trẻ em dưới 8 tuổi sẽ được miễn phí</option>
 
 									</select>
 								</div>
 							</div>
 							<div class="col-lg-4">
 								<div class="form-group">
-									<label>Pet</label>
-									<p class="help-block">Do you allow pets?</p>
+									<label>Thú nuôi</label>
+									<p class="help-block">Có cho phép mang theo thú nuôi?</p>
 									<select class="form-control" id="pet" name="pet">
-										<option value="no">No</option>
-										<option value="upon request">upon request</option>
+										<option value="no">Không</option>
+										<option value="upon request">Tùy vào yêu cầu của khách</option>
 
 									</select>
 								</div>
@@ -198,13 +197,11 @@
 				<div class="col-lg-11">
 					<div class="box-body">
 						<div class="box-header with-border">
-							<h3 class="box-title">Services provied onsite, popular
-								activities</h3>
+							<h3 class="box-title">Các dịch vụ và hoạt động khác được cung cấp</h3>
 						</div>
 						<br>
 						<div class="form-group">
-							<p class="help-block">We've listed the options most
-								frequently selected for properties like yours here.</p>
+							<p class="help-block">Các hoạt động và dịch vụ mà chúng tôi có cung cấp trong quá trình ở tại đây</p>
 
 						</div>
 					</div>
@@ -212,13 +209,12 @@
 				
 			</div>
 			<div class="box-footer">
-			<input type="submit" name="submit" id="submit" value="Submit" class="btn btn-primary"/>
+			<input type="submit" name="submit" id="submit" value="Lưu" class="btn btn-primary"/>
 			<sf:hidden path="id" />
 			<sf:hidden path="code" />
 			<sf:hidden path="active" />
-			<sf:hidden path="providerId" />
+			<sf:input type="hidden" path="pr" value="${userModel.id}"/>
 		</div>
 		</sf:form>
 	</div>
 
-</div>

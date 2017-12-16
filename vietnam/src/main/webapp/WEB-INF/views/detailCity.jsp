@@ -1,22 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <div class="container">
-
-	<!-- Breadcrumb -->
-	<%-- <div class="row">
-	
-		<div class="col-xs-12">
-		
-			<ol class="breadcrumb">
-			
-				<li><a href="${contextRoot}">Home</a></li>
-				<li><a href=""><p>${food.city.name}</p></a></li>
-				<li><a href="">Food</a></li>
-				<li class= "active">${food.name }</li>
-			
-			</ol>
-		
-		</div>
-	
-	</div> --%>
 
 	<div class="row">
 
@@ -61,7 +45,7 @@
 	<div class="row">
 		<div class="col-xs-12 col-md-4">
 			<h3 class="">
-				<p>Top sights in ${city.name }</p>
+				<p>Điểm đến hấp dẫn tại ${city.name }</p>
 			</h3>
 		</div>
 	</div>
@@ -103,7 +87,7 @@
 	<div class="row">
 		<div class="col-xs-12 col-md-4">
 			<h3 class="">
-				<p>Top foods in ${city.name }</p>
+				<p>Ẩm thực ${city.name }</p>
 			</h3>
 		</div>
 	</div>

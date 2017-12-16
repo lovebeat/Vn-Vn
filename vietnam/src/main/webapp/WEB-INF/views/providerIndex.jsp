@@ -18,7 +18,8 @@
     	window.contextRoot = '${contextRoot}';
   </script>
   
-  
+  <meta name="_csrf" content="${_csrf.token }">
+<meta name="_csrf_header" content="${_csrf.headerName }">
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -33,7 +34,8 @@
   <link rel="stylesheet" href="${css }/AdminLTE.min.css">
   <!-- AdminLTE Skins.-->
   <link rel="stylesheet" href="${css }/_all-skins.min.css">
-  
+   <!-- bootstrap datepicker -->
+  <link rel="stylesheet" href="${css }/bootstrap-datepicker.min.css">
   <!-- DataTables -->
   <link rel="stylesheet" href="${css }/dataTables.bootstrap.min.css">
  <link rel="stylesheet" href="${css }/myapp.css">
@@ -71,7 +73,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="${images }/vn.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Alexander Pierce</span>
+              <span class="hidden-xs">${userModel.fullName}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -79,32 +81,18 @@
                 <img src="${images }/vn.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
+                 ${userModel.fullName}
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
-              <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row -->
-              </li>
+              
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
+                  <a href="#" class="btn btn-default btn-flat">Hồ sơ</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="${contextRoot }/perform-logout" class="btn btn-default btn-flat">Đăng xuất</a>
                 </div>
               </li>
             </ul>
@@ -125,7 +113,7 @@
           <img src="${images }/vn.jpg" class="img-circle" alt="User Image" style="height: 50px;">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p> ${userModel.fullName}</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -143,20 +131,20 @@
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MAIN NAVIGATION</li>
+        <li class="header">DANH MỤC QUẢN LÍ</li>
         <li>
           <a href="${contextRoot}/provider/new">
-            <i class="fa fa-pencil"></i> <span>Create New Hotel</span>
+            <i class="fa fa-pencil-square-o"></i> <span>Đăng kí Home Stay mới</span>
           </a>
         </li>
         <li>
           <a href="${contextRoot}/provider/waitApprove">
-            <i class="fa fa-th-list"></i> <span>Hotel wait Approve</span>
+            <i class="fa fa-spinner"></i> <span>DS Home Stay đợi duyệt</span>
           </a>
         </li>
         <li>
           <a href="${contextRoot}/provider/available">
-            <i class="fa fa-th-list"></i> <span>Available Hotel</span>
+            <i class="fa fa-check-square-o"></i> <span>DS Home Stay đã ĐK</span>
           </a>
         </li>
         
@@ -174,7 +162,7 @@
         <small>${title }</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="${contextRoot}/provider/"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="${contextRoot}/provider/"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
         <li class="active">${title }</li>
       </ol>
     </section>
@@ -195,8 +183,8 @@
 				</c:if>
 				
 				<!-- Room page -->
-				<c:if test="${userClickDeatailRoom==true }">
-					<%@include file="roomOfHotel.jsp"%>
+				<c:if test="${userClickDeatailRooms==true }">
+					<%@include file="roomOfHotels.jsp"%>
 				</c:if>
 				<!--  -->
 				<c:if test="${userClickWaitApprove==true }">
@@ -244,6 +232,8 @@
 <script src="${js }/bootbox.min.js"></script>
 <!-- bootstrap time picker -->
 <script src="${js }/bootstrap-timepicker.min.js"></script>
+<!-- bootstrap datepicker -->
+<script src="${js }/bootstrap-datepicker.min.js"></script>
 <script src="${ckeditor }/ckeditor.js"></script>
 <script>
 	$(function () {
@@ -252,6 +242,14 @@
 	   
 	  })
 </script>
+<script>
+		$(function(){
+			$('.datepicker').datepicker({
+			      autoclose: true
+			    })
+		    })
+		   
+	</script>
 
 </body>
 </html>

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <div class="row">
 	<c:if test="${not empty message }">
@@ -13,7 +15,7 @@
 <!-- form -->
 <div class="box box-primary">
 	<div class="box-header with-border">
-		<h3 class="box-title">Settup some field for it</h3>
+		<h3 class="box-title">Nhập các thông tin</h3>
 	</div>
 	<!-- /.box-header -->
 	<!-- form start -->
@@ -24,9 +26,9 @@
 			<div class="row">
 				<div class="col-md-8">
 					<div class="form-group">
-						<label for="name">Name of Food</label>
+						<label for="name">Tên món ăn/Địa điểm ăn uống</label>
 						<sf:input type="text" class="form-control" id="name" path="name"
-							placeholder="Enter name of Food" />
+							placeholder="Nhập tên" />
 						<sf:errors path="name" cssClass="help-block" element="em" />
 					</div>
 				</div>
@@ -34,7 +36,7 @@
 			<div class="row">
 				<div class="col-md-8">
 					<div class="form-group">
-						<label for="cityId">City</label>
+						<label for="cityId">Thuộc tỉnh/t. phố</label>
 						<sf:select path="ct" items="${cities }" itemLabel="name"
 							itemValue="id" class="form-control" />
 					</div>
@@ -45,8 +47,7 @@
 					<div class="form-group">
 						<div class="text-right">
 							<button type="button" data-toggle="modal"
-								data-target="#myCityModal" class="btn btn-warning btn-xs">Add
-								city</button>
+								data-target="#myCityModal" class="btn btn-warning btn-xs">Thêm tỉnh</button>
 						</div>
 					</div>
 				</div>
@@ -74,7 +75,7 @@
 			<div class="row">
 				<div class="col-md-8">
 					<div class="form-group">
-						<label for="file">Select an image</label>
+						<label for="file">Chọn ảnh</label>
 						<sf:input type="file" id="file" path="file" />
 						<sf:errors path="file" cssClass="help-block" element="em" />
 					</div>
@@ -83,9 +84,9 @@
 			<div class="row">
 				<div class="col-md-8">
 					<div class="form-group">
-						<label for="address">Address of Food</label>
+						<label for="address">Địa chỉ</label>
 						<sf:input type="text" class="form-control" id="address"
-							path="address" placeholder="Enter address of Food" />
+							path="address" placeholder="Nhập địa chỉ" />
 						<sf:errors path="address" cssClass="help-block" element="em" />
 					</div>
 				</div>
@@ -93,10 +94,10 @@
 			<div class="row">
 				<div class="col-md-8">
 					<div class="form-group">
-						<label for="description">Description</label>
+						<label for="description">Mô tả</label>
 						<sf:textarea class="form-control" id="description"
 							path="description" rows="2"></sf:textarea>
-						<p class="help-block">Enter some description...</p>
+						<p class="help-block">Sơ lược nổi bật...</p>
 						<sf:errors path="description" cssClass="help-block" element="em" />
 					</div>
 				</div>
@@ -105,10 +106,10 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="form-group">
-						<label for="content">Content</label>
+						<label for="content">Bài viết</label>
 						<sf:textarea class="form-control" id="content" path="content"
 							rows="30"></sf:textarea>
-						<p class="help-block">Content of article...</p>
+						<p class="help-block">Nội dung bài viết...</p>
 						<%-- <sf:errors path="content" cssClass="help-block" element="em" /> --%>
 					</div>
 				</div>
@@ -117,17 +118,17 @@
 			<div class="row">
 				<div class="col-md-4">
 					<div class="form-group">
-						<label for="priceMin">Price minimum</label>
+						<label for="priceMin">Giá từ</label>
 						<sf:input type="number" class="form-control" id="priceMin"
-							path="priceMin" placeholder="Enter price minimum of Food" />
+							path="priceMin" placeholder="" />
 						<sf:errors path="priceMin" cssClass="help-block" element="em" />
 					</div>
 				</div>
 				<div class="col-md-4">
 					<div class="form-group">
-						<label for="priceMax">Price maximum</label>
+						<label for="priceMax">Đến</label>
 						<sf:input type="number" class="form-control" id="priceMax"
-							path="priceMax" placeholder="Enter price maximum of Food" />
+							path="priceMax" placeholder="" />
 						<sf:errors path="priceMax" cssClass="help-block" element="em" />
 					</div>
 				</div>
@@ -137,7 +138,7 @@
 				<div class="col-md-4">
 					<div class="bootstrap-timepicker">
 						<div class="form-group">
-							<label for="hoursOpen">To (hours)</label>
+							<label for="hoursOpen">Giờ mở cửa, Từ</label>
 
 							<div class="input-group">
 								<sf:input type="text" class="form-control timepicker"
@@ -155,7 +156,7 @@
 				<div class="col-md-4">
 					<div class="bootstrap-timepicker">
 						<div class="form-group">
-							<label for="hoursClose">From (hours)</label>
+							<label for="hoursClose">Đến</label>
 
 							<div class="input-group">
 								<sf:input type="text" class="form-control timepicker"
@@ -174,9 +175,9 @@
 			<div class="row">
 				<div class="col-md-8">
 					<div class="form-group">
-						<label for="contact">Contact</label>
+						<label for="contact">Liên hệ</label>
 						<sf:input type="text" class="form-control" id="contact"
-							path="contact" placeholder="Enter some information to contact" />
+							path="contact" placeholder="Nhập thông tin để liên hệ" />
 						<sf:errors path="contact" cssClass="help-block" element="em" />
 					</div>
 				</div>
@@ -186,7 +187,7 @@
 		<!-- /.box-body -->
 
 		<div class="box-footer">
-			<input type="submit" name="submit" id="submit" value="Submit"
+			<input type="submit" name="submit" id="submit" value="Lưu"
 				class="btn btn-primary" />
 			<sf:hidden path="id" />
 			<sf:hidden path="code" />
@@ -201,7 +202,7 @@
 
 <div class="box">
 	<div class="box-header">
-		<h3 class="box-title">List of available Foods</h3>
+		<h3 class="box-title">Danh sách ẩm thực</h3>
 	</div>
 	<!-- /.box-header -->
 	<div class="box-body">
@@ -209,19 +210,19 @@
 			<thead>
 				<tr>
 					<!-- <th>Id</th> -->
-					<th>Name</th>
-					<th>City</th>
+					<th>Tên</th>
+					<th>Tỉnh</th>
 					<!-- <th>Place</th> -->
-					<th>Image</th>
+					<th>Hình ảnh</th>
 
-					<th>Address</th>
-					<th>Price Min</th>
-					<th>Price Max</th>
-					<th>Hours Open</th>
-					<th>Hours Close</th>
-					<th>Contact</th>
-					<th>Active</th>
-					<th>Edit</th>
+					<th>Địa chỉ</th>
+					<th>Giá từ</th>
+					<th>Đến</th>
+					<th>Giờ mở cửa</th>
+					<th>Giờ đóng cửa</th>
+					<th>Liên hệ</th>
+					<th>Trạng thái</th>
+					<th>Sửa</th>
 				</tr>
 			</thead>
 
@@ -301,7 +302,7 @@
 				<button type="button" class="close" data-dismiss="modal">
 					<span>&times;</span>
 				</button>
-				<h4 class="modal-title">Add new City</h4>
+				<h4 class="modal-title">Thêm tỉnh/T. phố</h4>
 			</div>
 			<div class="modal-body">
 				<!-- Modal form -->
@@ -309,34 +310,34 @@
 					action="${contextRoot }/manage/city" method="POST"
 					enctype="multipart/form-data">
 					<div class="form-group">
-						<label for="name">Name</label>
+						<label for="name">Tên tỉnh / T.phố</label>
 						<sf:input type="text" class="form-control" id="name" path="name"
-							placeholder="Enter name" />
+							placeholder="Nhập tên" />
 						<sf:errors path="name" cssClass="help-block" element="em" />
 					</div>
 
 					<div class="form-group">
-						<label for="file">Select an image</label>
+						<label for="file">Chọn ảnh</label>
 						<sf:input type="file" id="file" path="file" />
 						<sf:errors path="file" cssClass="help-block" element="em" />
 					</div>
 					<div class="form-group">
-						<label for="description">Description</label>
+						<label for="description">Mô tả</label>
 						<sf:textarea class="form-control" id="description"
 							path="description" rows="1"></sf:textarea>
-						<p class="help-block">Enter some description...</p>
+						<p class="help-block">Sơ lược nổi bật...</p>
 						<sf:errors path="description" cssClass="help-block" element="em" />
 					</div>
 					<div class="form-group">
-						<label for="content">Content</label>
+						<label for="content">Bài viết</label>
 						<sf:textarea class="form-control" id="content" path="content"
 							rows="9"></sf:textarea>
-						<p class="help-block">Content of article...</p>
+						<p class="help-block">Nội dung bài viết...</p>
 						<%-- <sf:errors path="content" cssClass="help-block" element="em" /> --%>
 					</div>
 
 					<div class="form-group">
-						<input type="submit" name="submit" id="submit" value="Submit"
+						<input type="submit" name="submit" id="submit" value="Lưu"
 							class="btn btn-primary" />
 						<sf:hidden path="id" />
 						<sf:hidden path="code" />

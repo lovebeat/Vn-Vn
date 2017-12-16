@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <%@include file="./shared/slide.jsp"%>
 <%@include file="./shared/nav.jsp"%>
 <div class="container text-center" id="Welcome">
@@ -12,7 +14,7 @@
 			breathtaking natural beauty with a unique heritage, where travel
 			quickly becomes addictive.<br>
 		</div>
-		<br><br>
+		<br> <br>
 
 		<div class="detailInHome" style="display: none;">
 
@@ -25,8 +27,7 @@
 			Bang National Park. The comical: watching a moped loaded with honking
 			pigs weave a wobbly route along a country lane. And the
 			contemplative: witnessing a solitary grave in a cemetery of thousands
-			of war victims.<br><br>
-			<strong>History & Culture</strong><br>
+			of war victims.<br> <br> <strong>History & Culture</strong><br>
 			Forty years after the carnage and destruction of an epoch-defining
 			conflict, Vietnam is resolutely a nation, not a war, in the eyes of
 			the world. Self-confident and fast-developing, its progress is
@@ -35,9 +36,7 @@
 			labyrinthine trading quarters of still-thriving craft industries are
 			juxtaposed with grand colonial mansions from the French era, all
 			overseen from the sky bars of 21st-century glass-and-steel
-			high-rises.<br><br>
-
-			<strong>A Culinary Superpower</strong>
+			high-rises.<br> <br> <strong>A Culinary Superpower</strong>
 			<br> The Thais may grumble, but in Southeast Asia nothing really
 			comes close: Vietnamese food is that good. Incredibly subtle in its
 			flavours and outstanding in its diversity, Vietnamese cooking is a
@@ -48,17 +47,16 @@
 			typifying the central coastline, rightly renowned as Vietnam’s
 			epicurean epicentre. And up and down the country you can mingle with
 			villagers, sample local dishes and sip rice wine in Vietnam's many
-			regional markets.<br><br> 
-			<strong>Thrills & Chills</strong><br>
-			If you have the bills, Vietnam has the thrills and chills. Some
-			require a little physical effort, such as motorbiking switchback
-			after switchback up the jaw-dropping Hai Van Pass in central Vietnam.
-			Others require even more sweat: kitesurfing the tropical oceanic
-			waters off Mui Ne or hiking the evergreen hills around Bac Ha or
-			Sapa. And when you’re done with all that adrenaline stuff, there’s
-			plenty of horizontal ‘me’ time to relish. Vietnam has outstanding
-			spas – from marble temples of treatments, to simple family-run
-			massage salons with backpacker-friendly rates. <br><br>
+			regional markets.<br> <br> <strong>Thrills &
+				Chills</strong><br> If you have the bills, Vietnam has the thrills and
+			chills. Some require a little physical effort, such as motorbiking
+			switchback after switchback up the jaw-dropping Hai Van Pass in
+			central Vietnam. Others require even more sweat: kitesurfing the
+			tropical oceanic waters off Mui Ne or hiking the evergreen hills
+			around Bac Ha or Sapa. And when you’re done with all that adrenaline
+			stuff, there’s plenty of horizontal ‘me’ time to relish. Vietnam has
+			outstanding spas – from marble temples of treatments, to simple
+			family-run massage salons with backpacker-friendly rates. <br> <br>
 		</div>
 		<a href="javascript:void(0);" onclick="showMoreOrLess()"
 			id="showMoreOrLessInHome"> Show More <span id="lessOrMoreInHome"
@@ -79,24 +77,71 @@
 	<div class="row">
 
 		<h1 style="text-align: center;">Top experiences in Viet Nam</h1>
-		<br>
-		<br>
+		<br> <br>
 	</div>
 	<div class="row top-experiences">
-	<c:forEach items="${ listPlace}" var="place">
-		<div class="col-sm-3 top-experiences-img">
-			<img src="${img }/${place.city.name }/${place.name }/${place.code }.jpg"
-				style="width: 100%; height: 400px; object-fit: cover;" onclick=""
-				class="hover-shadow cursor frontSlide">
-			<div class="top-experiences-shape-counter">
-				<p>1</p>
+		<c:forEach var="i" begin="0" end="${listPlace.size()-1 }">
+			<c:choose>
+				<c:when test="${i<4}">
+					<script>
+						console.log("${listPlace.get(i).city.name }")
+					</script>
+					<div class="col-sm-3 top-experiences-img">
+						<img
+							src="${img }/${listPlace.get(i).city.name }/${listPlace.get(i).name }/${listPlace.get(i).code }.jpg"
+							style="width: 100%; height: 400px; object-fit: cover;" onclick=""
+							class="hover-shadow cursor frontSlide">
+						<div class="top-experiences-shape-counter">
+							<p>${i }</p>
+						</div>
+						<div class="textInsideImg">
+							<div class="frontSlideTitle">
+								<p>${listPlace.get(i).name}</p>
+							</div>
+							<div class="frontSlideSubTitle">${listPlace.get(i).city.name }</div>
+						</div>
+					</div>
+				</c:when>
+
+				<c:otherwise>
+					<script>
+					 	console.log("in else")
+					</script>
+					<div class="col-sm-3 top-experiences-img" style="display: none;">
+						<img
+							src="${img }/${listPlace.get(i).city.name }/${listPlace.get(i).name }/${listPlace.get(i).code }.jpg"
+							style="width: 100%; height: 400px; object-fit: cover; " onclick=""
+							class="hover-shadow cursor frontSlide">
+						<div class="top-experiences-shape-counter">
+							<p>${i }</p>
+						</div>
+						<div class="textInsideImg">
+							<div class="frontSlideTitle">
+								<p>${listPlace.get(i).name}</p>
+							</div>
+							<div class="frontSlideSubTitle">${listPlace.get(i).city.name }</div>
+						</div>
+					</div>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+		<%-- <c:forEach items="${ listPlace}" var="place">
+			<div class="col-sm-3 top-experiences-img">
+				<img
+					src="${img }/${place.city.name }/${place.name }/${place.code }.jpg"
+					style="width: 100%; height: 400px; object-fit: cover;" onclick=""
+					class="hover-shadow cursor frontSlide">
+				<div class="top-experiences-shape-counter">
+					<p>1</p>
+				</div>
+				<div class="textInsideImg">
+					<div class="frontSlideTitle">
+						<p>${place.name}</p>
+					</div>
+					<div class="frontSlideSubTitle">${place.city.name }</div>
+				</div>
 			</div>
-			<div class="textInsideImg">
-				<div class="frontSlideTitle"><p>${place.name}</p></div>
-				<div class="frontSlideSubTitle">${place.city.name }</div>
-			</div>
-		</div>
-	</c:forEach>
+		</c:forEach> --%>
 		<%-- <div class="col-sm-3 top-experiences-img">
 			<img src="${img}/pic2.jpg"
 				style="width: 100%; height: 400px; object-fit: cover;" onclick=""
@@ -237,8 +282,8 @@
 				<div class="frontSlideSubTitle">Viet Nam</div>
 			</div>
 		</div> --%>
-		<a class="prev" onclick="showFrontSlideLeft()">&#10094;</a> 
-		<a class="next" onclick="showFrontSlideRight()">&#10095;</a>
+		<a class="prev" onclick="showFrontSlideLeft()">&#10094;</a> <a
+			class="next" onclick="showFrontSlideRight()">&#10095;</a>
 	</div>
 
 </div>
@@ -255,23 +300,29 @@
 <div class="container" id="food">
 	<div class="row">
 		<div class="col-md-4">
-				<img src="${img }/foodanddrink.jpg"
-				style="width: 100%; height: 450px; object-fit: cover ;"
+			<img src="${img }/foodanddrink.jpg"
+				style="width: 100%; height: 450px; object-fit: cover;"
 				class="img img-responsive">
 		</div>
 		<div class="col-md-8">
 			<div class="row">
-				<h1 style="text-align: center;">Food and Drink</h1>
-				<br>
-				<br>
+				<h1 style="text-align: center;">Ẩm thực vùng miền</h1>
+				<br> <br>
 			</div>
 			<div class="row">
 				<div class="food-class">
 					<ul style="list-style-type: none">
 						<c:forEach items="${listFoods }" var="food">
-							<a href="${contextRoot}/food/${food.getId()}"><li class=" food-class-items">${food.getName() }</li></a>
+							<a href="${contextRoot}/food/${food.getId()}"><li
+								class=" food-class-items">${food.getName() }</li></a>
 						</c:forEach>
 					</ul>
+				</div>
+			</div><br><br>
+			<div class="row" style="float: right">
+				<div class="" style="margin-right: 400px;">
+					<a style = "text-decoration: none" href="${contextRoot }/allFood"> 
+						Xem thêm <span class="glyphicon glyphicon-chevron-right"></span></a>
 				</div>
 			</div>
 		</div>

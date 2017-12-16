@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -48,14 +50,19 @@ public class Hotel {
 	
 	private String pet;
 	
-	@Column(name="provider_id")
-	private String providerId;
+	@ManyToOne
+	@JoinColumn(name="provider_id")
+	private User user;
 	
 	@Column(name="is_active")
 	private boolean active=true;
 	
-	@Column(name="wheres")
-	private String where;
+	
+	private String wheres;
+	
+	@ManyToOne
+	@JoinColumn(name="city_id")
+	private City city;
 	
 	private boolean approve=false;
 	
@@ -70,6 +77,12 @@ public class Hotel {
 	public void setFile(MultipartFile file) {
 		this.file = file;
 	}
+	
+	@Transient
+	private String ct;
+	
+	@Transient
+	private String pr;
 	
 	//Default constructor
 	public Hotel() {
@@ -188,12 +201,14 @@ public class Hotel {
 		this.pet = pet;
 	}
 
-	public String getProviderId() {
-		return providerId;
+	
+
+	public User getUser() {
+		return user;
 	}
 
-	public void setProviderId(String providerId) {
-		this.providerId = providerId;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public boolean isActive() {
@@ -205,11 +220,11 @@ public class Hotel {
 	}
 
 	public String getWhere() {
-		return where;
+		return wheres;
 	}
 
 	public void setWhere(String where) {
-		this.where = where;
+		this.wheres = where;
 	}
 
 	public boolean isApprove() {
@@ -218,6 +233,30 @@ public class Hotel {
 
 	public void setApprove(boolean approve) {
 		this.approve = approve;
+	}
+
+	public String getCt() {
+		return ct;
+	}
+
+	public void setCt(String ct) {
+		this.ct = ct;
+	}
+
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
+	}
+
+	public String getPr() {
+		return pr;
+	}
+
+	public void setPr(String pr) {
+		this.pr = pr;
 	}
 	
 	

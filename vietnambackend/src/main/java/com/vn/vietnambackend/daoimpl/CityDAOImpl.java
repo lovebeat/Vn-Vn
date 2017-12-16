@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import com.vn.vietnambackend.dao.CityDAO;
 import com.vn.vietnambackend.dto.City;
+import com.vn.vietnambackend.dto.Hotel;
 
 @Repository("CityDAO")
 @Transactional

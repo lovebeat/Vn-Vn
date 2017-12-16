@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <div class="slideshow-container container-fluid">
 	<div class="row top">
 		<div class="col-sm-4">
@@ -8,8 +10,16 @@
 		<div class="col-sm-4"></div>
 	</div>
 	<div class="row">
-
-		<div class="mySlides fade">
+		<c:forEach items="${listBanner }" var="banner">
+			<div class="mySlides fade">
+				<img src="${img }/banner/${banner.code }.jpg" alt="pic1"
+					style="width: 100%; height: 600px;">
+				<div class="title">Viet Nam</div>
+				<div class="subTitle">we are happy for you</div>
+				<div class="foot">it's all for you.....</div>
+			</div>
+		</c:forEach>
+		<%-- <div class="mySlides fade">
 			<img src="${img }/pic1.jpg" alt="pic1"
 				style="width: 100%; height: 600px;">
 			<div class="title">Viet Nam</div>
@@ -31,7 +41,7 @@
 			<div class="title">Viet Nam</div>
 			<div class="subTitle">other........</div>
 			<div class="foot">it's all for you.....</div>
-		</div>
+		</div> --%>
 		<button id="citiesBtn">
 			<span>Cities</span>
 		</button>

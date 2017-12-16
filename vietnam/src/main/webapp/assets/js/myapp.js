@@ -1,5 +1,6 @@
 $(function(){
 	
+	
 	//dismissing the alert after 2 seconds
 	var $alert = $('.alert');
 	if($alert.length){
@@ -15,6 +16,10 @@ $(function(){
       showInputs: false
     })
 	
+    /* //Date picker
+    $('.datepicker').datepicker({
+      autoclose: true
+    })*/
 	
 	
 	//----------------DAtatable for admin
@@ -486,7 +491,7 @@ $(function(){
 								+ window.contextRoot
 								+ '/provider/'
 								+ data
-								+ '/detailRoom" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-right"></span></a> &#160;';
+								+ '/detailRooms" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-right"></span></a> &#160;';
 
 						return str;
 					}
@@ -773,6 +778,180 @@ $(function(){
 	//-----------
 	
 	
+//----------------DAtatable for banner
+	
+	var $adminBannerTable = $('#adminBannerTable');
+
+	// execute the below code only where are have this table
+
+	if ($adminBannerTable.length) {
+		// console.log('Inside the table !');
+		var jsonUrl = window.contextRoot + '/json/data/admin/all/banner';
+		
+		$adminBannerTable.DataTable({
+
+			lengthMenu : [ [ 10, 20, 30, -1 ],
+					[ '10', '20', '30', 'All' ] ],
+			pageLength : 10,
+			ajax : {
+				url : jsonUrl,
+				dataSrc : ''
+			},
+			columns : [
+			
+				{
+					data: 'id',
+					bSortable: false,
+				},
+				
+				{
+					data : 'code',
+					bSortable: false,
+					mRender: function(data, type, row){
+						return '<img src ="' + window.contextRoot + '/resources/images/banner/' + data + '.jpg" class="adminDataTableImg" style="height: 80px;width: 120px;" />'
+					}
+				},
+
+				{
+					data : 'active',
+					bSortable: false,
+					mRender: function(data, type, row){
+						var str='';
+						str	+='<label class="switch">';
+						if(data){
+							str+='<input type="checkbox" checked="checked" value="'+row.id+'">';
+							
+						}else{
+							str+='<input type="checkbox" value="'+row.id+'">';
+						}
+						
+						str+= '<div class = "slider"></div></label>';
+						return str;
+							
+					}
+					
+				},
+			
+				
+			],
+			
+			initComplete: function () {
+				var api = this.api();
+				api.$('.switch input[type="checkbox"]').on('change' , function() {							
+					var dText = (this.checked)? 'You want to activate the Banner?': 'You want to de-activate the Banner?';
+					var checked = this.checked;
+					var checkbox = $(this);
+					debugger;
+				    bootbox.confirm({
+				    	size: 'medium',
+				    	title: 'Banner Activation/Deactivation',
+				    	message: dText,
+				    	callback: function (confirmed) {
+					        if (confirmed) {
+					            $.ajax({							            	
+					            	type: 'GET',
+					            	url: window.contextRoot + '/manage/banner/'+checkbox.prop('value')+'/activation',
+					        		timeout : 100000,
+					        		success : function(data) {
+					        			/*displaySnackbar(data);*/	
+					        			bootbox.alert(data);
+					        		},
+					        		error : function(e) {
+					        			/*displaySnackbar('ERROR: '+ e);*/
+					        			bootbox.alert('ERROR: '+ e);
+					        			//display(e);
+					        		}						            	
+					            });
+					        }
+					        else {							        	
+					        	checkbox.prop('checked', !checked);
+					        }
+						}
+					});
+				});
+			}
+
+		});
+
+	}
+	//-----------
+	
+	
+	
+//----------------DAtatable for hotel was approved in manage side
+	
+	var $providerHotelIsApprove = $('#providerHotelIsApprove');
+
+	// execute the below code only where are have this table
+
+	if ($providerHotelIsApprove.length) {
+		// console.log('Inside the table !');
+		var jsonUrl = window.contextRoot + '/json/data/manage/all/hotelApproved';
+		
+		$providerHotelIsApprove.DataTable({
+
+			lengthMenu : [ [ 3, 6, 9, -1 ],
+					[ '3', '6', '9', 'All' ] ],
+			pageLength : 3,
+			ajax : {
+				url : jsonUrl,
+				dataSrc : ''
+			},
+			columns : [
+			
+				{
+					data: 'id',
+					bSortable: false,
+				},
+				{
+					data: 'name'
+				},
+				{
+					data : 'code',
+					bSortable: false,
+					mRender: function(data, type, row){
+						return '<img src ="' + window.contextRoot + '/resources/images/hotel/' + row.name+ '/' + data + '.jpg" class="adminDataTableImg" style="height: 80px;width: 120px;" />'
+					}
+				},
+				
+				{
+					data: 'where'
+				},
+				{
+					data: 'star'
+				},
+				
+				{
+					data: 'phone'
+				},
+				{
+					data : 'active',
+					bSortable: false,
+					mRender: function(data, type, row){
+						var str='';
+						str	+='<label class="switch">';
+						if(data){
+							str+='<input type="checkbox"  disabled checked="checked" value="'+row.id+'">';
+							
+						}else{
+							str+='<input type="checkbox"  disabled value="'+row.id+'">';
+						}
+						
+						str+= '<div class = "slider"></div></label>';
+						return str;
+							
+					}
+					
+				},
+				
+				
+			],
+			
+
+		});
+
+	}
+	//-----------
 	
 	
 	

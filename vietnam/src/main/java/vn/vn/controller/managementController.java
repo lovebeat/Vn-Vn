@@ -16,19 +16,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.vn.vietnambackend.dao.BannerDAO;
 import com.vn.vietnambackend.dao.CityDAO;
 import com.vn.vietnambackend.dao.FoodDAO;
 import com.vn.vietnambackend.dao.HotelDAO;
 import com.vn.vietnambackend.dao.PlaceDAO;
+import com.vn.vietnambackend.dto.Banner;
 import com.vn.vietnambackend.dto.City;
 import com.vn.vietnambackend.dto.Food;
 import com.vn.vietnambackend.dto.Hotel;
 import com.vn.vietnambackend.dto.Place;
 
+import vn.vn.util.BannerFileUploadUtility;
 import vn.vn.util.CityFileUploadUtility;
 import vn.vn.util.FoodFileUploadUtility;
 import vn.vn.util.HotelFileUploadUtility;
 import vn.vn.util.PlaceFileUploadUtility;
+import vn.vn.validator.BannerValidator;
 import vn.vn.validator.CityValidator;
 import vn.vn.validator.FoodValidator;
 import vn.vn.validator.HotelValidator;
@@ -47,13 +51,16 @@ public class managementController {
 	
 	@Autowired
 	private HotelDAO HotelDAO;
-
+	
+	@Autowired
+	private BannerDAO BannerDAO;
+	
 	// city
 	@RequestMapping(value = "/cities", method = RequestMethod.GET)
 	public ModelAndView showManageCities(@RequestParam(name = "operation", required = false) String operation) {
 		ModelAndView mv = new ModelAndView("manageIndex");
 		mv.addObject("userClickManageCities", true);
-		mv.addObject("title", "Manage Cites");
+		mv.addObject("title", "tỉnh/t. phố");
 		City nCity = new City();
 		nCity.setActive(true);
 		mv.addObject("city", nCity);
@@ -84,7 +91,7 @@ public class managementController {
 		if (results.hasErrors()) {
 
 			model.addAttribute("userClickManageCities", true);
-			model.addAttribute("title", "Manage Cities");
+			model.addAttribute("title", "tỉnh/t. phố");
 			model.addAttribute("message", "Validation failed for city Submission!");
 			return "manageIndex";
 		}
@@ -121,7 +128,7 @@ public class managementController {
 	public ModelAndView showEditCity(@PathVariable int id) {
 		ModelAndView mv = new ModelAndView("manageIndex");
 		mv.addObject("userClickManageCities", true);
-		mv.addObject("title", "Manage Cities");
+		mv.addObject("title", "tỉnh/t. phố");
 		// fetch the city from the database
 		City nCity = CityDAO.get(id);
 		// set the city fetch from database
@@ -134,7 +141,7 @@ public class managementController {
 	public ModelAndView showManagePlaces(@RequestParam(name = "operation", required = false) String operation) {
 		ModelAndView mv = new ModelAndView("manageIndex");
 		mv.addObject("userClickManagePlaces", true);
-		mv.addObject("title", "Manage Places");
+		mv.addObject("title", "địa điểm");
 		Place nPlace = new Place();
 		nPlace.setActive(true);
 		mv.addObject("place", nPlace);
@@ -165,7 +172,7 @@ public class managementController {
 		if (results.hasErrors()) {
 
 			model.addAttribute("userClickManagePlaces", true);
-			model.addAttribute("title", "Manage Places");
+			model.addAttribute("title", "địa điểm");
 			model.addAttribute("message", "Validation failed for city Submission!");
 			return "manageIndex";
 		}
@@ -205,7 +212,7 @@ public class managementController {
 	public ModelAndView showEditPlace(@PathVariable int id) {
 		ModelAndView mv = new ModelAndView("manageIndex");
 		mv.addObject("userClickManagePlaces", true);
-		mv.addObject("title", "Manage Places");
+		mv.addObject("title", "địa điểm");
 		// fetch the place from the database
 		Place nPlace = PlaceDAO.get(id);
 
@@ -222,7 +229,7 @@ public class managementController {
 	public ModelAndView showManageFoods(@RequestParam(name = "operation", required = false) String operation) {
 		ModelAndView mv = new ModelAndView("manageIndex");
 		mv.addObject("userClickManageFoods", true);
-		mv.addObject("title", "Manage Foods");
+		mv.addObject("title", "Ẩm thực");
 		Food nFood = new Food();
 		nFood.setActive(true);
 		mv.addObject("food", nFood);
@@ -253,7 +260,7 @@ public class managementController {
 		if (results.hasErrors()) {
 
 			model.addAttribute("userClickManageFoods", true);
-			model.addAttribute("title", "Manage Foods");
+			model.addAttribute("title", "Ẩm thực");
 			model.addAttribute("message", "Validation failed for food Submission!");
 			return "manageIndex";
 		}
@@ -294,7 +301,7 @@ public class managementController {
 	public ModelAndView showEditFood(@PathVariable int id) {
 		ModelAndView mv = new ModelAndView("manageIndex");
 		mv.addObject("userClickManageFoods", true);
-		mv.addObject("title", "Manage Foods");
+		mv.addObject("title", "Ẩm thực");
 		// fetch the food from the database
 		Food nFood = FoodDAO.get(id);
 		// set the food fetch from database
@@ -302,7 +309,7 @@ public class managementController {
 		return mv;
 	}
 
-	// handling city dialog in and food submission
+	// handling city dialog in place and food submission
 	@RequestMapping(value = "/city", method = RequestMethod.POST)
 	public String handleCityInPlaceSubmission(@Valid @ModelAttribute("city") City mCity, BindingResult results,
 			Model model, HttpServletRequest request) {
@@ -319,7 +326,7 @@ public class managementController {
 		if (results.hasErrors()) {
 
 			model.addAttribute("userClickManageCities", true);
-			model.addAttribute("title", "Manage Cities");
+			model.addAttribute("title", "tỉnh/t. phố");
 			model.addAttribute("message", "Validation failed for city Submission!");
 			return "manageIndex";
 		}
@@ -404,7 +411,7 @@ public class managementController {
 	public ModelAndView approveProvider() {
 		ModelAndView mv = new ModelAndView("manageIndex");
 		mv.addObject("userClickListHotelApprove", true);
-		mv.addObject("title", "List Approve Hotel");
+		mv.addObject("title", "Home Stay");
 
 		return mv;
 	}
@@ -423,8 +430,8 @@ public class managementController {
 	@RequestMapping(value = "/{id}/approveHotel", method = RequestMethod.GET)
 	public ModelAndView approveHotel(@PathVariable int id) {
 		ModelAndView mv = new ModelAndView("manageIndex");
-		mv.addObject("userClickDetailHotel", true);
-		mv.addObject("title", "Approve Hotel");
+		mv.addObject("userClickViewAndApprove", true);
+		mv.addObject("title", "Xem và duyệt");
 		// fetch the city from the database
 		Hotel nHotel = HotelDAO.get(id);
 		// set the city fetch from database
@@ -433,6 +440,73 @@ public class managementController {
 		
 	}
 	
+	//banner
+		@RequestMapping(value = "/banner", method = RequestMethod.GET)
+		public ModelAndView showManageBanner(@RequestParam(name = "operation", required = false) String operation) {
+			ModelAndView mv = new ModelAndView("manageIndex");
+			mv.addObject("userClickManageBanner", true);
+			mv.addObject("title", "banner");
+			Banner nBanner = new Banner();
+			nBanner.setActive(true);
+			mv.addObject("banner", nBanner);
+
+			if (operation != null) {
+				if (operation.equals("banner")) {
+					mv.addObject("message", "Submitted Successfully !");
+				}
+			}
+
+			return mv;
+		}
+		
+		// handling banner submission
+		@RequestMapping(value = "/banner", method = RequestMethod.POST)
+		public String handleBannerSubmission(@Valid @ModelAttribute("banner") Banner mBanner, BindingResult results, Model model,
+				HttpServletRequest request) {
+
+			if (mBanner.getId() == 0) {
+				new BannerValidator().validate(mBanner, results);
+			} else {
+				if(!mBanner.getFile().getOriginalFilename().equals("")) {
+					new BannerValidator().validate(mBanner, results);
+				}
+			}
+
+			// check if there are any errors
+			if (results.hasErrors()) {
+
+				model.addAttribute("userClickManageBanner", true);
+				model.addAttribute("title", "banner");
+				model.addAttribute("message", "Validation failed for banner Submission!");
+				return "manageIndex";
+			}
+
+			// create new city record
+			if (mBanner.getId() == 0) {
+				BannerDAO.add(mBanner);
+			} else {
+				BannerDAO.update(mBanner);
+			}
+
+			if (!mBanner.getFile().getOriginalFilename().equals("")) {
+				BannerFileUploadUtility.uploadFile(request, mBanner.getFile(), mBanner.getCode());
+			}
+
+			return "redirect:/manage/banner?operation=banner";
+		}
+		// activation banner
+		
+		@RequestMapping(value = "/banner/{id}/activation", method = RequestMethod.GET)
+		@ResponseBody
+		public String handleBannerActivation(@PathVariable int id) {
+
+			Banner banner = BannerDAO.get(id);
+			boolean isActive = banner.isActive();
+			banner.setActive(!banner.isActive());
+			BannerDAO.update(banner);
+			return (isActive) ? "You are successfully decativevated the banner with id " + banner.getId()
+					: "You are successfully ativevated the banner with id " + banner.getId();
+		}
 	
 
 }

@@ -9,7 +9,7 @@
 <spring:url var="img" value="/resources/images" />
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 
 <title>Vn-Vn-${title }</title>
@@ -29,7 +29,8 @@
 <link href="https://fonts.googleapis.com/css?family=Nixie+One" rel="stylesheet"> 
 
 <!-- new css for provider -->
- 
+ 	 <!-- bootstrap datepicker -->
+  <link rel="stylesheet" href="${css }/bootstrap-datepicker.min.css">
   <!-- Theme style -->
   <%-- <link rel="stylesheet" href="${css }/AdminLTE.min.css">
   <!-- Bootstrap time Picker -->
@@ -48,8 +49,7 @@
 		<%@include file="home.jsp"%>
 		<!-- Contact session -->
 	<%@include file="./shared/contact.jsp"%>
-	<!-- FOOTER -->
-	<%@include file="./shared/footer.jsp" %>
+	
 	</c:if>
 	
 	
@@ -68,11 +68,24 @@
 	<c:if test="${userClickDetailCity==true }">
 		<%@include file="detailCity.jsp"%>
 	</c:if>
+	<c:if test="${userClickSearchHotel==true }">
+		<%@include file="searchHotel.jsp"%>
+	</c:if>
 	
-	<%-- <!-- Create new hotel page is here -->
-	<c:if test="${userClickCreateNewHotel==true }">
-		<%@include file="provider.jsp"%>
-	</c:if> --%>
+	<c:if test="${userAllFood==true }">
+		<%@include file="allFood.jsp"%>
+	</c:if>
+	
+	<c:if test="${userClickResultSearchHotel==true }">
+		<%@include file="resultSearchHotel.jsp"%>
+	</c:if>
+	<c:if test="${userClickDetailHotel==true }">
+		<%@include file="detailHotel.jsp"%>
+	</c:if>
+	
+
+	<!-- FOOTER -->
+	<%@include file="./shared/footer.jsp" %>
 	
 	
 	<script type="text/javascript" src="${js }/jquery.min.js"></script>
@@ -81,13 +94,19 @@
 <%-- 	<script type="text/javascript" src="${js }/myapp.js"></script> --%>
 	<!-- bootstrap time picker -->
 	<%-- <script src="${js }/bootstrap-timepicker.min.js"></script> --%>
-	<!-- <script>
+	<!-- bootstrap datepicker -->
+	<script src="${js }/bootstrap-datepicker.min.js"></script>
+	<script>
 		$(function(){
-			//timepicker
-		    $('.timepicker').timepicker({
-		      showInputs: false
+			//Date picker
+		    $('#datepicker').datepicker({
+		      autoclose: true
 		    })
-		});
-	</script> -->
+		    
+		    	    $('#datepicker2').datepicker({
+		      autoclose: true
+		    })
+				});
+	</script>
 </body>
 </html>

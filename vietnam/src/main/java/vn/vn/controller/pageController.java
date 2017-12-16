@@ -1,9 +1,15 @@
 package vn.vn.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,18 +18,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.vn.vietnambackend.dao.BookingDAO;
 import com.vn.vietnambackend.dao.CityDAO;
 import com.vn.vietnambackend.dao.ContactDAO;
 import com.vn.vietnambackend.dao.FoodDAO;
 import com.vn.vietnambackend.dao.HotelDAO;
 import com.vn.vietnambackend.dao.PlaceDAO;
+import com.vn.vietnambackend.dao.RoomDAO;
+import com.vn.vietnambackend.dto.Booking;
 import com.vn.vietnambackend.dto.City;
 import com.vn.vietnambackend.dto.Contact;
 import com.vn.vietnambackend.dto.Food;
 import com.vn.vietnambackend.dto.Hotel;
 import com.vn.vietnambackend.dto.Place;
+import com.vn.vietnambackend.dto.Room;
 
 import vn.vn.util.HotelFileUploadUtility;
 import vn.vn.validator.HotelValidator;
@@ -46,6 +57,12 @@ public class pageController {
 	@Autowired
 	private HotelDAO HotelDAO;
 	
+	@Autowired
+	private RoomDAO RoomDAO;
+	
+	@Autowired
+	private com.vn.vietnambackend.dao.BannerDAO BannerDAO;
+	
 	@RequestMapping(value = { "/", "/index", "/home" })
 	public ModelAndView homePage(/*@RequestParam(name = "operation", required = false) String operation*/) {
 		
@@ -61,6 +78,8 @@ public class pageController {
 		
 		mv.addObject("listPlace", placeDAO.listLimit());
 		
+		mv.addObject("listBanner",BannerDAO.listActive());
+		
 		/*if (operation != null) {
 			if (operation.equals("contact")) {
 				mv.addObject("message", "Submitted Successfully !");
@@ -71,9 +90,13 @@ public class pageController {
 	
 	}
 	
-/*
+
 	// handling contact submission
-	@RequestMapping(value = "/", method = RequestMethod.POST)
+	@ModelAttribute("contact")
+	public Contact loadsEmptyModelBean(){
+	   return new Contact();
+	}
+	@RequestMapping(value = "/contact", method = RequestMethod.POST)
 	public String handleContactSubmission(@Valid @ModelAttribute("contact") Contact mContact, BindingResult results, Model model,
 			HttpServletRequest request) {
 
@@ -90,8 +113,8 @@ public class pageController {
 		// create new contact record
 			contactDAO.add(mContact);
 
-		return "redirect:/home?operation=contact";
-	}*/
+		return "redirect:/home";
+	}
 	
 	
 	// detail food page
@@ -159,15 +182,30 @@ public class pageController {
 	
 	//login
 	@RequestMapping(value = "/login")
-	public ModelAndView login(@RequestParam(name="error", required=false)String error) {
+	public ModelAndView login(@RequestParam(name="error", required=false)String error,
+			@RequestParam(name="logout", required = false)String logout) {
 		ModelAndView mv = new ModelAndView("login");
 		if(error!=null) {
 			mv.addObject("message","Invalid username and password");
+		}
+		if(logout!=null) {
+			mv.addObject("logout","User has successfully logged out!");
 		}
 		mv.addObject("title", "Login");
 		return mv;
 	}
 	
+	//logout
+		@RequestMapping(value = "/perform-logout")
+		public String logout(HttpServletRequest request, HttpServletResponse response) {
+			//first we are going to fetch the authentication
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+			if(auth!=null) {
+				new SecurityContextLogoutHandler().logout(request, response, auth);
+			}
+			
+			return "redirect:/login?logout";
+		}
 
 
 	//Access denied
@@ -181,6 +219,21 @@ public class pageController {
 	}
 	
 	
+
+	@RequestMapping(value = "/allFood")
+	public ModelAndView allFood() {
+		
+		ModelAndView mv = new ModelAndView("index");
+		
+		mv.addObject("title","All Food");
+		
+		mv.addObject("userAllFood",true);
+		
+		mv.addObject("listFoods", foodDAO.list());
+		
+		return mv;
+	
+	}
 	
 	
 	
@@ -190,17 +243,59 @@ public class pageController {
 	
 	
 	
+	//search hotel
+	@RequestMapping(value = "/searchHotel", method = RequestMethod.GET)
+	public ModelAndView searchHotel() {
+		ModelAndView mv = new ModelAndView("index");
+		mv.addObject("title", "Searching a Hotel");
+		mv.addObject("userClickSearchHotel",true);
+		
+		return mv;
+	}
+	
+	// result search hotel
+	@RequestMapping(value = "/resultSearchHotel", method = RequestMethod.GET)
+	public ModelAndView resultSearchHotel() {
+		ModelAndView mv = new ModelAndView("index");
+		mv.addObject("title", "Result Searching a Hotel");
+		mv.addObject("userClickResultSearchHotel", true);
+
+		return mv;
+	}
+	
+	// detail of hotel
+	@RequestMapping(value = "/detailHotel", method = RequestMethod.GET)
+	public ModelAndView detailHotel() {
+		ModelAndView mv = new ModelAndView("index");
+		mv.addObject("title", "Chi tiết Home Stay");
+		mv.addObject("userClickDetailHotel", true);
+
+		return mv;
+	}
 	
 	
+			@ModelAttribute("hotel")
+			public Hotel loadEmptyModelBean(){
+			   return new Hotel();
+			}
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public ModelAndView search(@RequestParam(name = "wheres", required = false) String wheres, @ModelAttribute("hotel") Hotel mHotel) {
+    	
+    	ModelAndView mv = new ModelAndView("index");
+    	mv.addObject("title", "Kết quả Tìm kiếm");
+    	mv.addObject("userClickSearchHotel", true);
+    	System.out.println("---------------------------------"+ wheres);
+    	mv.addObject("listSearch", HotelDAO.search(wheres));
+    	
+    	mv.addObject("test", wheres);
+    	return mv;
+    }
 	
 	
-	
-	
-	
-	
-	
-	
-	
+    @ModelAttribute("city")
+	public City getCity() {
+		return new City();
+	}
 	
 	
 }

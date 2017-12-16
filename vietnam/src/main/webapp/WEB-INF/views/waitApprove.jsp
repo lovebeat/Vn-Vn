@@ -1,6 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <div class="box">
 	<div class="box-header">
-		<h3 class="box-title">List hotel waiting approve</h3>
+		<h3 class="box-title">Danh sách Home Stay chờ duyệt</h3>
 	</div>
 	<!-- /.box-header -->
 	<div class="box-body">
@@ -8,12 +10,12 @@
 			<thead>
 				<tr>
 					<th>Id</th>
-					<th>Name</th>
-					<th>Image</th>
-					<th>Where</th>
-					<th>Contact</th>
-					<th>Active</th>
-					<th>Edit</th>
+					<th>Tên Home Stay</th>
+					<th>Hình Ảnh</th>
+					<th>Địa chỉ</th>
+					<th>Thông tin chủ sở hữu</th>
+					<th>Trạng thái</th>
+					<th>Sửa</th>
 				</tr>
 			</thead>
 

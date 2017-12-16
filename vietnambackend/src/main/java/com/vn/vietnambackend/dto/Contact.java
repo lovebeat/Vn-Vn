@@ -16,13 +16,13 @@ public class Contact {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@NotBlank(message="Please enter name or nick name!")
+	/*@NotBlank(message="Please enter name or nick name!")*/
 	private String name;
 	
-	@NotBlank(message="Please enter email so that we can response!")
+	/*@NotBlank(message="Please enter email so that we can response!")*/
 	private String email;
 	
-	@JsonIgnore
+	/*@JsonIgnore*/
 	private String comment;
 	
 	
