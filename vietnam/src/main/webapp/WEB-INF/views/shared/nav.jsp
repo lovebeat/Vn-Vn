@@ -7,9 +7,6 @@
 	  			<a href="#food">Food</a>
 	  			<a href="#contact">Contact</a>
 	  			<a href="#about">About</a>
-	  			
-  			
-  			
   			<security:authorize access="isAnonymous()">
   				<a href="${contextRoot }/login">Login</a>
   			</security:authorize>
