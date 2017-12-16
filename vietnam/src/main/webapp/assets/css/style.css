@@ -169,8 +169,9 @@ input[type=text]:hover {
 	position: absolute;
 	background-color: #f9f9f9;
     min-width: 160px;
+    margin-bottom: 0px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+    z-index: 0;
 } 
 .nav-dropdown-content a {
     float: none;
@@ -280,7 +281,7 @@ input[type=text]:hover {
 	background-color: #fefefe;
 	margin: auto;
 	/* padding: 20px; */
-	width: 40%;
+	width: 60%;
 	animation-name: slideIn ;
 	animation-duration: 1s;
 }

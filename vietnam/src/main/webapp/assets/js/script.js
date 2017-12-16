@@ -128,32 +128,38 @@ function showFrontSlideRight() {
 	var slides = document.getElementsByClassName("frontSlide");
 	var imgMarker = document.getElementsByClassName("top-experiences-shape-counter");
 	var contents = document.getElementsByClassName("textInsideImg");
-	var size = slides.length;
+	var outer = document.getElementsByClassName("top-experiences-img");
+	var size = outer.length;
 	// console.log(size);
 	var count = 1;
 	for (i = 0; i < size; i++) {
-		slides[i].style.display = "none";
-		imgMarker[i].style.display = "none";
-		contents[i].style.display = "none";
+//		slides[i].style.display = "none";
+//		imgMarker[i].style.display = "none";
+//		contents[i].style.display = "none";
+		outer[i].style.display = "none"
 	}
+	console.log("size of slide is "+ size);
 	while (true) {
 
 		if (left < size) {
 
 			console.log("In right 1");
-			slides[left].style.display = "block";
-			imgMarker[left].style.display = "block";
-			contents[left].style.display = "block";
+//			slides[left].style.display = "block";
+//			imgMarker[left].style.display = "block";
+//			contents[left].style.display = "block";
+			outer[left].style.display = "block";
 			console.log("count= " + count);
 			console.log(left);
 			left++;
+			
 		} else if (left >= size) {
 
 			console.log("In right 2");
 			left = 0;
-			slides[left].style.display = "block";
-			imgMarker[left].style.display = "block";
-			contents[left].style.display = "block";
+//			slides[left].style.display = "block";
+//			imgMarker[left].style.display = "block";
+//			contents[left].style.display = "block";
+			outer[left].style.display = "block";
 			console.log("count= " + count);
 			console.log(left);
 			left++;
@@ -170,28 +176,32 @@ function showFrontSlideLeft() {
 	var slides = document.getElementsByClassName("frontSlide");
 	var imgMarker = document.getElementsByClassName("top-experiences-shape-counter");
 	var contents = document.getElementsByClassName("textInsideImg");
-	var size = slides.length;
+	var outer = document.getElementsByClassName("top-experiences-img");
+	var size = outer.length;
 	var count = 1;
 	for (i = 0; i < size; i++) {
-		slides[i].style.display = "none";
-		imgMarker[i].style.display = "none";
-		contents[i].style.display = "none";
+//		slides[i].style.display = "none";
+//		imgMarker[i].style.display = "none";
+//		contents[i].style.display = "none";
+		outer[i].style.display = "none";
 	}
 	while (true) {
 		if (left == 0) {
 			left = size - 1;
 			console.log("In block 3");
 			console.log(left);
-			slides[left].style.display = "block";
-			imgMarker[left].style.display = "block";
-			contents[left].style.display = "block";
+//			slides[left].style.display = "block";
+//			imgMarker[left].style.display = "block";
+//			contents[left].style.display = "block";
+			outer[left].style.display = "block";
 		} else {
 			left--;
 			console.log("In block 4");
 			console.log(left);
-			slides[left].style.display = "block";
-			imgMarker[left].style.display = "block";
-			contents[left].style.display = "block";
+//			slides[left].style.display = "block";
+//			imgMarker[left].style.display = "block";
+//			contents[left].style.display = "block";
+			outer[left].style.display = "block";
 		}
 		if (count == 4) {
 			break;

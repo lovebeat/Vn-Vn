@@ -84,7 +84,7 @@
 			<c:choose>
 				<c:when test="${i<4}">
 					<script>
-						console.log("${listPlace.get(i).city.name }")
+						console.log("${img }/${listPlace.get(i).city.name }/${listPlace.get(i).name }/${listPlace.get(i).code }")
 					</script>
 					<div class="col-sm-3 top-experiences-img">
 						<img
@@ -106,20 +106,23 @@
 				<c:otherwise>
 					<script>
 					 	console.log("in else")
+				
+						console.log("${img }/${listPlace.get(i).city.name }/${listPlace.get(i).name }/${listPlace.get(i).code }")
+					
 					</script>
 					<div class="col-sm-3 top-experiences-img" style="display: none;">
 						<img
 							src="${img }/${listPlace.get(i).city.name }/${listPlace.get(i).name }/${listPlace.get(i).code }.jpg"
-							style="width: 100%; height: 400px; object-fit: cover; " onclick=""
-							class="hover-shadow cursor frontSlide">
+							style="width: 100%; height: 400px; object-fit: cover;" onclick=""
+							class="hover-shadow cursor frontSlide" alt="Hinh Thieu">
 						<div class="top-experiences-shape-counter">
 							<p>${i }</p>
 						</div>
 						<div class="textInsideImg">
-							<div class="frontSlideTitle">
+							<div class="frontSlideTitle" >
 								<p>${listPlace.get(i).name}</p>
 							</div>
-							<div class="frontSlideSubTitle">${listPlace.get(i).city.name }</div>
+							<div class="frontSlideSubTitle" >${listPlace.get(i).city.name }</div>
 						</div>
 					</div>
 				</c:otherwise>

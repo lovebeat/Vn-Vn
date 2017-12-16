@@ -273,13 +273,13 @@ public class pageController {
 		return mv;
 	}
 	
-	
+	/*
 			@ModelAttribute("hotel")
 			public Hotel loadEmptyModelBean(){
 			   return new Hotel();
-			}
+			}*/
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public ModelAndView search(@RequestParam(name = "wheres", required = false) String wheres, @ModelAttribute("hotel") Hotel mHotel) {
+    public ModelAndView search(@RequestParam(name = "wheres", required = false) String wheres/* @ModelAttribute("hotel") Hotel mHotel*/) {
     	
     	ModelAndView mv = new ModelAndView("index");
     	mv.addObject("title", "Kết quả Tìm kiếm");
@@ -292,10 +292,10 @@ public class pageController {
     }
 	
 	
-    @ModelAttribute("city")
+   /* @ModelAttribute("city")
 	public City getCity() {
 		return new City();
-	}
+	}*/
 	
 	
 }

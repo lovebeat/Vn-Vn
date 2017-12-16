@@ -2,9 +2,9 @@
 	pageEncoding="utf-8"%>
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <div class="container">
-	<sf:form role="form" modelAttribute="hotel" action="${contextRoot }/search" >
+	<form role="form" <%-- modelAttribute="hotel" --%> action="${contextRoot }/search" >
 		<div class="row">
-			
+		<%-- 	
 			<div class="col-md-3">
 				<label for="city">Place</label>
 				<div class="input-group">
@@ -12,7 +12,7 @@
 						class="glyphicon glyphicon-map-marker"></i></span>
 						<sf:select path="ct" items="${cities }" itemLabel="name" itemValue= "id" class="form-control"/>
 				</div>
-			</div>
+			</div> --%>
 			
 			
 			<div class="col-md-3">
@@ -85,7 +85,7 @@
 			
 		</div>
 
-	</sf:form><br>
+	</form><br>
 	<div class="row">
 		<p>Result is here</p>
 		<hr>

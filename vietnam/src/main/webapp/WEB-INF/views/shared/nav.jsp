@@ -13,7 +13,7 @@
   			<security:authorize access="isAuthenticated()">
 	  			<div class="nav-dropdown">
 		  			<div class="nav-dropbtn">
-		  				<p>${userModel.fullName}</p> <span class="glyphicon glyphicon-chevron-down" style="font-size: 10px;"></span>
+		  				<p style="margin-bottom: 0px;">${userModel.fullName} <span class="glyphicon glyphicon-chevron-down" style="font-size: 10px;"></span></p> 
 		  			</div>
 		  			<div class="nav-dropdown-content">
 					<security:authorize access="hasAuthority('admin')">
