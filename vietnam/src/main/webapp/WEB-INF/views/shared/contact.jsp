@@ -9,7 +9,10 @@
 	<br>
 	<br>
 	<div class="row test">
-		<div class="col-sm-4">
+		<div class="col-sm-2">
+		
+		</div>
+		<div class="col-sm-2 text-left" style="font-size: 12px;">
 			<p>
 				<span class="glyphicon glyphicon-map-marker"></span> Ho Chi Minh, VN
 			</p>

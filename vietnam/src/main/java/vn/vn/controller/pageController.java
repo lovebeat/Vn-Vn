@@ -87,7 +87,6 @@ public class pageController {
 		}*/
 		
 		return mv;
-	
 	}
 	
 
@@ -290,12 +289,18 @@ public class pageController {
     	mv.addObject("test", wheres);
     	return mv;
     }
+    //this is for about us
+    @RequestMapping(value = "/about", method = RequestMethod.GET)
+	public ModelAndView aboutUs() {
+		ModelAndView mv = new ModelAndView("index");
+		mv.addObject("title", "About us!");
+		mv.addObject("userClickAbout",true);
+		return mv;
+	}
 	
 	
-   /* @ModelAttribute("city")
-	public City getCity() {
-		return new City();
-	}*/
+	
+    
 	
 	
 }
