@@ -1,5 +1,8 @@
 package vn.vn.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -56,9 +59,12 @@ public class pageController {
 	
 	@Autowired
 	private HotelDAO HotelDAO;
-	
+	@Autowired
+	private CityDAO CityDAO;
 	@Autowired
 	private RoomDAO RoomDAO;
+	@Autowired
+	private BookingDAO BookingDAO;
 	
 	@Autowired
 	private com.vn.vietnambackend.dao.BannerDAO BannerDAO;
@@ -253,7 +259,7 @@ public class pageController {
 		return mv;
 	}
 	
-	// result search hotel
+	/*// result search hotel
 	@RequestMapping(value = "/resultSearchHotel", method = RequestMethod.GET)
 	public ModelAndView resultSearchHotel() {
 		ModelAndView mv = new ModelAndView("index");
@@ -261,41 +267,145 @@ public class pageController {
 		mv.addObject("userClickResultSearchHotel", true);
 
 		return mv;
-	}
+	}*/
 	
 	// detail of hotel
-	@RequestMapping(value = "/detailHotel", method = RequestMethod.GET)
+/*	@RequestMapping(value = "/detailHotel", method = RequestMethod.GET)
 	public ModelAndView detailHotel() {
 		ModelAndView mv = new ModelAndView("index");
 		mv.addObject("title", "Chi tiết Home Stay");
 		mv.addObject("userClickDetailHotel", true);
-
+		
+		return mv;
+	}*/
+	
+	@RequestMapping(value="/detailHotel/{id}/{dtArr}/{dtLea}")
+	public ModelAndView DetailHotel(@PathVariable int id, @PathVariable String dtArr, @PathVariable String dtLea){
+		ModelAndView mv= new ModelAndView("index");
+		Hotel hotel = HotelDAO.get(id);
+		mv.addObject("title", "Chi tiết Home Stay ");
+		mv.addObject("hotel",hotel);
+		mv.addObject("userClickDetailHotel", true);
+		mv.addObject("room", RoomDAO.listByHotel(id));
+		mv.addObject("test",dtArr);
+		mv.addObject("dateArrive",dtArr);
+		mv.addObject("dateLeave",dtLea);
+		/*BookingDAO.listByHotel(dtArr, dtLea, id);*/
+		mv.addObject("test2",BookingDAO.listBookedByHotel(dtArr, dtLea, id));
+		
+		int temp = /*RoomDAO.listByHotel(id).size() - */BookingDAO.listBookedByHotel(dtArr, dtLea, id).size();
+		mv.addObject("temp", temp);
+		 
+		/*System.out.println("Aaaaa---------------------------------"+ dtArrs);
+		System.out.println("Aaaaa---------------------------------"+ BookingDAO.listByHotel(dtArrs, dtLeas, id));*/
 		return mv;
 	}
 	
-	/*
-			@ModelAttribute("hotel")
-			public Hotel loadEmptyModelBean(){
-			   return new Hotel();
-			}*/
-    @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public ModelAndView search(@RequestParam(name = "wheres", required = false) String wheres/* @ModelAttribute("hotel") Hotel mHotel*/) {
+	
+	@ModelAttribute("hotel")
+	public Hotel loadEmptyModelBean() {
+		return new Hotel();
+	}
+    @RequestMapping(value = "/searchHotel", method = RequestMethod.POST)
+    public ModelAndView search(@RequestParam(name = "ct", required = false) String ct, @ModelAttribute("hotel") Hotel mHotel,
+    							@RequestParam(name = "dateArr", required = false) String dateArr,
+    							@RequestParam(name = "dateLea", required = false) String dateLea
+    							) {
     	
     	ModelAndView mv = new ModelAndView("index");
     	mv.addObject("title", "Kết quả Tìm kiếm");
-    	mv.addObject("userClickSearchHotel", true);
-    	System.out.println("---------------------------------"+ wheres);
-    	mv.addObject("listSearch", HotelDAO.search(wheres));
+    	mv.addObject("userClickResultSearchHotel", true);
+    	System.out.println("---------------------------------"+ ct);
     	
-    	mv.addObject("test", wheres);
+    	mv.addObject("listSearch", HotelDAO.search(cityDAO.getCityById(ct).getName()));
+    	mv.addObject("test2", ct);
+    	mv.addObject("test", cityDAO.getCityById(ct).getName());
+    	mv.addObject("test5",BookingDAO.listCount(dateArr,dateLea, cityDAO.getCityById(ct).getName()));
+    	mv.addObject("testdatearr", dateArr.replace('/', '-'));
+    	mv.addObject("testdatelea", dateLea.replace('/', '-'));
+    	
+    	
+    	
+    	
+    	mv.addObject("test4",BookingDAO.listCount(dateArr,dateLea, cityDAO.getCityById(ct).getName()));
+    	
+    	
     	return mv;
     }
 	
+    //booking page
+    @RequestMapping(value="/bookingRoom/{id}/{dtArr}/{dtLea}")
+	public ModelAndView bookingRoomPage(@PathVariable int id, 
+			 @PathVariable String dtArr, @PathVariable String dtLea,
+			@RequestParam(name = "operation", required = false) String operation){
+		ModelAndView mv= new ModelAndView("index");
+		mv.addObject("infRoom",RoomDAO.get(id));
+		mv.addObject("dateArr", dtArr.replace('-', '/'));
+		mv.addObject("dateLea", dtLea.replace('-', '/'));
+		mv.addObject("dateArrs", dtArr);
+		mv.addObject("dateLeas", dtLea);
+		mv.addObject("userClickBookingRoom", true);
+		if (operation != null) {
+			if (operation.equals("booking")) {
+				mv.addObject("message", "Đặt phòng thành công !");
+			}
+		}
+		return mv;
+	}
+    
+  //booking submit
+  		@ModelAttribute("bookingRoom")
+  		public Booking loadEmptyModelBeanBooking(){
+  		   return new Booking();
+  		}
+  		@RequestMapping(value = "/bookingRoom/{id}/{dtArr}/{dtLea}", method = RequestMethod.POST)
+  		public String handleBookingSubmission(@PathVariable int id, 
+  				 @PathVariable String dtArr, @PathVariable String dtLea,
+  				@Valid @ModelAttribute("bookingRoom") Booking mBooking, BindingResult results, Model model,
+  				HttpServletRequest request) {
+  			
+  			SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+  			Date datArr;
+  			Date datLea;
+  			java.sql.Date sqltDatArr = null;
+  			java.sql.Date sqltDatLea = null;
+  			try {
+  				datArr = formatter.parse(dtArr);
+  				sqltDatArr= new java.sql.Date(datArr.getTime());
+  				System.out.println(sqltDatArr);
+  				datLea = formatter.parse(dtLea);
+  				sqltDatLea= new java.sql.Date(datLea.getTime());
+  				System.out.println(sqltDatLea);
+  			} catch (ParseException e) {
+  				// TODO Auto-generated catch block
+  				e.printStackTrace();
+  			}
+  			mBooking.setDateArrive(sqltDatArr);
+  			mBooking.setDateLeave(sqltDatLea);
+  			mBooking.setCity(new City(Integer.parseInt(mBooking.getCt())));
+  			mBooking.setHotel(new Hotel(Integer.parseInt(mBooking.getHt())));
+  			mBooking.setRoom(new Room(Integer.parseInt(mBooking.getRo())));
+  			// create new record
+  			if (mBooking.getId() == 0) {
+  				
+  				BookingDAO.add(mBooking);
+  				
+  			} else {
+  				BookingDAO.update(mBooking);
+  			}
+
+
+  			return "redirect:/bookingRoom/{id}/{dtArr}/{dtLea}?operation=booking";
+  		}
+    
+    
+    
 	
-   /* @ModelAttribute("city")
-	public City getCity() {
-		return new City();
-	}*/
+    @ModelAttribute("cities")
+	public List<City> getCities() {
+
+		return CityDAO.list();
+	}
 	
 	
 }

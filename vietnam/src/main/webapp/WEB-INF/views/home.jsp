@@ -89,7 +89,7 @@
 					<div class="col-sm-3 top-experiences-img">
 						<img
 							src="${img }/${listPlace.get(i).city.name }/${listPlace.get(i).name }/${listPlace.get(i).code }.jpg"
-							style="width: 100%; height: 400px; object-fit: cover;" onclick=""
+							style="width: 100%; height: 400px; object-fit: cover;" onclick="location.href='place/${listPlace.get(i).id}'"
 							class="hover-shadow cursor frontSlide">
 						<div class="top-experiences-shape-counter">
 							<p>${i }</p>
@@ -113,7 +113,7 @@
 					<div class="col-sm-3 top-experiences-img" style="display: none;">
 						<img
 							src="${img }/${listPlace.get(i).city.name }/${listPlace.get(i).name }/${listPlace.get(i).code }.jpg"
-							style="width: 100%; height: 400px; object-fit: cover;" onclick=""
+							style="width: 100%; height: 400px; object-fit: cover;" onclick="location.href='place/${listPlace.get(i).id}'"
 							class="hover-shadow cursor frontSlide" alt="Hinh Thieu">
 						<div class="top-experiences-shape-counter">
 							<p>${i }</p>

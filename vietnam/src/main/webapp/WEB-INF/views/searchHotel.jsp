@@ -1,105 +1,72 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
-<div class="container">
-	<form role="form" <%-- modelAttribute="hotel" --%> action="${contextRoot }/search" >
-		<div class="row">
-		<%-- 	
-			<div class="col-md-3">
-				<label for="city">Place</label>
-				<div class="input-group">
-					<span class="input-group-addon"><i
-						class="glyphicon glyphicon-map-marker"></i></span>
-						<sf:select path="ct" items="${cities }" itemLabel="name" itemValue= "id" class="form-control"/>
-				</div>
-			</div> --%>
-			
-			
-			<div class="col-md-3">
-				<label for="place">Place</label>
-				<div class="input-group">
-					<span class="input-group-addon"><i
-						class="glyphicon glyphicon-map-marker"></i></span> <input id="wheres"
-						 class="form-control" name="wheres"
-						placeholder="Destination"/>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<label for="place">Number of guest</label>
-				<div class="input-group">
-					<span class="input-group-addon"><i
-						class="glyphicon glyphicon-user"></i></span> <select class="form-control" >
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="4">5</option>
-					</select>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<label for="place">Number of room</label>
-				<div class="input-group">
-					<span class="input-group-addon"><i
-						class="glyphicon glyphicon-home"></i></span> <select class="form-control">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-					</select>
+<div class="container" style="margin-top: 30px;">
+	<div class="col-md-8 col-md-offset-2 " style="border: 1px solid #ffffff; background-color:#e5e5e5; padding:20px;">
+	<h3 class="text-center"><span class="glyphicon glyphicon-search"></span> Điểm đến tiếp theo?</h3>
+		<div class="hrs" style="margin-left: 20px; margin-right: 20px;">
+			<div class="row">
+				<div>
+					<hr style="margin: 20px 0px; border: 1px solid #ffffff;">
 				</div>
 			</div>
 		</div>
+		<div class="col-md-11 col-md-offset-1" style="padding-left: 25px;">
+		<sf:form role="form" modelAttribute="hotel" action="${contextRoot }/searchHotel" >
+		<div class="row" >
+		
+			<div class="col-md-8">
+				<label for="cityId">Tỉnh/Thành Phố</label>
+				<div class="input-group">
+					<span class="input-group-addon"><i
+						class="glyphicon glyphicon-home"></i></span>
+				<sf:select path="ct" items="${cities }" itemLabel="name" itemValue= "id" class="form-control"/>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="input-group" style="margin-top:25px;">
+					
+					<input type="submit" name="submit" id="submit" value="Tìm kiếm"  class="btn btn-success"/>
+			
+				</div>
+			</div>
+
+		</div>
 		<br>
 		<div class="row">
-			<div class="col-md-4">
+			<div class="col-md-5">
 				<label for="place">Date arrive</label>
 				<div class="input-group">
 					<span class="input-group-addon"><i
-						class="glyphicon glyphicon-calendar"></i></span> <input 
-						class="form-control pull-right" id="datepicker" name="dateArrive"/>
+						class="glyphicon glyphicon-calendar"></i></span> <input required
+						class="form-control pull-right" id="timeCheckIn" name="dateArr"/>
 				</div>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-5">
 				<label for="place">Date leave</label>
 				<div class="input-group">
 					<span class="input-group-addon"><i
-						class="glyphicon glyphicon-calendar"></i></span> <input id="datepicker2"
-						 class="form-control pull-right" name="dateLeave"
+						class="glyphicon glyphicon-calendar"></i></span> <input required id="timeCheckOut"
+						 class="form-control pull-right" name="dateLea"
 						placeholder=""/>
 				</div>
 			</div>
-			<div class="col-md-4">
-				<label for="place">Number of night</label>
-				<div class="input-group">
-					<span class="input-group-addon"><i
-						class="glyphicon glyphicon-question-sign"></i></span> <input id="night"
-						 class="form-control" name="night" placeholder=""/>
-				</div>
-			</div>
-		</div>
-		<br>
-		<div class="form-group">
-			<input type="submit" name="submit" id="submit" value="Search" class="btn btn-primary"/>
 			
 		</div>
 
-	</form><br>
-	<div class="row">
-		<p>Result is here</p>
-		<hr>
-		<c:forEach items="${listSearch }" var="search">
-			<p>${search.getName() }</p>
-		</c:forEach>
-	</div>
-</div>
+				
 
-	
-	<hr>
-	<div class="row" style="margin-left: 20px;">
-		<c:forEach items="${listSearch }" var="search">
-			<p>${search.getName() }</p>
-		</c:forEach>
-		<p>${test }</p>
+				<br>
+		
+
+	</sf:form>
 	</div>
+	</div>
+	<br>
+	
+	
+	
+	
+	
+	
+</div>

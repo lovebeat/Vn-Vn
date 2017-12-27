@@ -89,6 +89,10 @@ public class Hotel {
 		this.code ="VN_HOTEL_" + UUID.randomUUID().toString().substring(26).toUpperCase();
 	}
 
+	public Hotel(int id) {
+		this.id = id;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -219,13 +223,7 @@ public class Hotel {
 		this.active = active;
 	}
 
-	public String getWhere() {
-		return wheres;
-	}
-
-	public void setWhere(String where) {
-		this.wheres = where;
-	}
+	
 
 	public boolean isApprove() {
 		return approve;
@@ -253,6 +251,14 @@ public class Hotel {
 
 	public String getPr() {
 		return pr;
+	}
+
+	public String getWheres() {
+		return wheres;
+	}
+
+	public void setWheres(String wheres) {
+		this.wheres = wheres;
 	}
 
 	public void setPr(String pr) {

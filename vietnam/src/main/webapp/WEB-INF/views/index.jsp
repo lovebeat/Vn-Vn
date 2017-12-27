@@ -30,7 +30,8 @@
 
 <!-- new css for provider -->
  	 <!-- bootstrap datepicker -->
-  <link rel="stylesheet" href="${css }/bootstrap-datepicker.min.css">
+  <%-- <link rel="stylesheet" href="${css }/bootstrap-datepicker.min.css"> --%>
+  <link href="${css }/datepicker.css" rel="stylesheet" />
   <!-- Theme style -->
   <%-- <link rel="stylesheet" href="${css }/AdminLTE.min.css">
   <!-- Bootstrap time Picker -->
@@ -39,8 +40,20 @@
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 <!-- end -->
+<!-- Plugin fb comment -->
+<!-- <meta property="fb:app_id" content="161503497944091" /> -->
 
 </head>
+
+<!-- <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.11&appId=161503497944091';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script> -->
+
 <body onscroll="stickyFunction()">
 
 
@@ -76,14 +89,20 @@
 		<%@include file="allFood.jsp"%>
 	</c:if>
 	
-	<c:if test="${userClickResultSearchHotel==true }">
+	<%-- <c:if test="${userClickResultSearchHotel==true }">
 		<%@include file="resultSearchHotel.jsp"%>
-	</c:if>
+	</c:if> --%>
 	<c:if test="${userClickDetailHotel==true }">
 		<%@include file="detailHotel.jsp"%>
 	</c:if>
 	
-
+	<c:if test="${userClickBookingRoom==true }">
+		<%@include file="booking.jsp"%>
+	</c:if>
+	<c:if test="${userClickResultSearchHotel==true }">
+		<%@include file="resultSearch.jsp"%>
+	</c:if>
+	
 	<!-- FOOTER -->
 	<%@include file="./shared/footer.jsp" %>
 	
@@ -95,8 +114,9 @@
 	<!-- bootstrap time picker -->
 	<%-- <script src="${js }/bootstrap-timepicker.min.js"></script> --%>
 	<!-- bootstrap datepicker -->
-	<script src="${js }/bootstrap-datepicker.min.js"></script>
-	<script>
+	<%-- <script src="${js }/bootstrap-datepicker.min.js"></script> --%>
+	<script src="${js }/bootstrap-datepicker.js"></script>
+	<!-- <script>
 		$(function(){
 			//Date picker
 		    $('#datepicker').datepicker({
@@ -106,7 +126,38 @@
 		    	    $('#datepicker2').datepicker({
 		      autoclose: true
 		    })
+		    
+		    
+		    
 				});
-	</script>
+	</script> -->
+	<script>
+    $(function () {
+        'use strict';
+        var nowTemp = new Date();
+        var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
+        var checkin = $('#timeCheckIn').datepicker({
+            onRender: function (date) {
+                return date.valueOf() < now.valueOf() ? 'disabled' : '';
+            }
+        }).on('changeDate', function (ev) {
+            if (ev.date.valueOf() > checkout.date.valueOf()) {
+                var newDate = new Date(ev.date)
+                newDate.setDate(newDate.getDate() + 1);
+                checkout.setValue(newDate);
+            }
+            checkin.hide();
+            $('#timeCheckOut')[0].focus();
+        }).data('datepicker');
+        var checkout = $('#timeCheckOut').datepicker({
+            onRender: function (date) {
+                return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+            }
+        }).on('changeDate', function (ev) {
+            checkout.hide();
+        }).data('datepicker');
+    });
+</script>
 </body>
 </html>

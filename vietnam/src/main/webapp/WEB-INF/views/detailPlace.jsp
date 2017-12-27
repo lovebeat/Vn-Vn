@@ -46,13 +46,14 @@
 	<div class="row">
 		<div class="col-xs-12 col-md-4">
 			<h3 class="">
-				<p>Một số địa điểm gần đây</p>
+				<p>Một số địa điểm gần đây</p><br>
 			</h3>
 		</div>
 	</div>
 	<div class="row">
 
 		<c:forEach items="${ listPlace}" var="place">
+			
 			<a href="${contextRoot}/place/${place.id}" style="color: black;">
 				<div class="CityBlockItem">
 					<div class="cityBlockImg">

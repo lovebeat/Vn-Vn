@@ -17,11 +17,11 @@
 		  			</div>
 		  			<div class="nav-dropdown-content">
 					<security:authorize access="hasAuthority('admin')">
-						<a href="${contextRoot }/manage">Go to manage</a>
+						<a href="${contextRoot }/manage" target="_blank" >Go to manage</a>
 						<!-- <script type="text/javascript">window.location.href = "${contextRoot }/manage";</script> -->
 					</security:authorize>
 					<security:authorize access="hasAuthority('provider')">
-  						<a href="${contextRoot }/provider">Create Hotel</a>
+  						<a href="${contextRoot }/provider" target="_blank">Create Hotel</a>
   					</security:authorize>
 					<a href="${contextRoot }/perform-logout">Logout</a>
 		  			</div>

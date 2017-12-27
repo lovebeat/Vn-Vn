@@ -450,7 +450,7 @@ $(function(){
 					}
 				}, 
 				{
-					data: 'where'
+					data: 'wheres'
 				},
 			
 				
@@ -491,7 +491,7 @@ $(function(){
 								+ window.contextRoot
 								+ '/provider/'
 								+ data
-								+ '/detailRooms" class="btn btn-primary"><span class="glyphicon glyphicon-arrow-right"></span></a> &#160;';
+								+ '/detailRooms" class="btn btn-success"><span class="glyphicon glyphicon-arrow-right"></span></a> &#160;';
 
 						return str;
 					}
@@ -623,7 +623,7 @@ $(function(){
 				},
 				
 				{
-					data: 'where'
+					data: 'wheres'
 				},
 				{
 					data: 'phone'
@@ -691,7 +691,7 @@ $(function(){
 				},
 				
 				{
-					data: 'where'
+					data: 'wheres'
 				},
 				{
 					data: 'phone'
@@ -915,7 +915,7 @@ $(function(){
 				},
 				
 				{
-					data: 'where'
+					data: 'wheres'
 				},
 				{
 					data: 'star'
@@ -947,6 +947,7 @@ $(function(){
 				
 			],
 			
+			
 
 		});
 
@@ -954,6 +955,7 @@ $(function(){
 	//-----------
 	
 	
+
 	
 	
 	// display snack bar
@@ -971,6 +973,215 @@ $(function(){
 	
 	
 	
+	
+	
+});
+
+
+
+$(function(){
+	
+//----------------Detail Bookings
+	
+	var $detailBookings = $('#detailBookings');
+	
+	// execute the below code only where are have this table
+
+	if ($detailBookings.length) {
+		// console.log('Inside the table !');
+		var jsonUrl = window.contextRoot + '/json/data/'+window.hotelId +'/detailRooms';
+		
+		$detailBookings.DataTable({
+
+			lengthMenu : [ [ 10, 20, 30, -1 ],
+					[ '10', '20', '30', 'All' ] ],
+			pageLength : 10,
+			ajax : {
+				url : jsonUrl,
+				dataSrc : ''
+			},
+			columns : [
+			
+				{
+					data: 'nameGuest',
+					
+				},
+				{
+					data: 'addressGuest'
+				},
+				
+				{
+					data : 'phoneGuest',
+					
+				}, 
+				{
+					data: 'room.name'
+				},
+				{
+					data: 'dateArrive'
+				},
+			
+				
+				{
+					data: 'dateLeave'
+				},
+				
+				
+				{
+					data:'id',
+					bSortable : false,
+					mRender : function(data, type, row) {
+						
+						var str = '';
+						str += '<a href="'+ window.contextRoot
+						+ '/provider/deleteBooking/'
+						+ data 
+						+ '" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a> &#160;';
+						
+						
+						return str;
+					}
+				},
+
+				{
+					data:'id',
+					bSortable : false,
+					mRender : function(data, type, row) {
+
+						var str = '';
+						var str = '';
+						str += '<a href="'+ window.contextRoot
+						+ '/provider/detailInfBooking/'
+						+ data 
+						+ '" class="btn btn-success"><span class="glyphicon glyphicon-refresh"></span></a> &#160;';
+
+						return str;
+					}
+				}
+				
+			],
+			
+
+		});
+
+	}
+	//------------
+	
+	
+	
+	//----------------Room
+		
+		var $roomEmpty = $('#roomEmpty');
+		
+		// execute the below code only where are have this table
+
+		if ($roomEmpty.length) {
+			// console.log('Inside the table !');
+			var jsonUrl = window.contextRoot + '/json/data/'+window.hotelId +'/roomEmpty';
+			
+			$roomEmpty.DataTable({
+
+				lengthMenu : [ [ 10, 20, 30, -1 ],
+						[ '10', '20', '30', 'All' ] ],
+				pageLength : 10,
+				ajax : {
+					url : jsonUrl,
+					dataSrc : ''
+				},
+				columns : [
+				
+					{
+						data: 'name',
+						
+					},
+					{
+						data: 'typeRoom'
+					},
+					
+					{
+						data : 'price',
+						
+					}, 
+					{
+						data : 'active',
+						bSortable: false,
+						mRender: function(data, type, row){
+							var str='';
+							str	+='<label class="switch">';
+							if(data){
+								str+='<input type="checkbox" checked="checked" value="'+row.id+'">';
+								
+							}else{
+								str+='<input type="checkbox" value="'+row.id+'">';
+							}
+							
+							str+= '<div class = "slider"></div></label>';
+							return str;
+								
+						}
+						
+					},
+					{
+						data:'id',
+						bSortable : false,
+						mRender : function(data, type, row) {
+
+							var str = '';
+							str += '<a href="'
+								+ window.contextRoot
+								+ '/provider/'
+								+ data
+								+ '/editRoom" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span></a> &#160;';
+
+						return str;
+						}
+					}
+
+					
+					
+				],
+				
+				initComplete: function () {
+					var api = this.api();
+					api.$('.switch input[type="checkbox"]').on('change' , function() {							
+						var dText = (this.checked)? 'You want to activate ?': 'You want to de-activate ?';
+						var checked = this.checked;
+						var checkbox = $(this);
+						debugger;
+					    bootbox.confirm({
+					    	size: 'medium',
+					    	title: 'Activation/Deactivation',
+					    	message: dText,
+					    	callback: function (confirmed) {
+						        if (confirmed) {
+						            $.ajax({							            	
+						            	type: 'GET',
+						            	url: window.contextRoot + '/provider/room/'+checkbox.prop('value')+'/activation',
+						        		timeout : 100000,
+						        		success : function(data) {
+						        			displaySnackbar(data);		
+						        			bootbox.alert(data)
+						        		},
+						        		error : function(e) {
+						        			displaySnackbar('ERROR: '+ e);
+						        			bootbox.alert('ERROR: '+ e);
+						        			//display(e);
+						        		}						            	
+						            });
+						        }
+						        else {							        	
+						        	checkbox.prop('checked', !checked);
+						        }
+							}
+						});
+					});
+				}
+				
+
+			});
+
+		}
+		//------------
 	
 	
 });

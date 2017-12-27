@@ -22,7 +22,7 @@ public class HibernateConfig {
 	private final static String DATABASE_DRIVER = "net.sourceforge.jtds.jdbc.Driver";
 	private final static String DATABASE_DIALECT = "org.hibernate.dialect.SQLServerDialect";
 	private final static String DATABASE_USERNAME = "sa";
-	private final static String DATABASE_PASSWORD = "Aa123456";
+	private final static String DATABASE_PASSWORD = "gnob";
 
 	//dataSource Bean will be available
 	@Bean("dataSource")

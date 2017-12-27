@@ -26,6 +26,7 @@ import com.vn.vietnambackend.dto.City;
 import com.vn.vietnambackend.dto.Food;
 import com.vn.vietnambackend.dto.Hotel;
 import com.vn.vietnambackend.dto.Place;
+import com.vn.vietnambackend.dto.User;
 
 import vn.vn.util.BannerFileUploadUtility;
 import vn.vn.util.CityFileUploadUtility;
@@ -422,6 +423,7 @@ public class managementController {
 	public String handleHotelSubmission( @ModelAttribute("hotel") Hotel mHotel) {
 
 		mHotel.setApprove(true);
+		
 		HotelDAO.update(mHotel);
 		return "redirect:/manage/listHotelApprove";
 	}

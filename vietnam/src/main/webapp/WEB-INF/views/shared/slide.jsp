@@ -58,6 +58,7 @@
 					placeholder="  Enter city....">
 			</div>
 			<div class="citiesModalBody">
+				
 				<c:forEach items="${ listCity}" var="city">
 					<div class="CityModalItem">
 						<div class="cityModalImg">
