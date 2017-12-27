@@ -77,13 +77,14 @@ function showMoreOrLess() {
 var modal = document.getElementById("citiesModal");
 
 // get the button that open the modal
-var btn = document.getElementById("citiesBtn")
+var btn = document.getElementById("citiesBtn");
 
 // get the span element that content the close btn
 var spanClose = document.getElementsByClassName("closeModal")[0];
 
 // when user click the button to open cities modal
 btn.onclick = function() {
+	console.log("from city btn");
 	modal.style.display = "block";
 }
 

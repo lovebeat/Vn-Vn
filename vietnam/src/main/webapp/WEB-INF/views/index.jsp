@@ -19,7 +19,7 @@
 <meta name="_csrf_header" content="${_csrf.headerName }">
 <link rel="stylesheet" type="text/css" href="${css }/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="${css }/style.css">
-<%-- <link rel="stylesheet" type="text/css" href="${css }/myapp.css"> --%>
+<link rel="stylesheet" type="text/css" href="${css }/myapp.css">
 <link rel="stylesheet" type="text/css"
 	href="${css }/bootstrap-theme.min.css">
 <!-- font -->
@@ -93,9 +93,9 @@
 	<script type="text/javascript" src="${js }/jquery.min.js"></script>
 	<script type="text/javascript" src="${js }/bootstrap.min.js"></script>
 	<script type="text/javascript" src="${js }/script.js"></script>
-	<%--<script type="text/javascript" src="${js }/myapp.js"></script> --%>
+	<script type="text/javascript" src="${js }/myapp.js"></script>
 	<!-- bootstrap time picker -->
-	<%-- <script src="${js }/bootstrap-timepicker.min.js"></script> --%>
+	<script src="${js }/bootstrap-timepicker.min.js"></script>
 	<!-- bootstrap datepicker -->
 	<script src="${js }/bootstrap-datepicker.min.js"></script>
 	<script>
