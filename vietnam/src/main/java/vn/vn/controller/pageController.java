@@ -93,7 +93,6 @@ public class pageController {
 		}*/
 		
 		return mv;
-	
 	}
 	
 
@@ -332,6 +331,14 @@ public class pageController {
     	
     	return mv;
     }
+    //this is for about us
+    @RequestMapping(value = "/about", method = RequestMethod.GET)
+	public ModelAndView aboutUs() {
+		ModelAndView mv = new ModelAndView("index");
+		mv.addObject("title", "About us!");
+		mv.addObject("userClickAbout",true);
+		return mv;
+	}
 	
     //booking page
     @RequestMapping(value="/bookingRoom/{id}/{dtArr}/{dtLea}")
@@ -401,11 +408,11 @@ public class pageController {
     
     
 	
+
     @ModelAttribute("cities")
 	public List<City> getCities() {
 
 		return CityDAO.list();
 	}
-	
 	
 }
