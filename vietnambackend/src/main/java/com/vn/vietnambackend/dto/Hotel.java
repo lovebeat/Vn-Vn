@@ -21,7 +21,7 @@ public class Hotel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@NotBlank(message="Please enter the name of hotel!")
+	@NotBlank(message="Vui lòng nhập tên!")
 	private String name;
 	
 	private String code;
@@ -30,7 +30,7 @@ public class Hotel {
 	
 	private String website;
 	
-	@NotBlank(message="Please enter phone number !")
+	@NotBlank(message="Vui lòng nhập SĐT !")
 	private String phone;
 	
 	private String payment;
@@ -57,6 +57,8 @@ public class Hotel {
 	@Column(name="is_active")
 	private boolean active=true;
 	
+	@NotBlank(message="Vui lòng nhập một số mô tả !")
+	private String description;
 	
 	private String wheres;
 	
@@ -263,6 +265,14 @@ public class Hotel {
 
 	public void setPr(String pr) {
 		this.pr = pr;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 	

@@ -24,12 +24,12 @@ public class City {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@NotBlank(message="Please enter the name of City !")
+	@NotBlank(message="Vui lòng nhập tên !")
 	private String name;
 	
 	private String code;
 	
-	@NotBlank(message="Please enter description for City !")
+	@NotBlank(message="Vui lòng nhập mô tả !")
 	private String description;
 	
 	@JsonIgnore

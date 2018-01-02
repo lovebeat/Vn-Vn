@@ -76,43 +76,6 @@ public class RoomDAOImpl implements RoomDAO {
 	}
 	
 	
-	/*public List<Room> listAvailableByDate(String arr, String lea, int Idhotel) {
-		SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
-		Date dateArr;
-		Date dateLea;
-		java.sql.Date sqltDateArr = null;
-		java.sql.Date sqltDateLea = null;
-		try {
-			dateArr = formatter.parse(arr);
-			sqltDateArr= new java.sql.Date(dateArr.getTime());
-			System.out.println(sqltDateArr);
-			dateLea = formatter.parse(lea);
-			sqltDateLea= new java.sql.Date(dateLea.getTime());
-			System.out.println(sqltDateLea);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
-        
-		String select = "FROM Room WHERE name NOT EXISTS("
-				+ "Select * FROM Booking WHERE("
-				+ "(dateArrive between :sqlDateArr and :sqlDateLea AND hotel.id =:str)"
-				+ "OR"
-				+ "(dateLeave between :sqlDateArr and :sqlDateLea AND hotel.id =:str)"
-				+ "))";
-				
-				
-				
-				
-				
-		Query query = sessionFactory.getCurrentSession().createQuery(select);
-		
-		query.setParameter("sqltDateArr", sqltDateArr);
-		query.setParameter("sqltDateLea", sqltDateLea);
-		query.setParameter("str", Idhotel);
-		return query.getResultList();
-	}*/
 	
 	
 }

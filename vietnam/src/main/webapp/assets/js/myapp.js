@@ -16,10 +16,6 @@ $(function(){
       showInputs: false
     })
 	
-    /* //Date picker
-    $('.datepicker').datepicker({
-      autoclose: true
-    })*/
 	
 	
 	//----------------DAtatable for admin
@@ -460,7 +456,6 @@ $(function(){
 				{
 					data: 'phone'
 				},
-				
 				{
 					data : 'active',
 					bSortable: false,
@@ -480,7 +475,6 @@ $(function(){
 					}
 					
 				},
-				
 				{
 					data:'id',
 					bSortable : false,
@@ -498,11 +492,10 @@ $(function(){
 				}
 				
 			],
-			
 			initComplete: function () {
 				var api = this.api();
 				api.$('.switch input[type="checkbox"]').on('change' , function() {							
-					var dText = (this.checked)? 'You want to activate ?': 'You want to de-activate ?';
+					var dText = (this.checked)? 'You want to activate the hotel?': 'You want to de-activate the hotel?';
 					var checked = this.checked;
 					var checkbox = $(this);
 					debugger;
@@ -517,11 +510,11 @@ $(function(){
 					            	url: window.contextRoot + '/provider/hotel/'+checkbox.prop('value')+'/activation',
 					        		timeout : 100000,
 					        		success : function(data) {
-					        			displaySnackbar(data);		
+					        			/*displaySnackbar(data);*/		
 					        			bootbox.alert(data)
 					        		},
 					        		error : function(e) {
-					        			displaySnackbar('ERROR: '+ e);
+					        			/*displaySnackbar('ERROR: '+ e);*/
 					        			bootbox.alert('ERROR: '+ e);
 					        			//display(e);
 					        		}						            	
@@ -754,11 +747,11 @@ $(function(){
 					            	url: window.contextRoot + '/provider/hotel/'+checkbox.prop('value')+'/activation',
 					        		timeout : 100000,
 					        		success : function(data) {
-					        			displaySnackbar(data);		
+					        			//displaySnackbar(data);		
 					        			bootbox.alert(data)
 					        		},
 					        		error : function(e) {
-					        			displaySnackbar('ERROR: '+ e);
+					        			//displaySnackbar('ERROR: '+ e);
 					        			bootbox.alert('ERROR: '+ e);
 					        			//display(e);
 					        		}						            	
@@ -1071,15 +1064,15 @@ $(function(){
 	
 	//----------------Room
 		
-		var $roomEmpty = $('#roomEmpty');
+		var $roomsTotalsss = $('#roomsTotalsss');
 		
 		// execute the below code only where are have this table
 
-		if ($roomEmpty.length) {
+		if ($roomsTotalsss.length) {
 			// console.log('Inside the table !');
-			var jsonUrl = window.contextRoot + '/json/data/'+window.hotelId +'/roomEmpty';
+			var jsonUrl = window.contextRoot + '/json/data/'+window.hotelId +'/roomsTotalsss';
 			
-			$roomEmpty.DataTable({
+			$roomsTotalsss.DataTable({
 
 				lengthMenu : [ [ 10, 20, 30, -1 ],
 						[ '10', '20', '30', 'All' ] ],
@@ -1159,11 +1152,11 @@ $(function(){
 						            	url: window.contextRoot + '/provider/room/'+checkbox.prop('value')+'/activation',
 						        		timeout : 100000,
 						        		success : function(data) {
-						        			displaySnackbar(data);		
+						        			//displaySnackbar(data);		
 						        			bootbox.alert(data)
 						        		},
 						        		error : function(e) {
-						        			displaySnackbar('ERROR: '+ e);
+						        			//displaySnackbar('ERROR: '+ e);
 						        			bootbox.alert('ERROR: '+ e);
 						        			//display(e);
 						        		}						            	

@@ -131,17 +131,48 @@ public class BookingDAOImpl implements BookingDAO {
 		}
         
         
-		String select = "FROM Booking WHERE dateArrive between :sqltDateArr and :sqltDateLea AND hotel.id =:str "
-				+ "OR dateLeave between :sqltDateArr and :sqltDateLea AND hotel.id =:str";
+		String select = "FROM Booking WHERE dateArrive between :sqltDateArr and :sqltDateLea AND hotel.id =:str AND active=:active "
+				+ "OR dateLeave between :sqltDateArr and :sqltDateLea AND hotel.id =:str AND active=:active";
 				
 		Query query = sessionFactory.getCurrentSession().createQuery(select);
 		
 		query.setParameter("sqltDateArr", sqltDateArr);
 		query.setParameter("sqltDateLea", sqltDateLea);
 		query.setParameter("str", Idhotel);
+		query.setParameter("active", true);
 		return query.getResultList();
 	}
-
+	
+	public List<Booking> listBookedByCity(String arr, String lea, int Idcity) {
+		SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
+		Date dateArr;
+		Date dateLea;
+		java.sql.Date sqltDateArr = null;
+		java.sql.Date sqltDateLea = null;
+		try {
+			dateArr = formatter.parse(arr);
+			sqltDateArr= new java.sql.Date(dateArr.getTime());
+			System.out.println(sqltDateArr);
+			dateLea = formatter.parse(lea);
+			sqltDateLea= new java.sql.Date(dateLea.getTime());
+			System.out.println(sqltDateLea);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        
+		String select = "FROM Booking WHERE dateArrive between :sqltDateArr and :sqltDateLea AND city.id =:str "
+				+ "OR dateLeave between :sqltDateArr and :sqltDateLea AND city.id =:str";
+				
+		Query query = sessionFactory.getCurrentSession().createQuery(select);
+		
+		query.setParameter("sqltDateArr", sqltDateArr);
+		query.setParameter("sqltDateLea", sqltDateLea);
+		query.setParameter("str", Idcity);
+		return query.getResultList();
+	}
+	
 	public List<Booking> listRoomFull(int idHotel) {
 		String select = "FROM Booking WHERE hotel.id =:idHotel AND active =:active order by id desc";
 		Query query = sessionFactory.getCurrentSession().createQuery(select);
@@ -151,40 +182,5 @@ public class BookingDAOImpl implements BookingDAO {
 		return query.getResultList();
 	}
 
-	public List<Booking> listRoomEmpByDateNow() {
-		/*SimpleDateFormat formatter = new SimpleDateFormat("MM-dd-yyyy");
-		String dateNow = new Date().toString();
-		java.sql.Date sqltDateNow = null;
-		try {
-			Date ds = formatter.parse(dateNow);
-			sqltDateNow= new java.sql.Date(ds.getTime());
-			System.out.println(sqltDateNow);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
-        
-		String select = "FROM Booking WHERE dateArrive between :sqltDateArr "
-				+ "and :sqltDateLea "
-				+ "AND dateLeave between :sqltDateArr and :sqltDateLea "
-				+ "AND hotel.id =:str ";
-		Query query = sessionFactory.getCurrentSession().createQuery(select);
-		
-		query.setParameter("sqltDateArr", sqltDateArr);
-		query.setParameter("sqltDateLea", sqltDateLea);
-		query.setParameter("str", Idhotel);
-		return query.getResultList();*/
-		return null;
-	}
-
-	/*public List<Booking> listByRoom(int roomId) {
-		String select = "FROM Booking WHERE roomId =:roomId";
-		Query query = sessionFactory.getCurrentSession().createQuery(select);
-		query.setParameter("roomId", roomId);
-		return query.getResultList();
-	}*/
-
-	
 
 }

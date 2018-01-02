@@ -74,7 +74,31 @@
 
 		<div class="col-md-9">
 
+			<%-- <c:forEach items="${hotelEmptysss }" var="hotelsss">
+				<div class="row">
+					<a
+						href="${contextRoot}/detailHotel/${hotelsss.id}/${testdatearr }/${testdatelea }"
+						style="color: black;">
+						<div class="row"
+							style="border: 1px solid #F2F2F2; padding: 10px; margin: 10px;">
+							<div class="col-md-5">
+								<img src="${img }/hotel/${hotelsss.name}/${hotelsss.code}.jpg"
+									style="width: 100%; height: 180px; object-fit: cover;">
+							</div>
+							<div class="col-md-7">
 
+								<strong><h4>${hotelsss.getName() }</h4></strong>
+								<p>${hotelsss.wheres }</p>
+								<p>${hotelsss.star }</p>
+								<p>${hotelsss.phone }</p>
+								<p>${hotelsss.website }</p>
+
+							</div>
+						</div>
+					</a>
+				</div>
+				
+			</c:forEach> --%>
 			<c:forEach items="${listSearch }" var="search">
 
 				<div class="row">

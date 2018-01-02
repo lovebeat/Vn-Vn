@@ -3,19 +3,34 @@
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <div class="row">
 	<c:if test="${not empty message }">
-		<div class="col-xs-12">
+		<div class="col-xs-4">
 			<div class="alert alert-success alert-dismissible">
 				<button type="button" class="close" data-dismiss="alert">&times;</button>
 				${message }
 			</div>
 		</div>
 	</c:if>
+	<c:if test="${not empty messageErr }">
+		<div class="col-xs-4">
+			<div class="alert alert-danger alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				${messageErr }
+			</div>
+		</div>
+	</c:if>
 </div>
 
 <!-- form -->
-<div class="box box-primary">
-	<div class="box-header with-border">
-		<h3 class="box-title">Nhập các thông tin</h3>
+<div class="box box-success">
+	<div class="box-header with-border" data-widget="collapse">
+		<h3 class="box-title">Nhập thông tin</h3>
+
+		<div class="box-tools pull-right">
+			<button type="button" class="btn btn-box-tool" >
+				<i class="fa fa-minus "></i>
+			</button>
+		</div>
+		<!-- /.box-tools -->
 	</div>
 	<!-- /.box-header -->
 	<!-- form start -->
@@ -54,6 +69,8 @@
 			<sf:hidden path="id" />
 			<sf:hidden path="code" />
 			<sf:hidden path="active" />
+			<a href="${contextRoot }/manage/cities"><button
+						type="button" class="btn btn-warning">Hủy</button></a>
 		</div>
 	</sf:form>
 </div>
@@ -61,26 +78,33 @@
 
 
 
-<div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Danh sách các tỉnh/T.phố</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <table id="adminCityTable" class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                  <th>Id</th>
-                  <th>Tỉnh / T. phố</th>
-                  <th>Hình ảnh</th>
-                  <th>Mô tả</th>
-                  
-                  <th>Trạng thái</th>
-                  <th>Sửa</th>
-                </tr>
-                </thead>
-                
-              </table>
-            </div>
-            <!-- /.box-body -->
-          </div>
+<div class="box box-danger">
+	<div class="box-header with-border" data-widget="collapse">
+		<h3 class="box-title">Danh sách các tỉnh/T.phố</h3>
+
+		<div class="box-tools pull-right">
+			<button type="button" class="btn btn-box-tool" >
+				<i class="fa fa-minus "></i>
+			</button>
+		</div>
+		<!-- /.box-tools -->
+	</div>
+	<!-- /.box-header -->
+	<div class="box-body">
+		<table id="adminCityTable" class="table table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Tỉnh / T. phố</th>
+					<th>Hình ảnh</th>
+					<th>Mô tả</th>
+
+					<th>Trạng thái</th>
+					<th>Sửa</th>
+				</tr>
+			</thead>
+
+		</table>
+	</div>
+	<!-- /.box-body -->
+</div>

@@ -21,7 +21,7 @@ public class FoodValidator implements Validator {
 		
 		//whether file has been selected or not
 		if(food.getFile()==null || food.getFile().getOriginalFilename().equals("")) {
-			errors.rejectValue("file", null, "Please select an image to upload !");
+			errors.rejectValue("file", null, "Vui lòng chọn ảnh để upload !");
 			return;
 		}
 		
@@ -30,7 +30,7 @@ public class FoodValidator implements Validator {
 				food.getFile().getContentType().equals("image/gif")
 				)) {
 			
-			errors.rejectValue("file", null, "Please only choose image type for upload !");
+			errors.rejectValue("file", null, "Vui lòng chỉ chọn file ảnh !");
 			return;
 		}
 

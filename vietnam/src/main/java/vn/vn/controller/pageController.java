@@ -2,6 +2,7 @@ package vn.vn.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -93,6 +94,7 @@ public class pageController {
 		}*/
 		
 		return mv;
+	
 	}
 	
 
@@ -166,7 +168,7 @@ public class pageController {
 	@RequestMapping(value="/manage")
 	public ModelAndView managePage() {
 		ModelAndView mv = new ModelAndView("manageIndex");
-		mv.addObject("title","Management Page");
+		mv.addObject("title"," Admin");
 		mv.addObject("userClickManagement",true);
 		return mv;
 	}
@@ -180,7 +182,7 @@ public class pageController {
 	@RequestMapping(value = "/provider")
 	public ModelAndView providerPage() {
 		ModelAndView mv = new ModelAndView("providerIndex");
-		mv.addObject("title", "Provider Page");
+		mv.addObject("title", "Provider");
 		mv.addObject("userClickProvider", true);
 		return mv;
 	}
@@ -285,18 +287,47 @@ public class pageController {
 		mv.addObject("title", "Chi tiết Home Stay ");
 		mv.addObject("hotel",hotel);
 		mv.addObject("userClickDetailHotel", true);
-		mv.addObject("room", RoomDAO.listByHotel(id));
 		mv.addObject("test",dtArr);
 		mv.addObject("dateArrive",dtArr);
 		mv.addObject("dateLeave",dtLea);
 		/*BookingDAO.listByHotel(dtArr, dtLea, id);*/
+		mv.addObject("room", RoomDAO.listByHotel(id));
 		mv.addObject("test2",BookingDAO.listBookedByHotel(dtArr, dtLea, id));
 		
-		int temp = /*RoomDAO.listByHotel(id).size() - */BookingDAO.listBookedByHotel(dtArr, dtLea, id).size();
+		
+		List<Room> roomEmp = new ArrayList<>();
+		List<Room> room =  RoomDAO.listByHotel(id);
+		List<Booking> bkRoom = BookingDAO.listBookedByHotel(dtArr, dtLea, id);
+		int counts;
+		for(Room r : room) {
+			counts = 0;
+			for(Booking roomFull : bkRoom) {
+				if(r.getName().equals(roomFull.getRoom().getName())) {
+					break;
+				}else {
+					counts++;
+				}
+			}
+			if(counts == BookingDAO.listBookedByHotel(dtArr, dtLea, id).size()) {
+				roomEmp.add(r);
+			}
+		}
+		System.out.println("for big ////////////////////////////");
+		for (Room r : room) {
+			System.out.println(r.getName());
+		}
+		System.out.println("for small////////////////////////////");
+		for (Booking roomFull : bkRoom) {
+			System.out.println(roomFull.getRoom().getName());
+		}
+		System.out.println("réult////////////////////////////");
+		for (Room r : roomEmp) {
+			System.out.println(r.getName());
+			System.out.println(r.getTypeRoom());
+		}
+		int temp = roomEmp.size();
 		mv.addObject("temp", temp);
-		 
-		/*System.out.println("Aaaaa---------------------------------"+ dtArrs);
-		System.out.println("Aaaaa---------------------------------"+ BookingDAO.listByHotel(dtArrs, dtLeas, id));*/
+		mv.addObject("roomEmptysss", roomEmp);
 		return mv;
 	}
 	
@@ -317,28 +348,48 @@ public class pageController {
     	System.out.println("---------------------------------"+ ct);
     	
     	mv.addObject("listSearch", HotelDAO.search(cityDAO.getCityById(ct).getName()));
-    	mv.addObject("test2", ct);
-    	mv.addObject("test", cityDAO.getCityById(ct).getName());
-    	mv.addObject("test5",BookingDAO.listCount(dateArr,dateLea, cityDAO.getCityById(ct).getName()));
+    	
     	mv.addObject("testdatearr", dateArr.replace('/', '-'));
     	mv.addObject("testdatelea", dateLea.replace('/', '-'));
     	
-    	
-    	
-    	
-    	mv.addObject("test4",BookingDAO.listCount(dateArr,dateLea, cityDAO.getCityById(ct).getName()));
+    	/*List<Hotel> hotelEmp = new ArrayList<>();
+		List<Hotel> hotel =  HotelDAO.search(cityDAO.getCityById(ct).getName());
+		List<Booking> bkRoom = BookingDAO.listBookedByCity(dateArr.replace('/','-'), dateLea.replace('/', '-'), cityDAO.getCityById(ct).getId());
+		int counts;
+		for(Hotel r : hotel) {
+			counts = 0;
+			for(Booking roomFull : bkRoom) {
+				if(r.getName().equals(roomFull.getCity().getName())) {
+					break;
+				}else {
+					counts++;
+				}
+			}
+			if(counts == BookingDAO.listBookedByCity(dateArr.replace('/','-'), dateLea.replace('/', '-'), cityDAO.getCityById(ct).getId()).size()) {
+				hotelEmp.add(r);
+			}
+		}
+		System.out.println("for big ////////////////////////////");
+		for (Hotel r : hotel) {
+			System.out.println(r.getName());
+		}
+		System.out.println("for small////////////////////////////");
+		for (Booking roomFull : bkRoom) {
+			System.out.println(roomFull.getHotel().getName());
+		}
+		System.out.println("réult////////////////////////////");
+		for (Hotel r : hotelEmp) {
+			System.out.println(r.getName());
+			System.out.println(r.getChildren());
+		}
+		int temp = hotelEmp.size();
+		mv.addObject("temp", temp);
+		mv.addObject("hotelEmptysss", hotelEmp);*/
+    
     	
     	
     	return mv;
     }
-    //this is for about us
-    @RequestMapping(value = "/about", method = RequestMethod.GET)
-	public ModelAndView aboutUs() {
-		ModelAndView mv = new ModelAndView("index");
-		mv.addObject("title", "About us!");
-		mv.addObject("userClickAbout",true);
-		return mv;
-	}
 	
     //booking page
     @RequestMapping(value="/bookingRoom/{id}/{dtArr}/{dtLea}")
@@ -408,11 +459,11 @@ public class pageController {
     
     
 	
-
     @ModelAttribute("cities")
 	public List<City> getCities() {
 
 		return CityDAO.list();
 	}
+	
 	
 }

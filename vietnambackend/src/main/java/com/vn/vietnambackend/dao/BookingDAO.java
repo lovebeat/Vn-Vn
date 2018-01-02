@@ -16,5 +16,7 @@ public interface BookingDAO {
 	List<Booking> listCount(String arr, String lea, String keyword);
 	List<Booking> listBookedByHotel(String arr, String lea, int Idhotel);
 	List<Booking> listRoomFull(int idHotel);
-	List<Booking> listRoomEmpByDateNow();
+	
+	List<Booking> listBookedByCity(String arr, String lea, int Idcity);
+	
 }

@@ -24,27 +24,27 @@ public class Food {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@NotBlank(message="Please enter the name of Food !")
+	@NotBlank(message="Vui lòng nhập tên !")
 	private String name;
 	
 	private String code;
 	
-	@NotBlank(message="Please enter the description of food !")
+	@NotBlank(message="Vui lòng nhập mô tả !")
 	private String description;
 	
 	@JsonIgnore
 	/*@NotBlank(message="Please enter the content of food !")*/
 	private String content;
 	
-	@NotBlank(message="Please enter the address of food !")
+	@NotBlank(message="Vui lòng nhập địa chỉ !")
 	private String address;
 	
 	@Column(name = "price_min")
-	@Min(value=1, message="Price is not be less than 1 !")
+	@Min(value=1, message="Giá không được nhỏ hơn 1đ !")
 	private double priceMin;
 	
 	@Column(name = "price_max")
-	@Max(value=999999000, message="Price is less than 999999000 !")
+	/*@Max(value=999999000, message="Giá không được lớn hơn !")*/
 	private double priceMax;
 	
 	

@@ -31,7 +31,7 @@
 	action="${contextRoot }/provider/${infRoom.hotel.id }/bookingRoomDirect/${infRoom.id }/${dateArrs }/${dateLeas }" method="POST">
 	<div class="form-group">
 		<label for="name">Tên khách hàng</label>
-		<sf:input type="" class="form-control" id="nameGuest"
+		<sf:input type="" class="form-control" id="nameGuest" required="required"
 			path="nameGuest" placeholder="nhập tên" />
 
 
@@ -66,14 +66,14 @@
 				</div>
 	<div class="form-group">
 		<label for="address">Địa chỉ</label>
-		<sf:input type="" class="form-control" id="addressGuest"
+		<sf:input type="" class="form-control" id="addressGuest" required="required"
 			path="addressGuest" placeholder="nhập địa chỉ" />
 
 
 	</div>
 	<div class="form-group">
 		<label for="phone">Số điện thoại</label>
-		<sf:input type="" class="form-control" id="phoneGuest"
+		<sf:input type="" class="form-control" id="phoneGuest" required="required"
 			path="phoneGuest" placeholder="nhập SĐT liên hệ" />
 
 	</div>
