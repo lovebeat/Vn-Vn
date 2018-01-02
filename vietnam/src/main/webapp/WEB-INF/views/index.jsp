@@ -34,16 +34,14 @@
 <!--This is icon for about us  -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!-- new css for provider -->
-<!-- bootstrap datepicker -->
-<link rel="stylesheet" href="${css }/bootstrap-datepicker.min.css">
-<!-- Theme style -->
-<%-- <link rel="stylesheet" href="${css }/AdminLTE.min.css">
-  <!-- Bootstrap time Picker -->
-  <link rel="stylesheet" href="${css }/bootstrap-timepicker.min.css"> --%>
+
+<link href="${css }/datepicker.css" rel="stylesheet" />
+
+<!-- Bootstrap time Picker -->
+<link rel="stylesheet" href="${css }/bootstrap-timepicker.min.css"> 
 <!-- Google Font -->
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-<!-- end -->
 
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -75,12 +73,15 @@
 	<c:if test="${userAllFood==true }">
 		<%@include file="allFood.jsp"%>
 	</c:if>
-
-	<c:if test="${userClickResultSearchHotel==true }">
-		<%@include file="resultSearchHotel.jsp"%>
-	</c:if>
 	<c:if test="${userClickDetailHotel==true }">
 		<%@include file="detailHotel.jsp"%>
+	</c:if>
+	
+	<c:if test="${userClickBookingRoom==true }">
+		<%@include file="booking.jsp"%>
+	</c:if>
+	<c:if test="${userClickResultSearchHotel==true }">
+		<%@include file="resultSearch.jsp"%>
 	</c:if>
 	<!--This is for about us page  -->
 	<c:if test="${userClickAbout==true }">
@@ -127,18 +128,35 @@
 			document.body.scrollTop = 0;
 			document.documentElement.scrollTop = 0;
 		}
-		
-		$(function() {
-			//Date picker
-			$('#datepicker').datepicker({
-				autoclose : true
-			})
-
-			$('#datepicker2').datepicker({
-				autoclose : true
-			})
-		});
-		
 	</script>
+	<script>
+    $(function () {
+        'use strict';
+        var nowTemp = new Date();
+        var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
+        var checkin = $('#timeCheckIn').datepicker({
+            onRender: function (date) {
+                return date.valueOf() < now.valueOf() ? 'disabled' : '';
+            }
+        }).on('changeDate', function (ev) {
+            if (ev.date.valueOf() > checkout.date.valueOf()) {
+                var newDate = new Date(ev.date)
+                newDate.setDate(newDate.getDate() + 1);
+                checkout.setValue(newDate);
+            }
+            checkin.hide();
+            $('#timeCheckOut')[0].focus();
+        }).data('datepicker');
+        var checkout = $('#timeCheckOut').datepicker({
+            onRender: function (date) {
+                return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+            }
+        }).on('changeDate', function (ev) {
+            checkout.hide();
+        }).data('datepicker');
+    });
+</script>
+
 </body>
 </html>

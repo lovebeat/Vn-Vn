@@ -1,10 +1,17 @@
 package com.vn.vietnambackend.dto;
 
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 @Entity
 public class Booking {
@@ -22,16 +29,34 @@ public class Booking {
 	private String phoneGuest;
 	
 	@Column(name="date_arrive")
-	private String dateArrive;
+	private Date dateArrive;
 	
 	@Column(name="date_leave")
-	private String dateLeave;
+	private Date dateLeave;
 	
-	@Column(name="room_id")
-	private int roomId;
+	@ManyToOne
+    @JoinColumn(name = "room_id")
+	private Room room;
+	
+	@ManyToOne
+    @JoinColumn(name = "hotel_id")
+	private Hotel hotel;
 	
 	@Column(name="is_active")
 	private boolean active=true;
+	
+	@ManyToOne
+    @JoinColumn(name = "city_id")
+	private City city;
+	
+	@Transient
+	private String ct;
+	
+	@Transient
+	private String ht;
+	
+	@Transient
+	private String ro;
 	
 	public Booking() {}
 	
@@ -67,30 +92,34 @@ public class Booking {
 		this.phoneGuest = phoneGuest;
 	}
 
-	public String getDateArrive() {
+
+
+
+
+	
+
+	public Date getDateArrive() {
 		return dateArrive;
 	}
 
-	public void setDateArrive(String dateArrive) {
+	public void setDateArrive(Date dateArrive) {
 		this.dateArrive = dateArrive;
 	}
 
-	public String getDateLeave() {
+	public Date getDateLeave() {
 		return dateLeave;
 	}
 
-	public void setDateLeave(String dateLeave) {
+	public void setDateLeave(Date dateLeave) {
 		this.dateLeave = dateLeave;
 	}
 
-
-
-	public int getRoomId() {
-		return roomId;
+	public Room getRoom() {
+		return room;
 	}
 
-	public void setRoomId(int roomId) {
-		this.roomId = roomId;
+	public void setRoom(Room room) {
+		this.room = room;
 	}
 
 	public boolean isActive() {
@@ -99,6 +128,46 @@ public class Booking {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	public Hotel getHotel() {
+		return hotel;
+	}
+
+	public void setHotel(Hotel hotel) {
+		this.hotel = hotel;
+	}
+
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
+	}
+
+	public String getCt() {
+		return ct;
+	}
+
+	public void setCt(String ct) {
+		this.ct = ct;
+	}
+
+	public String getHt() {
+		return ht;
+	}
+
+	public void setHt(String ht) {
+		this.ht = ht;
+	}
+
+	public String getRo() {
+		return ro;
+	}
+
+	public void setRo(String ro) {
+		this.ro = ro;
 	}
 	
 

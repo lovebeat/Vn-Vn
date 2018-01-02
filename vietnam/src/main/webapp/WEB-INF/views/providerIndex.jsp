@@ -36,6 +36,7 @@
   <link rel="stylesheet" href="${css }/_all-skins.min.css">
    <!-- bootstrap datepicker -->
   <link rel="stylesheet" href="${css }/bootstrap-datepicker.min.css">
+ <%--  <link href="${css }/datepicker.css" rel="stylesheet" /> --%>
   <!-- DataTables -->
   <link rel="stylesheet" href="${css }/dataTables.bootstrap.min.css">
  <link rel="stylesheet" href="${css }/myapp.css">
@@ -190,9 +191,26 @@
 				<c:if test="${userClickWaitApprove==true }">
 					<%@include file="waitApprove.jsp"%>
 				</c:if>
-				
-     
-    </section>
+				<c:if test="${userClickEditBooking==true }">
+					<%@include file="editInfBooking.jsp"%>
+				</c:if>
+				<c:if test="${userClickDeleteBooking==true }">
+					<%@include file="delBooking.jsp"%>
+				</c:if>
+				<c:if test="${userClickEditRoom==true }">
+					<%@include file="editRoom.jsp"%>
+				</c:if>
+				<c:if test="${userClickSearchDateBooking==true }">
+					<%@include file="bookingDirect.jsp"%>
+				</c:if>
+				<%-- <c:if test="${userClickResultSearchRoom==true }">
+					<%@include file="resultSearchRoomDirect.jsp"%>
+				</c:if> --%>
+				<c:if test="${userClickBookingRoomcc==true }">
+					<%@include file="formBookingDirect.jsp"%>
+				</c:if>
+
+			</section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
@@ -234,6 +252,7 @@
 <script src="${js }/bootstrap-timepicker.min.js"></script>
 <!-- bootstrap datepicker -->
 <script src="${js }/bootstrap-datepicker.min.js"></script>
+<%-- <script src="${js }/bootstrap-datepicker.js"></script> --%>
 <script src="${ckeditor }/ckeditor.js"></script>
 <script>
 	$(function () {
@@ -250,6 +269,33 @@
 		    })
 		   
 	</script>
+<script>
+    $(function () {
+        'use strict';
+        var nowTemp = new Date();
+        var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
 
+        var checkin = $('#timeCheckIn').datepicker({
+            onRender: function (date) {
+                return date.valueOf() < now.valueOf() ? 'disabled' : '';
+            }
+        }).on('changeDate', function (ev) {
+            if (ev.date.valueOf() > checkout.date.valueOf()) {
+                var newDate = new Date(ev.date)
+                newDate.setDate(newDate.getDate() + 1);
+                checkout.setValue(newDate);
+            }
+            checkin.hide();
+            $('#timeCheckOut')[0].focus();
+        }).data('datepicker');
+        var checkout = $('#timeCheckOut').datepicker({
+            onRender: function (date) {
+                return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+            }
+        }).on('changeDate', function (ev) {
+            checkout.hide();
+        }).data('datepicker');
+    });
+</script>
 </body>
 </html>

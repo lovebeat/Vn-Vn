@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.vn.vietnambackend.dao.BannerDAO;
 import com.vn.vietnambackend.dao.BookingDAO;
@@ -19,12 +20,14 @@ import com.vn.vietnambackend.dao.CityDAO;
 import com.vn.vietnambackend.dao.FoodDAO;
 import com.vn.vietnambackend.dao.HotelDAO;
 import com.vn.vietnambackend.dao.PlaceDAO;
+import com.vn.vietnambackend.dao.RoomDAO;
 import com.vn.vietnambackend.dto.Banner;
 import com.vn.vietnambackend.dto.Booking;
 import com.vn.vietnambackend.dto.City;
 import com.vn.vietnambackend.dto.Food;
 import com.vn.vietnambackend.dto.Hotel;
 import com.vn.vietnambackend.dto.Place;
+import com.vn.vietnambackend.dto.Room;
 
 import vn.vn.model.UserModel;
 
@@ -45,6 +48,8 @@ public class JsonDataController {
 	private HotelDAO hotelDAO;
 	@Autowired
 	private BannerDAO bannerDAO;
+	@Autowired
+	private RoomDAO roomDAO;
 	@Autowired
 	private GlobalController glo;
 	@RequestMapping("/admin/all/city")
@@ -124,6 +129,22 @@ public class JsonDataController {
 		return hotelDAO.listApprove();
 	}
 	
+	//room full (was booked)
+	@RequestMapping(value = "/{id}/detailRooms", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Booking> roomFull(@PathVariable int id) {
+		
+		return BookingDAO.listRoomFull(id);
+		
+	}
+	
+	//room empty
+		@RequestMapping(value = "/{id}/roomEmpty", method = RequestMethod.GET)
+		@ResponseBody
+		public List<Room> roomEmpty(@PathVariable int id) {
+			return roomDAO.listByHotel(id);
+			
+		}
 
 	
 	

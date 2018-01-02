@@ -32,6 +32,13 @@ public class Room {
 	
 	private double price;
 	
+	@Column(name="type_room")
+	private String typeRoom;
+	
+	@ManyToOne
+	@JoinColumn(name="city_id")
+	private City city;
+	
 	public Room() {
 		
 	}
@@ -86,6 +93,22 @@ public class Room {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	public String getTypeRoom() {
+		return typeRoom;
+	}
+
+	public void setTypeRoom(String typeRoom) {
+		this.typeRoom = typeRoom;
+	}
+
+	public City getCity() {
+		return city;
+	}
+
+	public void setCity(City city) {
+		this.city = city;
 	}
 	
 	

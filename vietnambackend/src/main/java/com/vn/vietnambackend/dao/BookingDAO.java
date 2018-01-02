@@ -13,4 +13,8 @@ public interface BookingDAO {
 	boolean delete(Booking booking);
 	/*List<Booking> listByRoom(int roomId);*/
 	Booking getByRoom(int id);
+	List<Booking> listCount(String arr, String lea, String keyword);
+	List<Booking> listBookedByHotel(String arr, String lea, int Idhotel);
+	List<Booking> listRoomFull(int idHotel);
+	List<Booking> listRoomEmpByDateNow();
 }

@@ -4,6 +4,7 @@
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/detailFood.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/detailHotel.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/detailPlace.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/food.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/home.jsp=UTF-8

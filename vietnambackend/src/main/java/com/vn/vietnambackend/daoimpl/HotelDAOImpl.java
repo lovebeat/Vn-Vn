@@ -113,7 +113,7 @@ public class HotelDAOImpl implements HotelDAO {
 
 	
 	public List<Hotel> search(String keyword) {
-		String select = "FROM Hotel where wheres =:str";
+		String select = "FROM Hotel where city.name =:str";
 		Query query = sessionFactory.getCurrentSession().createQuery(select);
 		query.setParameter("str", keyword);
 		return query.getResultList();
