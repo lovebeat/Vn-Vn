@@ -139,9 +139,9 @@ public class JsonDataController {
 	}
 	
 	//room empty
-		@RequestMapping(value = "/{id}/roomEmpty", method = RequestMethod.GET)
+		@RequestMapping(value = "/{id}/roomsTotalsss", method = RequestMethod.GET)
 		@ResponseBody
-		public List<Room> roomEmpty(@PathVariable int id) {
+		public List<Room> roomsTotalsss(@PathVariable int id) {
 			return roomDAO.listByHotel(id);
 			
 		}

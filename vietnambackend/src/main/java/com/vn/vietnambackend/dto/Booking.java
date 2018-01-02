@@ -58,6 +58,11 @@ public class Booking {
 	@Transient
 	private String ro;
 	
+	@Transient
+	private String dateArrString;
+	@Transient
+	private String dateLeaString;
+	
 	public Booking() {}
 	
 	public int getId() {
@@ -91,12 +96,6 @@ public class Booking {
 	public void setPhoneGuest(String phoneGuest) {
 		this.phoneGuest = phoneGuest;
 	}
-
-
-
-
-
-	
 
 	public Date getDateArrive() {
 		return dateArrive;
@@ -168,6 +167,22 @@ public class Booking {
 
 	public void setRo(String ro) {
 		this.ro = ro;
+	}
+
+	public String getDateArrString() {
+		return dateArrString;
+	}
+
+	public void setDateArrString(String dateArrString) {
+		this.dateArrString = dateArrString;
+	}
+
+	public String getDateLeaString() {
+		return dateLeaString;
+	}
+
+	public void setDateLeaString(String dateLeaString) {
+		this.dateLeaString = dateLeaString;
 	}
 	
 

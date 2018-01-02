@@ -68,8 +68,7 @@
 	<div class="row">
 		<div>
 
-			<hr style="margin: 80px 0px">
-			
+			<hr style="margin: 40px 0px">
 		</div>
 	</div>
 </div>
@@ -111,15 +110,172 @@
 							<p>${i }</p>
 						</div>
 						<div class="textInsideImg">
-							<div class="frontSlideTitle">
+							<div class="frontSlideTitle" >
 								<p>${listPlace.get(i).name}</p>
 							</div>
-							<div class="frontSlideSubTitle">${listPlace.get(i).city.name }</div>
+							<div class="frontSlideSubTitle" >${listPlace.get(i).city.name }</div>
 						</div>
 					</div>
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
+		<%-- <c:forEach items="${ listPlace}" var="place">
+			<div class="col-sm-3 top-experiences-img">
+				<img
+					src="${img }/${place.city.name }/${place.name }/${place.code }.jpg"
+					style="width: 100%; height: 400px; object-fit: cover;" onclick=""
+					class="hover-shadow cursor frontSlide">
+				<div class="top-experiences-shape-counter">
+					<p>1</p>
+				</div>
+				<div class="textInsideImg">
+					<div class="frontSlideTitle">
+						<p>${place.name}</p>
+					</div>
+					<div class="frontSlideSubTitle">${place.city.name }</div>
+				</div>
+			</div>
+		</c:forEach> --%>
+		<%-- <div class="col-sm-3 top-experiences-img">
+			<img src="${img}/pic2.jpg"
+				style="width: 100%; height: 400px; object-fit: cover;" onclick=""
+				class="hover-shadow cursor frontSlide">
+			<div class="top-experiences-shape-counter">
+				<p>1</p>
+
+			</div>
+			<div class="textInsideImg">
+				<div class="frontSlideTitle">Ho chi minh</div>
+				<div class="frontSlideSubTitle">Viet Nam</div>
+			</div>
+		</div>
+		<div class="col-sm-3 top-experiences-img">
+			<img src="${img }/pic3.jpg"
+				style="width: 100%; height: 400px; object-fit: cover;" onclick=""
+				class="hover-shadow cursor frontSlide">
+			<div class="top-experiences-shape-counter">
+				<p>1</p>
+			</div>
+			<div class="textInsideImg">
+				<div class="frontSlideTitle">Ho chi minh</div>
+				<div class="frontSlideSubTitle">Viet Nam</div>
+			</div>
+
+		</div>
+		<div class="col-sm-3 top-experiences-img">
+
+			<img src="${img }/pic4.jpg"
+				style="width: 100%; height: 400px; object-fit: cover;" onclick=""
+				class="hover-shadow cursor frontSlide">
+			<div class="top-experiences-shape-counter">
+				<p>1</p>
+			</div>
+			<div class="textInsideImg">
+				<div class="frontSlideTitle">Ho chi minh</div>
+				<div class="frontSlideSubTitle">Viet Nam</div>
+			</div>
+		</div>
+
+		<div class="col-sm-3 top-experiences-img">
+			<img src="${img }/banana.jpg"
+				style="width: 100%; height: 400px; object-fit: cover; display: none;"
+				onclick="" class="hover-shadow cursor frontSlide">
+			<div class="top-experiences-shape-counter" style="display: none;">
+				<p>1</p>
+			</div>
+			<div class="textInsideImg" style="display: none;">
+				<div class="frontSlideTitle">Ho chi minh</div>
+				<div class="frontSlideSubTitle">Viet Nam</div>
+			</div>
+		</div>
+		<div class="col-sm-3 top-experiences-img">
+			<img src="${img }/chicken.jpg"
+				style="width: 100%; height: 400px; object-fit: cover; display: none;"
+				onclick="" class="hover-shadow cursor frontSlide">
+			<div class="top-experiences-shape-counter" style="display: none;">
+				<p>1</p>
+			</div>
+			<div class="textInsideImg" style="display: none;">
+				<div class="frontSlideTitle">Ho chi minh</div>
+				<div class="frontSlideSubTitle">Viet Nam</div>
+			</div>
+		</div>
+		<div class="col-sm-3 top-experiences-img">
+			<img src="${img }/longBien.jpg"
+				style="width: 100%; height: 400px; object-fit: cover; display: none;"
+				onclick="" class="hover-shadow cursor frontSlide">
+			<div class="top-experiences-shape-counter" style="display: none;">
+				<p>1</p>
+			</div>
+			<div class="textInsideImg" style="display: none;">
+				<div class="frontSlideTitle">Ho chi minh</div>
+				<div class="frontSlideSubTitle">Viet Nam</div>
+			</div>
+		</div>
+		<div class="col-sm-3 top-experiences-img">
+			<img src="${img }/hoGuom.jpg"
+				style="width: 100%; height: 400px; object-fit: cover; display: none;"
+				onclick="" class="hover-shadow cursor frontSlide">
+			<div class="top-experiences-shape-counter" style="display: none;">
+				<p>1</p>
+			</div>
+			<div class="textInsideImg" style="display: none;">
+				<div class="frontSlideTitle">Ho chi minh</div>
+				<div class="frontSlideSubTitle">Viet Nam</div>
+			</div>
+		</div>
+
+		<!--               -->
+		<div class="col-sm-3 top-experiences-img">
+			<img src="${img }/pigToBeef.jpg"
+				style="width: 100%; height: 400px; object-fit: cover; display: none;"
+				onclick="" class="hover-shadow cursor frontSlide">
+			<div class="top-experiences-shape-counter" style="display: none;">
+				<p>1</p>
+			</div>
+			<div class="textInsideImg" style="display: none;">
+				<div class="frontSlideTitle">Ho chi minh</div>
+				<div class="frontSlideSubTitle">Viet Nam</div>
+			</div>
+
+		</div>
+		<div class="col-sm-3 top-experiences-img">
+			<img src="${img }/pig.jpg"
+				style="width: 100%; height: 400px; object-fit: cover; display: none;"
+				onclick="" class="hover-shadow cursor frontSlide">
+			<div class="top-experiences-shape-counter" style="display: none;">
+				<p>1</p>
+			</div>
+			<div class="textInsideImg" style="display: none;">
+				<div class="frontSlideTitle">Ho chi minh</div>
+				<div class="frontSlideSubTitle">Viet Nam</div>
+			</div>
+		</div>
+		<div class="col-sm-3 top-experiences-img">
+			<img src="${img }/pic3.jpg"
+				style="width: 100%; height: 400px; object-fit: cover; display: none;"
+				onclick="" class="hover-shadow cursor frontSlide">
+			<div class="top-experiences-shape-counter" style="display: none;">
+				<p>1</p>
+			</div>
+			<div class="textInsideImg" style="display: none;">
+				<div class="frontSlideTitle">Ho chi minh</div>
+				<div class="frontSlideSubTitle">Viet Nam</div>
+			</div>
+
+		</div>
+		<div class="col-sm-3 top-experiences-img">
+			<img src="${img }/pic4.jpg"
+				style="width: 100%; height: 400px; object-fit: cover; display: none;"
+				onclick="" class="hover-shadow cursor frontSlide">
+			<div class="top-experiences-shape-counter" style="display: none;">
+				<p>1</p>
+			</div>
+			<div class="textInsideImg" style="display: none;">
+				<div class="frontSlideTitle">Ho chi minh</div>
+				<div class="frontSlideSubTitle">Viet Nam</div>
+			</div>
+		</div> --%>
 		<a class="prev" onclick="showFrontSlideLeft()">&#10094;</a> <a
 			class="next" onclick="showFrontSlideRight()">&#10095;</a>
 	</div>
@@ -130,7 +286,7 @@
 	<div class="row">
 		<div>
 
-			<hr style="margin: 80px 0px">
+			<hr style="margin: 40px 0px">
 		</div>
 	</div>
 </div>
@@ -156,14 +312,11 @@
 						</c:forEach>
 					</ul>
 				</div>
-			</div>
-			<br>
-			<br>
+			</div><br><br>
 			<div class="row" style="float: right">
 				<div class="" style="margin-right: 400px;">
-					<a style="text-decoration: none" href="${contextRoot }/allFood">
-						Xem thêm <span class="glyphicon glyphicon-chevron-right"></span>
-					</a>
+					<a style = "text-decoration: none" href="${contextRoot }/allFood"> 
+						Xem thêm <span class="glyphicon glyphicon-chevron-right"></span></a>
 				</div>
 			</div>
 		</div>
@@ -173,11 +326,11 @@
 <div class="container split">
 	<div class="row">
 		<div>
-			<hr style="margin: 80px 0px">
+
+			<hr style="margin: 40px 0px">
 		</div>
 	</div>
 </div>
-
 
 
 

@@ -17,8 +17,8 @@
 								<div class="input-group-addon">
 									<i class="fa fa-calendar"></i>
 								</div>
-								<input type="text" class="form-control pull-right datepicker"
-									id="dateArrive" name="dateArrive" />
+								<input type="text" class="form-control pull-right " required
+									id="timeCheckIn" name="dateArrive" />
 
 							</div>
 
@@ -33,9 +33,9 @@
 									<i class="fa fa-calendar"></i>
 								</div>
 								<input type="text"
-									class="form-control pull-right datepicker
+									class="form-control pull-right
 						"
-									id="dateLeave" name="dateLeave" />
+									id="timeCheckOut" name="dateLeave" />
 							</div>
 
 						</div>

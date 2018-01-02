@@ -21,12 +21,12 @@ public class Place {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@NotBlank(message="Please enter the name of Place !")
+	@NotBlank(message="Vui lòng nhập tên !")
 	private String name;
 	
 	private String code;
 	
-	@NotBlank(message="Please enter description for Place !")
+	@NotBlank(message="Vui lòng nhập mô tả !")
 	private String description;
 	
 	@JsonIgnore
@@ -36,9 +36,6 @@ public class Place {
 	@Column(name = "is_active")
 	private boolean active=true;
 	
-	
-	/*@Column(name = "city_id")
-	private int cityId;*/
 	
 	@ManyToOne
 	@JoinColumn(name="city_id")
@@ -124,19 +121,5 @@ public class Place {
 		this.ct = ct;
 	}
 
-	/*public int getCityId() {
-		return cityId;
-	}
-
-	public void setCityId(int cityId) {
-		this.cityId = cityId;
-	}*/
-
 	
-
-	
-
-	
-	
-
 }
