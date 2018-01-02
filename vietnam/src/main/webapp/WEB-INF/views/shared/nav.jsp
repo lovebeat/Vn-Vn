@@ -1,42 +1,28 @@
-<%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
-<div class="topnav container-fluid" id="myTopnav">
-	<div class="row nav">
-			
-				<a href="#Welcome">Welcome</a>
-	  			<a href="#top-experiences">Top Experiences</a>
-	  			<a href="#food">Food</a>
-	  			<a href="#contact">Contact</a>
-	  			<a href="#about">About</a>
-  			<security:authorize access="isAnonymous()">
-  				<a href="${contextRoot }/login">Login</a>
-  			</security:authorize>
-  			<security:authorize access="isAuthenticated()">
-	  			<div class="nav-dropdown">
-		  			<div class="nav-dropbtn">
-		  				<p style="margin-bottom: 0px;">${userModel.fullName} <span class="glyphicon glyphicon-chevron-down" style="font-size: 10px;"></span></p> 
-		  			</div>
-		  			<div class="nav-dropdown-content">
-					<security:authorize access="hasAuthority('admin')">
-						<a href="${contextRoot }/manage" target="_blank" >Go to manage</a>
-						<!-- <script type="text/javascript">window.location.href = "${contextRoot }/manage";</script> -->
-					</security:authorize>
-					<security:authorize access="hasAuthority('provider')">
-  						<a href="${contextRoot }/provider" target="_blank">Create Hotel</a>
-  					</security:authorize>
-					<a href="${contextRoot }/perform-logout">Logout</a>
-		  			</div>
-				</div>
-					
-  			</security:authorize>
-  			
-  			<a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="showNavMenuInSmall()">&#9776;</a>
+<%@taglib prefix="security"
+	uri="http://www.springframework.org/security/tags"%>
+
+<nav class="navbar navbar-default navbar-static-top" id="navbar">
+	<div class="container-fluid" style="background-color: #ffffff;">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="#">Viet Nam</a>
+		</div>
+		<ul class="nav navbar-nav">
+			<li><a href="#top-experiences">Top
+					Experiences</a></li>
+			<li><a href="#food">Food</a></li>
+			<li><a href="#contact">Contact</a></li>
+			<li><a href="${contextRoot }/about">About us</a></li>
+
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="#"><span class="glyphicon glyphicon-user"></span>
+					Sign Up</a></li>
+			<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
+					Login</a></li>
+		</ul>
 	</div>
-</div>
-<div class="container">
-	<div class="row">
-		<hr>
-	</div>
-</div>
+</nav>
+
 <script>
 	window.userRole = '${userModel.role}';
 	window.userName = '${userModel.fullName}';

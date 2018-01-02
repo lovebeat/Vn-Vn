@@ -1,24 +1,6 @@
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<div class="row">
-	<c:if test="${not empty message }">
-		<div class="col-xs-4">
-			<div class="alert alert-success alert-dismissible">
-				<button type="button" class="close" data-dismiss="alert">&times;</button>
-				${message }
-			</div>
-		</div>
-	</c:if>
-	<c:if test="${not empty messageErr }">
-		<div class="col-xs-4">
-			<div class="alert alert-danger alert-dismissible">
-				<button type="button" class="close" data-dismiss="alert">&times;</button>
-				${messageErr }
-			</div>
-		</div>
-	</c:if>
-</div>
 
 <div class="box box-primary">
 	<div class="box-header with-border">
@@ -36,7 +18,7 @@
 						<label for="name">Tên phòng</label>
 						<sf:input type="text" class="form-control" id="name" path="name"
 							placeholder="nhập tên phòng" />
-							<sf:errors path="name" cssClass="help-block" element="em" />
+
 
 					</div>
 				</div>
@@ -47,7 +29,6 @@
 						<label for="phone">Giá phòng/ngày</label>
 						<sf:input type="number" class="form-control" id="price"
 							path="price" placeholder="" />
-							<sf:errors path="price" cssClass="help-block" element="em" />
 
 					</div>
 				</div>

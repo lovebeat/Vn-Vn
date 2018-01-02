@@ -34,8 +34,8 @@
 			<div class="col-md-3"><p><strong>Giá: </strong>${booking.room.price } / ngày</p></div>
 		</div>
 		<div class="row">
-			<div class="col-md-3"><p><strong>Ngày đến: </strong>${booking.getDateArrString() }</p></div>
-			<div class="col-md-3"><p><strong>Ngày đi: </strong>${booking.getDateLeaString() }</p></div>
+			<div class="col-md-3"><p><strong>Ngày đến: </strong>${booking.dateArrive }</p></div>
+			<div class="col-md-3"><p><strong>Ngày đi: </strong>${booking.dateLeave }</p></div>
 		</div>
 		
 		
@@ -57,37 +57,6 @@
 	</div>
 	<div class="col-md-11">
 	<div class="form-group">
-		<label>Ngày nhận phòng</label>
-
-		<div class="input-group date">
-			<div class="input-group-addon">
-				<i class="fa fa-calendar"></i>
-			</div>
-			<sf:input type="text" class="form-control pull-right"
-				id="timeCheckIn" path="dateArrive" />
-
-		</div>
-
-	</div>
-	</div>
-	<div class="col-md-11">
-	<div class="form-group">
-		<label>Ngày trả</label>
-
-		<div class="input-group date">
-			<div class="input-group-addon">
-				<i class="fa fa-calendar"></i>
-			</div>
-			<sf:input type="text"
-				class="form-control pull-right
-						" id="timeCheckOut"
-				path="dateLeave" />
-		</div>
-
-	</div>
-	</div>
-	<div class="col-md-11">
-	<div class="form-group">
 		<label for="address">Địa chỉ</label>
 		<sf:input type="text" class="form-control" id="addressGuest"
 			path="addressGuest" placeholder="nhập địa chỉ" />
@@ -103,7 +72,37 @@
 
 	</div>
 	</div>
-	
+	<div class="col-md-11">
+	<div class="form-group">
+		<label>Ngày nhận phòng</label>
+
+		<div class="input-group date">
+			<div class="input-group-addon">
+				<i class="fa fa-calendar"></i>
+			</div>
+			<sf:input type="text" readonly="true" class="form-control pull-right datepicker"
+				id="dateArrive" path="dateArrive" />
+
+		</div>
+
+	</div>
+	</div>
+	<div class="col-md-11">
+	<div class="form-group">
+		<label>Ngày trả</label>
+
+		<div class="input-group date">
+			<div class="input-group-addon">
+				<i class="fa fa-calendar"></i>
+			</div>
+			<sf:input type="text" readonly="true"
+				class="form-control pull-right datepicker
+						" id="dateLeave"
+				path="dateLeave" />
+		</div>
+
+	</div>
+	</div>
 
 
 <div class="col-md-11">

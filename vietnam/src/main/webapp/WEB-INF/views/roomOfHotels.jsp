@@ -21,7 +21,7 @@
 					
 				</script>
 				
-				<strong>Tổng số phòng: ${total }</strong>
+				<strong>Tổng số phòng: </strong>
 			</p>
 			<div class="row">
 				<div class="col-lg-12">
@@ -61,7 +61,7 @@
 		</div>
 	</div>
 		<br>
-		<table id="roomsTotalsss" class="table table-bordered table-striped">
+		<table id="roomEmpty" class="table table-bordered table-striped">
 			<thead>
 				<tr>
 					<th>Tên Phòng</th>
@@ -135,8 +135,8 @@
 					<div class="form-group">
 						<label for="name">Tên phòng</label>
 						<sf:input type="text" class="form-control" id="name"
-							path="name" placeholder="nhập tên phòng" required="required"/>
-							<sf:errors path="name" cssClass="help-block" element="em" />
+							path="name" placeholder="nhập tên phòng" />
+
 
 					</div>
 					
@@ -144,22 +144,22 @@
 						<label for="phone">Giá phòng/ngày</label>
 						<sf:input type="number" class="form-control" id="price"
 							path="price" placeholder="" />
-							<sf:errors path="price" cssClass="help-block" element="em" />
 
 					</div>
 					
 					<div class="form-group">
 						<label for="typeRoom">Loại phòng</label>
-						<sf:select class="form-control" id="typeRoom" path="typeRoom">
-										<option value="Phòng đơn">Phòng đơn</option>
-										<option value="Phòng đôi">Phòng đôi</option>
-									</sf:select>
+						<select class="form-control" id="typeRoom" name="typeRoom">
+										<option value="Đơn">Phòng đơn</option>
+										<option value="Đôi">Phòng đôi</option>
+									</select>
 
 					</div>
 					
 					<div class="form-group">
 						<input type="submit" name="submit" id="submit" value="Thêm"
 							class="btn btn-success" />
+						<sf:hidden path="status"/>
 						<sf:hidden path="active" />
 						<sf:hidden path="id" />
 						<sf:hidden path="hotel.id" id="idHt" value="${hotel.id }"/>

@@ -3,18 +3,10 @@
 	pageEncoding="utf-8"%>
 <div class="row">
 	<c:if test="${not empty message }">
-		<div class="col-xs-4">
+		<div class="col-xs-12">
 			<div class="alert alert-success alert-dismissible">
 				<button type="button" class="close" data-dismiss="alert">&times;</button>
 				${message }
-			</div>
-		</div>
-	</c:if>
-	<c:if test="${not empty messageErr }">
-		<div class="col-xs-4">
-			<div class="alert alert-danger alert-dismissible">
-				<button type="button" class="close" data-dismiss="alert">&times;</button>
-				${messageErr }
 			</div>
 		</div>
 	</c:if>
@@ -23,7 +15,7 @@
 
 
 	<!-- general form elements -->
-	<div class="box box-success">
+	<div class="box box-primary">
 
 		<!-- /.box-header -->
 		<!-- form start -->
@@ -122,27 +114,11 @@
 								<sf:option value=" Trả 100% phí của ngày đầu tiên">Trả 100% phí của ngày đầu tiên</sf:option>
 								<sf:option value="Trả 50% phí của hóa đơn">Trả 50% phí của hóa đơn</sf:option>
 							</sf:select>
-					
+							
+
 						</div>
 					</div>
-
-					<div class="box-body">
-						<div class="box-header with-border">
-							<h3 class="box-title">Giới thiệu về chỗ ở của bạn</h3>
-						</div>
-						<br>
-						<div class="form-group">
-							<sf:textarea class="form-control" id="description" path="description"
-								rows="9"></sf:textarea>
-							<p class="help-block">Sơ lược nổi bật...</p>
-							<sf:errors path="description" cssClass="help-block" element="em" />
-	
-						</div>
-	
-					</div>
-
-			</div>
-				
+				</div>
 			</div>
 			<div class="row">
 				<div class="col-lg-11">
@@ -157,8 +133,8 @@
 									<label>Internet</label>
 									<p class="help-block">Có Internet hay không?</p>
 									<sf:select class="form-control" id="internet" path="internet">
-										<sf:option value="miễn phí">có, miễn phí</sf:option>
-										<sf:option value="trả phí">có, trả phí</sf:option>
+										<sf:option value="Có, miễn phí">có, miễn phí</sf:option>
+										<sf:option value="Có, trả phí">có, trả phí</sf:option>
 										<sf:option value="Không">Không</sf:option>
 									</sf:select>
 								</div>
@@ -168,8 +144,8 @@
 									<label>Khu vực đậu xe</label>
 									<p class="help-block">Có bãi đậu xe không?</p>
 									<sf:select class="form-control" id="parking" path="parking">
-										<sf:option value="miễn phí">Có, miễn phí</sf:option>
-										<sf:option value="trả phí">Có, trả phí</sf:option>
+										<sf:option value="Có, miễn phí">Có, miễn phí</sf:option>
+										<sf:option value="Có, trả phí">Có, trả phí</sf:option>
 										<sf:option value="Không">Không</sf:option>
 									</sf:select>
 								</div>
@@ -179,8 +155,8 @@
 									<label>Bữa ăn</label>
 									<p class="help-block">Có bao gồm phục vụ bữa ăn không?</p>
 									<sf:select class="form-control" id="breakfast" path="breakfast">
-										<sf:option value="Không đi kèm">Không</sf:option>
-										<sf:option value="Đã đi kèm với giá phòng">Có, đã bao gồm trong giá phòng</sf:option>
+										<sf:option value="Không">Không</sf:option>
+										<sf:option value="Bao gồm trong giá phòng">Có, đã bao gồm trong giá phòng</sf:option>
 										<sf:option value="Tự chọn và trả theo nhu cầu">Có, tự chọn và trả theo nhu cầu</sf:option>
 									</sf:select>
 								</div>
@@ -192,7 +168,7 @@
 									<label>Trẻ nhỏ</label>
 									<p class="help-block">Có chính sách khác dành cho trẻ nhỏ không?</p>
 									<sf:select class="form-control" id="children" path="children">
-										<sf:option value="Không áp dụng">Không</sf:option>
+										<sf:option value="Không">Không</sf:option>
 										<sf:option value="Trẻ em dưới 8 tuổi sẽ được miễn phí">Có, trẻ em dưới 8 tuổi sẽ được miễn phí</sf:option>
 
 									</sf:select>
@@ -201,9 +177,9 @@
 							<div class="col-lg-4">
 								<div class="form-group">
 									<label>Thú nuôi</label>
-									<p class="help-block">Có cung cấp dịch vụ dành cho thú nuôi mang theo?</p>
+									<p class="help-block">Có dịch vụ dành cho thú nuôi mang theo?</p>
 									<sf:select class="form-control" id="pet" path="pet">
-										<sf:option value="Không có dịch vụ">Không</sf:option>
+										<sf:option value="Không">Không</sf:option>
 										<sf:option value="Tùy theo yêu cầu của khách">Tùy vào yêu cầu của khách</sf:option>
 
 									</sf:select>
@@ -235,8 +211,6 @@
 			<sf:hidden path="code" />
 			<sf:hidden path="active" />
 			<sf:input type="hidden" path="pr" value="${userModel.id}"/>
-			<a href="${contextRoot }/provider/new"><button
-						type="button" class="btn btn-warning">Hủy</button></a>
 		</div>
 		</sf:form>
 	</div>

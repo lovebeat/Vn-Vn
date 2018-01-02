@@ -2,8 +2,8 @@
 	pageEncoding="utf-8"%>
 <div class="slideshow-container container-fluid">
 	<div class="row top">
-		<div class="col-sm-4">
-			<input type="text" name="search" placeholder="Search.."
+		<div class="col-sm-4 search">
+			<input type="text" class="search" name="search" placeholder="Search.."
 				style="background-image: url('${img }/searchicon.png');">
 		</div>
 		<div class="col-sm-4"></div>

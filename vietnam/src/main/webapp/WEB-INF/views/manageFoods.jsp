@@ -3,35 +3,21 @@
 <%@taglib prefix="sf" uri="http://www.springframework.org/tags/form"%>
 <div class="row">
 	<c:if test="${not empty message }">
-		<div class="col-xs-4">
+		<div class="col-xs-12">
 			<div class="alert alert-success alert-dismissible">
 				<button type="button" class="close" data-dismiss="alert">&times;</button>
 				${message }
 			</div>
 		</div>
 	</c:if>
-	<c:if test="${not empty messageErr }">
-		<div class="col-xs-4">
-			<div class="alert alert-danger alert-dismissible">
-				<button type="button" class="close" data-dismiss="alert">&times;</button>
-				${messageErr }
-			</div>
-		</div>
-	</c:if>
 </div>
 
 <!-- form -->
-<div class="box box-success">
-	<div class="box-header with-border" data-widget="collapse">
-		<h3 class="box-title">Nhập thông tin</h3>
-
-		<div class="box-tools pull-right">
-			<button type="button" class="btn btn-box-tool">
-				<i class="fa fa-minus "></i>
-			</button>
-		</div>
-		<!-- /.box-tools -->
+<div class="box box-primary">
+	<div class="box-header with-border">
+		<h3 class="box-title">Nhập các thông tin</h3>
 	</div>
+	<!-- /.box-header -->
 	<!-- form start -->
 	<sf:form role="form" modelAttribute="food"
 		action="${contextRoot }/manage/foods" method="POST"
@@ -66,7 +52,26 @@
 					</div>
 				</div>
 			</div>
-		
+			<%-- <div class="row">
+				<div class="col-md-8">
+					<div class="form-group">
+						<label for="placeId">Place</label>
+						<sf:select path="pl" items="${places }" itemLabel="name"
+							itemValue="id" class="form-control" />
+					</div>
+				</div>
+			</div> --%>
+			<!-- <div class="row">
+				<div class="col-md-8">
+					<div class="form-group">
+						<div class="text-right">
+							<button type="button" data-toggle="modal"
+								data-target="#myPlaceModal" class="btn btn-warning btn-xs">Add
+								Place</button>
+						</div>
+					</div>
+				</div>
+			</div> -->
 			<div class="row">
 				<div class="col-md-8">
 					<div class="form-group">
@@ -187,8 +192,6 @@
 			<sf:hidden path="id" />
 			<sf:hidden path="code" />
 			<sf:hidden path="active" />
-			<a href="${contextRoot }/manage/foods"><button
-						type="button" class="btn btn-warning">Hủy</button></a>
 
 		</div>
 	</sf:form>
@@ -197,17 +200,11 @@
 
 
 
-<div class="box box-danger">
-	<div class="box-header with-border" data-widget="collapse">
+<div class="box">
+	<div class="box-header">
 		<h3 class="box-title">Danh sách ẩm thực</h3>
-
-		<div class="box-tools pull-right">
-			<button type="button" class="btn btn-box-tool">
-				<i class="fa fa-minus "></i>
-			</button>
-		</div>
-		<!-- /.box-tools -->
 	</div>
+	<!-- /.box-header -->
 	<div class="box-body">
 		<table id="adminFoodTable" class="table table-bordered table-striped">
 			<thead>
@@ -234,7 +231,68 @@
 	<!-- /.box-body -->
 </div>
 
+<!-- dialog add new place in food pages if it don't exist -->
+<%-- <div class="modal fade" id="myPlaceModal" role="dialog" tabindex="-1">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<!-- Modal header -->
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">
+					<span>&times;</span>
+				</button>
+				<h4 class="modal-title">Add new Place</h4>
+			</div>
+			<div class="modal-body">
+				<!-- Modal form -->
+				<sf:form role="form" modelAttribute="place"
+					action="${contextRoot }/manage/place" method="POST"
+					enctype="multipart/form-data">
+					<div class="form-group">
+						<label for="name">Name</label>
+						<sf:input type="text" class="form-control" id="name" path="name"
+							placeholder="Enter name" />
+						<sf:errors path="name" cssClass="help-block" element="em" />
+					</div>
 
+					<div class="form-group">
+						<label for="file">Select an image</label>
+						<sf:input type="file" id="file" path="file" />
+						<sf:errors path="file" cssClass="help-block" element="em" />
+					</div>
+					<div class="form-group">
+						<label for="cityId">City</label>
+						<sf:select path="ct" items="${cities }" itemLabel="name"
+							itemValue="id" class="form-control" />
+					</div>
+
+					<div class="form-group">
+						<label for="description">Description</label>
+						<sf:textarea class="form-control" id="description"
+							path="description" rows="1"></sf:textarea>
+						<p class="help-block">Enter some description...</p>
+						<sf:errors path="description" cssClass="help-block" element="em" />
+					</div>
+					<div class="form-group">
+						<label for="content">Content</label>
+						<sf:textarea class="form-control" id="content" path="content"
+							rows="9"></sf:textarea>
+						<p class="help-block">Content of article...</p>
+						<sf:errors path="content" cssClass="help-block" element="em" />
+					</div>
+
+					<div class="form-group">
+						<input type="submit" name="submit" id="submit" value="Submit"
+							class="btn btn-primary" />
+						<sf:hidden path="id" />
+						<sf:hidden path="code" />
+						<sf:hidden path="active" />
+					</div>
+				</sf:form>
+			</div>
+		</div>
+	</div>
+
+</div> --%>
 <!-- dialog add new city in food pages if it don't exist -->
 <div class="modal fade" id="myCityModal" role="dialog" tabindex="-1">
 	<div class="modal-dialog" role="document">

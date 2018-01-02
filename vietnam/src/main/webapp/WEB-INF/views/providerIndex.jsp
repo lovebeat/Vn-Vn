@@ -35,8 +35,8 @@
   <!-- AdminLTE Skins.-->
   <link rel="stylesheet" href="${css }/_all-skins.min.css">
    <!-- bootstrap datepicker -->
-<%--   <link rel="stylesheet" href="${css }/bootstrap-datepicker.min.css"> --%>
-  <link href="${css }/datepicker.css" rel="stylesheet" />
+  <link rel="stylesheet" href="${css }/bootstrap-datepicker.min.css">
+ <%--  <link href="${css }/datepicker.css" rel="stylesheet" /> --%>
   <!-- DataTables -->
   <link rel="stylesheet" href="${css }/dataTables.bootstrap.min.css">
  <link rel="stylesheet" href="${css }/myapp.css">
@@ -47,7 +47,7 @@
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-purple sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
   <header class="main-header">
@@ -251,8 +251,8 @@
 <!-- bootstrap time picker -->
 <script src="${js }/bootstrap-timepicker.min.js"></script>
 <!-- bootstrap datepicker -->
-<%-- <script src="${js }/bootstrap-datepicker.min.js"></script> --%>
-<script src="${js }/bootstrap-datepicker.js"></script>
+<script src="${js }/bootstrap-datepicker.min.js"></script>
+<%-- <script src="${js }/bootstrap-datepicker.js"></script> --%>
 <script src="${ckeditor }/ckeditor.js"></script>
 <script>
 	$(function () {
@@ -261,14 +261,14 @@
 	   
 	  })
 </script>
-<!-- <script>
+<script>
 		$(function(){
 			$('.datepicker').datepicker({
 			      autoclose: true
 			    })
 		    })
 		   
-	</script> -->
+	</script>
 <script>
     $(function () {
         'use strict';

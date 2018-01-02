@@ -21,7 +21,7 @@ public class HotelValidator implements Validator {
 		
 		//whether file has been selected or not
 		if(hotel.getFile()==null || hotel.getFile().getOriginalFilename().equals("")) {
-			errors.rejectValue("file", null, "Vui lòng chọn ảnh để upload !");
+			errors.rejectValue("file", null, "Please select an image to upload !");
 			return;
 		}
 		
@@ -30,7 +30,7 @@ public class HotelValidator implements Validator {
 				hotel.getFile().getContentType().equals("image/gif")
 				)) {
 			
-			errors.rejectValue("file", null, "Vui lòng chỉ chọn file ảnh !");
+			errors.rejectValue("file", null, "Please only choose image type for upload !");
 			return;
 		}
 

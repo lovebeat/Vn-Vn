@@ -68,7 +68,7 @@ public class managementController {
 
 		if (operation != null) {
 			if (operation.equals("city")) {
-				mv.addObject("message", "Lưu thành công !");
+				mv.addObject("message", "Submitted Successfully !");
 			}
 		}
 
@@ -93,7 +93,7 @@ public class managementController {
 
 			model.addAttribute("userClickManageCities", true);
 			model.addAttribute("title", "tỉnh/t. phố");
-			model.addAttribute("messageErr", "Lỗi!");
+			model.addAttribute("message", "Validation failed for city Submission!");
 			return "manageIndex";
 		}
 
@@ -149,9 +149,9 @@ public class managementController {
 
 		if (operation != null) {
 			if (operation.equals("place")) {
-				mv.addObject("message", "Lưu thành công !");
+				mv.addObject("message", "Submitted Successfully !");
 			} else if (operation.equals("city")) {
-				mv.addObject("message", "Lưu thành công!");
+				mv.addObject("message", "City submitted successfully!");
 			}
 		}
 		return mv;
@@ -174,7 +174,7 @@ public class managementController {
 
 			model.addAttribute("userClickManagePlaces", true);
 			model.addAttribute("title", "địa điểm");
-			model.addAttribute("messageErr", "Lỗi!");
+			model.addAttribute("message", "Validation failed for city Submission!");
 			return "manageIndex";
 		}
 
@@ -217,11 +217,11 @@ public class managementController {
 		// fetch the place from the database
 		Place nPlace = PlaceDAO.get(id);
 
-		nPlace.setCt( String.valueOf(nPlace.getCity().getId()));
+		/* nPlace.setCity(new City(Integer.parseInt(nPlace.getCt()))); */
 		// set the place fetch from database
-		
 		mv.addObject("place", nPlace);
 
+		/* mv.addObject("city", CityDAO.getCityById(nPlace.getCt()).getName()); */
 		return mv;
 	}
 
@@ -236,9 +236,9 @@ public class managementController {
 		mv.addObject("food", nFood);
 		if (operation != null) {
 			if (operation.equals("food")) {
-				mv.addObject("message", "Lưu thành công !");
+				mv.addObject("message", "Submitted Successfully !");
 			} else if (operation.equals("city")) {
-				mv.addObject("message", "Lưu thành công !");
+				mv.addObject("message", "City submitted successfully!");
 			}
 		}
 		return mv;
@@ -262,12 +262,12 @@ public class managementController {
 
 			model.addAttribute("userClickManageFoods", true);
 			model.addAttribute("title", "Ẩm thực");
-			model.addAttribute("messageErr", "Lỗi!");
+			model.addAttribute("message", "Validation failed for food Submission!");
 			return "manageIndex";
 		}
 
 		mFood.setCity(new City(Integer.parseInt(mFood.getCt())));
-		
+		/*mFood.setPlace(new Place(Integer.parseInt(mFood.getPl())));*/
 		// create new city record
 		if (mFood.getId() == 0) {
 			FoodDAO.add(mFood);
@@ -305,7 +305,6 @@ public class managementController {
 		mv.addObject("title", "Ẩm thực");
 		// fetch the food from the database
 		Food nFood = FoodDAO.get(id);
-		nFood.setCt(String.valueOf(nFood.getCity().getId()));
 		// set the food fetch from database
 		mv.addObject("food", nFood);
 		return mv;
@@ -329,7 +328,7 @@ public class managementController {
 
 			model.addAttribute("userClickManageCities", true);
 			model.addAttribute("title", "tỉnh/t. phố");
-			model.addAttribute("messageErr", "Lỗi !");
+			model.addAttribute("message", "Validation failed for city Submission!");
 			return "manageIndex";
 		}
 
@@ -344,10 +343,46 @@ public class managementController {
 			CityFileUploadUtility.uploadFile(request, mCity.getFile(), mCity.getCode(), mCity.getName());
 		}
 		return "redirect:" + request.getHeader("Referer") + "?operation=city";
-		
+		/* return "redirect:/manage/places?operation=city"; */
 	}
 
-	
+	// handling place dialog in food submission
+	/*@RequestMapping(value = "/place", method = RequestMethod.POST)
+	public String handlePlaceInFoodSubmission(@Valid @ModelAttribute("place") Place mPlace, BindingResult results,
+			Model model, HttpServletRequest request) {
+
+		if (mPlace.getId() == 0) {
+			new PlaceValidator().validate(mPlace, results);
+		} else {
+			if (!mPlace.getFile().getOriginalFilename().equals("")) {
+				new PlaceValidator().validate(mPlace, results);
+			}
+		}
+
+		// check if there are any errors
+		if (results.hasErrors()) {
+
+			model.addAttribute("userClickManagePlaces", true);
+			model.addAttribute("title", "Manage Places");
+			model.addAttribute("message", "Validation failed for place Submission!");
+			return "manageIndex";
+		}
+		mPlace.setCity(new City(Integer.parseInt(mPlace.getCt())));
+
+		// create new city record
+		if (mPlace.getId() == 0) {
+			PlaceDAO.add(mPlace);
+		} else {
+			PlaceDAO.update(mPlace);
+		}
+
+		if (!mPlace.getFile().getOriginalFilename().equals("")) {
+			PlaceFileUploadUtility.uploadFile(request, mPlace.getFile(), mPlace.getCode(),
+					CityDAO.getCityById(mPlace.getCt()).getName(), mPlace.getName());
+		}
+		return "redirect:" + request.getHeader("Referer") + "?operation=place";
+		 return "redirect:/manage/places?operation=city"; 
+	}*/
 
 	// return cities for all the request mapping
 	@ModelAttribute("cities")
@@ -377,7 +412,7 @@ public class managementController {
 	public ModelAndView approveProvider() {
 		ModelAndView mv = new ModelAndView("manageIndex");
 		mv.addObject("userClickListHotelApprove", true);
-		mv.addObject("title", "Chỗ ở");
+		mv.addObject("title", "Home Stay");
 
 		return mv;
 	}
@@ -388,8 +423,7 @@ public class managementController {
 	public String handleHotelSubmission( @ModelAttribute("hotel") Hotel mHotel) {
 
 		mHotel.setApprove(true);
-		mHotel.setCity(new City(Integer.parseInt(mHotel.getCt())));
-		mHotel.setUser(new User(Integer.parseInt(mHotel.getPr())));
+		
 		HotelDAO.update(mHotel);
 		return "redirect:/manage/listHotelApprove";
 	}
@@ -404,7 +438,6 @@ public class managementController {
 		Hotel nHotel = HotelDAO.get(id);
 		// set the city fetch from database
 		mv.addObject("hotel", nHotel);
-		
 		return mv;
 		
 	}
@@ -421,7 +454,7 @@ public class managementController {
 
 			if (operation != null) {
 				if (operation.equals("banner")) {
-					mv.addObject("message", "Lưu thành công !");
+					mv.addObject("message", "Submitted Successfully !");
 				}
 			}
 
@@ -446,7 +479,7 @@ public class managementController {
 
 				model.addAttribute("userClickManageBanner", true);
 				model.addAttribute("title", "banner");
-				model.addAttribute("messageErr", "Lỗi!");
+				model.addAttribute("message", "Validation failed for banner Submission!");
 				return "manageIndex";
 			}
 

@@ -32,8 +32,7 @@
   <link rel="stylesheet" href="${css }/AdminLTE.min.css">
   <!-- AdminLTE Skins.-->
   <link rel="stylesheet" href="${css }/_all-skins.min.css">
-  <!--Toogle  -->
-  <link href="${css }/bootstrap-toggle.min.css" rel="stylesheet">
+  
   <!-- DataTables -->
   <link rel="stylesheet" href="${css }/dataTables.bootstrap.min.css">
  <link rel="stylesheet" href="${css }/myapp.css">
@@ -147,7 +146,7 @@
         </li>
         <li>
           <a href="${contextRoot}/manage/listHotelApprove">
-            <i class="fa fa-check-square-o"></i> <span>Chỗ ở</span>
+            <i class="fa fa-check-square-o"></i> <span>Home Stay</span>
           </a>
         </li>
         <li>
@@ -212,7 +211,7 @@
 
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
-      <b>Version</b> 1.0.0
+      <b>Version</b> 2.4.0
     </div>
     <strong>Copyright &copy; 2014-2017 <a href="#">Viet Nam</a>.</strong> All rights
     reserved.
@@ -229,8 +228,6 @@
 <!-- DataTables -->
 <script src="${js }/jquery.dataTables.min.js"></script>
 <script src="${js }/dataTables.bootstrap.min.js"></script>
-<!--Toogle  -->
-<script src="${js }/bootstrap-toggle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="${js }/adminlte.min.js"></script>
 <script src="${js }/myapp.js"></script>
